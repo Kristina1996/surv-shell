@@ -1,5 +1,8 @@
 <div class="container">
   <h1 class="title">
     {{ 'PAGES.HOME.TITLE' | translate }}
+
+    <input type="file" (change)="fileChange($event)" placeholder="Upload file" accept=".pdf,.doc,.docx">
+    {{filePath}}
   </h1>
 </div>
