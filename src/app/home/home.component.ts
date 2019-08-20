@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+const electron = require('electron')
 
 @Component({
   selector: 'app-home',
@@ -12,16 +13,19 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    //const { dialog } = require('electron')
+    console.log(electron.remote.dialog)
+    console.log(electron.remote.dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] }).then(result => {
+      console.log(result.filePaths)
+      }).catch(err => {
+        console.log(err)
+      }))
   }
 
   fileChange(event) {
-    this.filePath = event.target.result; 
-    let fileList: FileList = event.target.files;
-    if(fileList.length > 0) {
-        let file: File = fileList[0];
-        let formData:FormData = new FormData();
-        formData.append('uploadFile', file, file.name);
-    }
+    console.log(event.target.value);
+    this.filePath = event.target.path;
+    localStorage.setItem('filePath', this.filePath);
 }
 
 }
