@@ -1,5 +1,5 @@
 export interface SpecialItemModel {
-  userName: string;
+  employeeName: string;
   rate: double;
   vacation: integer;
   sickLeave: integer;
