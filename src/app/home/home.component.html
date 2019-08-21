@@ -1,4 +1,12 @@
 <div class="container">
   <button type="button" class="btn btn-primary" (click)="openDialog()">Выберите папку</button>
-  {{ filePath }}
+  {{ folderPath }}
+
+  <button *ngIf="!isFolderChecked && folderPath" type="button" class="btn btn-success" (click)="getFilesFromFolder()">Просканировать папку</button>
+
+  <ul *ngIf="files" class="">
+    <li *ngFor="let file of files">
+      <span class="">{{file}}</span>
+    </li>
+  </ul>
 </div>
