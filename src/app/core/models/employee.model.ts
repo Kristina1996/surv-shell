@@ -1,4 +1,4 @@
-import { TaskModel } from './task.model.ts';
+import { TaskModel } from './task.model';
 
 export interface EmployeeModel {
   name: string;

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { EMPLOYEE } from '../core/models/mock-data';
+import { PROJECTS } from '../core/models/mock-data';
+import { REPORTS } from '../core/models/mock-data';
+import { TASKS } from '../core/models/mock-data';
+import { SPECIALITEMS } from '../core/models/mock-data';
+
 const electron = require('electron')
 
 @Component({
@@ -8,12 +14,15 @@ const electron = require('electron')
 })
 export class HomeComponent implements OnInit {
 
+  reports = REPORTS;
+
   public filePath;
 
   constructor() { }
 
   ngOnInit() {
-    //const { dialog } = require('electron')
+    console.log(this.reports);
+
     console.log(electron.remote.dialog)
     console.log(electron.remote.dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] }).then(result => {
       console.log(result.filePaths)

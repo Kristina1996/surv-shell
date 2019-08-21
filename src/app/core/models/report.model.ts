@@ -1,5 +1,5 @@
-import { ProjectModel } from './project.model.ts';
-import { SpecialItemModel } from './specialItem.model.ts';
+import { ProjectModel } from './project.model';
+import { SpecialItemModel } from './specialItem.model';
 
 export interface ReportModel {
   common: ProjectModel[];

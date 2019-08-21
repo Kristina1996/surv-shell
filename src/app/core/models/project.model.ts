@@ -1,4 +1,4 @@
-import { EmployeeModel } from './employee.model.ts';
+import { EmployeeModel } from './employee.model';
 
 export interface ProjectModel {
   name: string;
