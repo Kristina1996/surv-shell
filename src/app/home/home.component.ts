@@ -15,26 +15,36 @@ const electron = require('electron')
 export class HomeComponent implements OnInit {
 
   reports = REPORTS;
-
   public filePath;
 
   constructor() { }
 
   ngOnInit() {
-    console.log(this.reports);
 
+    console.log(this.reports);
+    /*
     console.log(electron.remote.dialog)
     console.log(electron.remote.dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] }).then(result => {
       console.log(result.filePaths)
       }).catch(err => {
         console.log(err)
-      }))
+      }))*/
   }
 
+  openDialog() {
+    console.log(electron.remote.dialog.showOpenDialog({ properties: ['openFile', 'openDirectory', 'multiSelections'] }).then(result => {
+      this.filePath = result.filePaths[0];
+      localStorage.setItem('folderPath', result.filePaths[0]);
+      console.log(result.filePaths)
+      }).catch(err => {
+        console.log(err)
+      }))
+  }
+  /*
   fileChange(event) {
     console.log(event.target.value);
     this.filePath = event.target.path;
     localStorage.setItem('filePath', this.filePath);
-}
+  }*/
 
 }
