@@ -48,8 +48,14 @@ export class HomeComponent implements OnInit {
   getFilesFromFolder() {
     this.homeService.getFilesFromFolder(this.folderPath).then(result => {
       //(result.length > 0) ? this.files = result : alert('Файлы не найдены! Пожалуйста, выберите другую папку.')
-       this.files = result;
-       (this.files.length == 0) ? alert('Файлы не найдены! Пожалуйста, выберите другую папку.') : this.showFilesMenuComponent = true;
+      this.files = result;
+      if (this.files.length == 0) {
+         alert('Файлы не найдены! Пожалуйста, выберите другую папку.')
+         this.showFilesMenuComponent = false;
+         this.showReportComponent = false;
+      } else {
+         this.showFilesMenuComponent = true;
+      }
     });
     this.isFolderChecked = true;
   }
