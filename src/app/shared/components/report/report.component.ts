@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-report',
@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportComponent implements OnInit {
 
+  @Input() filePath: string;
+
   constructor() { }
 
   ngOnInit() {
+    console.log(this.filePath)
   }
 
 }

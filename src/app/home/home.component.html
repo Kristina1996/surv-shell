@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="top-area">
+  <div class="header">
     <div class="left-panel">
       <button type="button" class="btn btn-primary" (click)="openDialog()">Выберите папку</button>
       <button *ngIf="!isFolderChecked && folderPath" type="button" class="btn btn-success" (click)="getFilesFromFolder()">Просканировать папку</button>
@@ -9,21 +9,13 @@
     </div>
   </div>
 
-  <div class="bottom-area">
+  <div class="main-content">
     <div class="files-panel">
-      <div class="list-group">
-        <ul *ngIf="files">
-          <li *ngFor="let file of files">
-            <span class="list-group-item list-group-item-action">{{file}}</span>
-              <!--
-              <a routerLink="/report/{{folderPath}}\{{file}}" class="btn-view">{{file}}</a>
-              -->
-          </li>
-        </ul>
-      </div>
+      <app-files-menu *ngIf="showFilesMenuComponent" [files]="files" (sendFileName)="getFileName($event)"></app-files-menu>
     </div>
-    <div class="report-panel">
 
+    <div class="report-panel">
+      <app-report *ngIf="showReportComponent" [filePath]="selectedFile"></app-report>
     </div>
   </div>
 </div>

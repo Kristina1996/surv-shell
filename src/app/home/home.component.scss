@@ -11,7 +11,7 @@
 
 }
 
-.top-area {
+.header {
   display: flex;
   flex-direction: row !important;
   flex-wrap: nowrap;
@@ -20,7 +20,7 @@
   height: 20%;
 }
 
-.bottom-area {
+.main-content {
   display: flex;
   flex-direction: row;
   border-style: solid;

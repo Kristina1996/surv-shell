@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import * as fs from 'fs';
 
 import { EMPLOYEE } from '../core/models/mock-data';
@@ -20,8 +20,13 @@ const electron = require('electron')
 export class HomeComponent implements OnInit {
 
   reports = REPORTS;
+
+  public showFilesMenuComponent: Boolean = false;
+  public showReportComponent: Boolean = false;
+
   public folderPath;
   public files;
+  public selectedFile;
   public isFolderChecked: Boolean = false;
 
   constructor(private homeService: HomeService) { }
@@ -44,9 +49,18 @@ export class HomeComponent implements OnInit {
     this.homeService.getFilesFromFolder(this.folderPath).then(result => {
       //(result.length > 0) ? this.files = result : alert('Файлы не найдены! Пожалуйста, выберите другую папку.')
        this.files = result;
-       if(this.files.length == 0) alert('Файлы не найдены! Пожалуйста, выберите другую папку.')
+       (this.files.length == 0) ? alert('Файлы не найдены! Пожалуйста, выберите другую папку.') : this.showFilesMenuComponent = true;
     });
     this.isFolderChecked = true;
+  }
+
+  /**
+   *Метод для получения имени выбранного файла от компонента FilesMenuComponent
+  **/
+  getFileName(fileName: string) {
+    console.log(fileName);
+    this.selectedFile = this.folderPath + "\\" + fileName;
+    this.showReportComponent = true;
   }
 
 }
