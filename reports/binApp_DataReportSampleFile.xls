@@ -1,0 +1,328 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <Author>TAS</Author>
+  <LastAuthor>ird</LastAuthor>
+  <LastPrinted>2006-05-25T13:56:24Z</LastPrinted>
+  <Created>2006-05-25T10:32:45Z</Created>
+  <LastSaved>2006-05-29T11:34:29Z</LastSaved>
+  <Company>Inreco LAN</Company>
+  <Version>12.00</Version>
+ </DocumentProperties>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>9105</WindowHeight>
+  <WindowWidth>15360</WindowWidth>
+  <WindowTopX>-30</WindowTopX>
+  <WindowTopY>1125</WindowTopY>
+  <ActiveSheet>1</ActiveSheet>
+  <RefModeR1C1/>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Arial Cyr" x:CharSet="204"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s62">
+   <Protection ss:Protected="0"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Arial Cyr" x:CharSet="204" ss:Size="16"/>
+   <Protection ss:Protected="0"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Font ss:FontName="Arial Cyr" x:CharSet="204" ss:Color="#FFFFFF"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s67">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="Arial Cyr" x:CharSet="204" ss:Size="16"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="Arial Cyr" x:CharSet="204" ss:Color="#FFFFFF" ss:Bold="1"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Vertical="Bottom"/>
+   <Font ss:FontName="Arial Cyr" x:CharSet="204" ss:Bold="1"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s71">
+   <Alignment ss:Vertical="Bottom"/>
+   <Protection ss:Protected="0"/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+   <Font ss:FontName="Arial Cyr" x:CharSet="204" ss:Size="16"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+  </Style>
+  <Style ss:ID="s78">
+   <Alignment ss:Vertical="Bottom"/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s79">
+   <Alignment ss:Vertical="Bottom"/>
+  </Style>
+  <Style ss:ID="s82">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Interior/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="s84">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Bottom"/>
+   <Borders/>
+   <Interior/>
+   <Protection/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="общие задачи">
+  <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="20" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62">
+   <Column ss:Index="4" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="58.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="20.25">
+    <Cell ss:MergeAcross="8" ss:StyleID="s64"><Data ss:Type="String">Отчет по проекту</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="20.25">
+    <Cell ss:Index="3" ss:StyleID="s65"><Data ss:Type="String">prnm_</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="String">Super Project</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">empl_</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String"> Dubov Ilya  </Data></Cell>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+    <Cell ss:StyleID="s71"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача1</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача2</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача3</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача4</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача5</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача6</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача7</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача8</Data></Cell>
+    <Cell><Data ss:Type="Number">5</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">comment_</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">комментарий</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">empl_</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">Shamin Pavel </Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача21</Data></Cell>
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача22</Data></Cell>
+    <Cell><Data ss:Type="Number">1</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача3</Data></Cell>
+    <Cell><Data ss:Type="Number">11</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача4</Data></Cell>
+    <Cell><Data ss:Type="Number">12</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">задача5</Data></Cell>
+    <Cell><Data ss:Type="Number">13</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s71"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <PageMargins x:Bottom="0.984251969" x:Left="0.78740157499999996"
+     x:Right="0.78740157499999996" x:Top="0.984251969"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>200</HorizontalResolution>
+    <VerticalResolution>200</VerticalResolution>
+   </Print>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>11</ActiveRow>
+     <ActiveCol>1</ActiveCol>
+     <RangeSelection>R12C2:R12C4</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="специальные задачи">
+  <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="19" x:FullColumns="1"
+   x:FullRows="1">
+   <Row ss:AutoFitHeight="0" ss:Height="20.25">
+    <Cell ss:MergeAcross="8" ss:StyleID="s74"><Data ss:Type="String">Специальные задачи</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">empl_</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">Dubov Ilya   </Data></Cell>
+    <Cell ss:StyleID="s71"><Data ss:Type="Number">1</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s76"><Data ss:Type="String">комментарии</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">отгулы</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">5</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">больничный лист</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">Отпуск</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">ОБСЗ</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s82"><Data ss:Type="String">непрофильные задачи</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">устанавливал Windows</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s82"><Data ss:Type="String">простои</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">3</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">нечего было делать</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s84"><Data ss:Type="String">Дополнительно оплаченное время</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:StyleID="s79"/>
+    <Cell ss:StyleID="s79"/>
+    <Cell ss:StyleID="s79"/>
+    <Cell ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s68"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s70"/>
+    <Cell ss:StyleID="s62"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"/>
+    <Cell ss:StyleID="s62"/>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:StyleID="s68"><Data ss:Type="String">empl_</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">Shamin Pavel </Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">1.5</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">отгулы</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">больничный лист</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.75">
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">Отпуск</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">20</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s78"><Data ss:Type="String">ОБСЗ</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s82"><Data ss:Type="String">непрофильные задачи</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">устанавливал Windows</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s82"><Data ss:Type="String">простои</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">нечего было делать</Data></Cell>
+   </Row>
+   <Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s84"><Data ss:Type="String">Дополнительно оплаченное время</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">0</Data></Cell>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <PageMargins x:Bottom="0.984251969" x:Left="0.78740157499999996"
+     x:Right="0.78740157499999996" x:Top="0.984251969"/>
+   </PageSetup>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>200</HorizontalResolution>
+    <VerticalResolution>200</VerticalResolution>
+   </Print>
+   <Selected/>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>18</ActiveRow>
+     <RangeSelection>R19C1:R19C4</RangeSelection>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

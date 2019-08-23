@@ -32,17 +32,16 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
-    console.log(this.reports);
   }
 
   openDialog() {
-    console.log(electron.remote.dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
+    electron.remote.dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
       this.folderPath = result.filePaths[0];
       this.isFolderChecked = false;
       localStorage.setItem('folderPath', result.filePaths[0]);
     }).catch(err => {
       console.log(err)
-    }))
+    })
   }
 
   getFilesFromFolder() {
@@ -64,7 +63,6 @@ export class HomeComponent implements OnInit {
    *Метод для получения имени выбранного файла от компонента FilesMenuComponent
   **/
   getFileName(fileName: string) {
-    console.log(fileName);
     this.selectedFile = this.folderPath + "\\" + fileName;
     this.showReportComponent = true;
   }

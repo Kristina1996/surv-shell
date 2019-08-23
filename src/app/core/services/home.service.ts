@@ -23,14 +23,8 @@ export class HomeService {
     return new Promise(function(resolve, reject){
       fs.readFile(filePath, function(err, content) {
         xml2js.parseString(content.toString(), function (err, result) {
-                console.log(result); // Prints JSON object!
                 err ? reject(err) : resolve(result);
            });
-
-        /*
-        console.log('в сервисе: ' + content)
-        err ? reject(err) : resolve(content.toString());
-        */
       });
     });
   }

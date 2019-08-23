@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-common-part',
@@ -6,6 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./common-part.component.scss']
 })
 export class CommonPartComponent implements OnInit {
+
+  @Input() data: any;
 
   constructor() { }
 
