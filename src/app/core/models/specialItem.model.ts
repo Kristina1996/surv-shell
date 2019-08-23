@@ -1,4 +1,4 @@
-export interface SpecialItemModel {
+export class SpecialItemModel {
   employeeName: string;
   rate: number;
   vacation: number;

@@ -1,12 +1,6 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import * as fs from 'fs';
 
-import { EMPLOYEE } from '../core/models/mock-data';
-import { PROJECTS } from '../core/models/mock-data';
-import { REPORTS } from '../core/models/mock-data';
-import { TASKS } from '../core/models/mock-data';
-import { SPECIALITEMS } from '../core/models/mock-data';
-
 import { HomeService } from '../core/services/home.service';
 
 const electron = require('electron')
@@ -18,8 +12,6 @@ const electron = require('electron')
   providers: [ HomeService ]
 })
 export class HomeComponent implements OnInit {
-
-  reports = REPORTS;
 
   public showFilesMenuComponent: Boolean = false;
   public showReportComponent: Boolean = false;

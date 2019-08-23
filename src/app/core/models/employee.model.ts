@@ -1,6 +1,6 @@
 import { TaskModel } from './task.model';
 
-export interface EmployeeModel {
+export class EmployeeModel {
   name: string;
   tasks: TaskModel[];
 }

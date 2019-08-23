@@ -1,6 +1,10 @@
 import { EmployeeModel } from './employee.model';
 
-export interface ProjectModel {
+export class ProjectModel {
   name: string;
   employee: EmployeeModel[];
+
+  getLastEmployee() {
+    return this.employee[this.employee.length - 1]
+  }
 }
