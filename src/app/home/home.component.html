@@ -11,7 +11,7 @@
 
   <div class="main-content">
     <div class="files-panel">
-      <app-files-menu *ngIf="showFilesMenuComponent" [files]="files" (sendFileName)="getFileName($event)"></app-files-menu>
+      <app-files-menu *ngIf="showFilesMenuComponent" [files]="files" (sendFileName)="onSendFileName($event)"></app-files-menu>
     </div>
 
     <div class="report-panel">

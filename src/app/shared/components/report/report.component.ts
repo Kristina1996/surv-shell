@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import * as fs from 'fs';
 
 import { HomeService } from '../../../core/services/home.service';
@@ -10,7 +10,7 @@ import { AdapterService } from '../../../core/services/adapter.service';
   styleUrls: ['./report.component.scss'],
   providers: [ HomeService, AdapterService ]
 })
-export class ReportComponent implements OnInit {
+export class ReportComponent implements OnInit, OnChanges {
 
   @Input() filePath: string;
   public fileContent;
@@ -18,17 +18,16 @@ export class ReportComponent implements OnInit {
   constructor(private homeService: HomeService,
               private adapterService: AdapterService) { }
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.filePath = changes.filePath.currentValue
     this.homeService.getFileContent(this.filePath).then(result => {
-      /*
-      this.adapterService.getModel(result).subscribe(result => {
-        console.log('вернулся из адаптера')
-      }, error => console.log(error));
-      */
+      console.log(result)
       let a = this.adapterService.getModel(result);
 
-       this.fileContent = result;
-       if(this.fileContent.length == 0) alert('Файл пустой.')
+      this.fileContent = result;
+      if(this.fileContent.length == 0) alert('Файл пустой.')
     });
   }
 

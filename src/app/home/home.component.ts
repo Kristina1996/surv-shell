@@ -32,12 +32,29 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
+    let folderPath = localStorage.getItem('folderPath')
+    let files = localStorage.getItem('files')
+    let fileName = localStorage.getItem('fileName')
+
+    if(folderPath) {
+      this.folderPath = folderPath
+    }
+    if(files) {
+      this.showFilesMenuComponent = true
+      this.files = JSON.parse(files)
+    }
+    if(fileName) {
+      this.selectedFile = this.folderPath + "\\" + fileName
+      this.showReportComponent = true
+    }
   }
 
   openDialog() {
     electron.remote.dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
       this.folderPath = result.filePaths[0];
       this.isFolderChecked = false;
+      this.showFilesMenuComponent = false;
+      this.showReportComponent = false;
       localStorage.setItem('folderPath', result.filePaths[0]);
     }).catch(err => {
       console.log(err)
@@ -46,7 +63,6 @@ export class HomeComponent implements OnInit {
 
   getFilesFromFolder() {
     this.homeService.getFilesFromFolder(this.folderPath).then(result => {
-      //(result.length > 0) ? this.files = result : alert('Файлы не найдены! Пожалуйста, выберите другую папку.')
       this.files = result;
       if (this.files.length == 0) {
          alert('Файлы не найдены! Пожалуйста, выберите другую папку.')
@@ -54,6 +70,7 @@ export class HomeComponent implements OnInit {
          this.showReportComponent = false;
       } else {
          this.showFilesMenuComponent = true;
+         localStorage.setItem('files', JSON.stringify(this.files))
       }
     });
     this.isFolderChecked = true;
@@ -62,7 +79,8 @@ export class HomeComponent implements OnInit {
   /**
    *Метод для получения имени выбранного файла от компонента FilesMenuComponent
   **/
-  getFileName(fileName: string) {
+  onSendFileName(fileName: string) {
+    localStorage.setItem('fileName', fileName)
     this.selectedFile = this.folderPath + "\\" + fileName;
     this.showReportComponent = true;
   }

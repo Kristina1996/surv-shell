@@ -19,6 +19,7 @@ export class FilesMenuComponent implements OnInit {
    * Передача компоненту-родителю Home имя выбранного файла
   **/
   chooseFile(fileName) {
+    console.log('передаю компоненту родителю имя выбранного файла')
     this.sendFileName.emit(fileName);
   }
 

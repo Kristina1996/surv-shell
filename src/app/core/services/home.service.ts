@@ -11,6 +11,7 @@ export class HomeService {
   constructor() { }
 
   getFilesFromFolder(folderPath) {
+    console.log('запустился метод getFilesFromFolder в сервисе')
     return new Promise(function(resolve, reject){
       fs.readdir(folderPath, function(err, items) {
         let files = items.filter(item => item.indexOf('.xml') != -1 || item.indexOf('.xls') != -1);
@@ -20,6 +21,7 @@ export class HomeService {
   }
 
   getFileContent(filePath) {
+    console.log('запустился метод getFileContent в сервисе')
     return new Promise(function(resolve, reject){
       fs.readFile(filePath, function(err, content) {
         xml2js.parseString(content.toString(), function (err, result) {
