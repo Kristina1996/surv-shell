@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable} from 'rxjs';
 
 import { ReportModel } from '../../core/models/report.model';
-import { ProjectModel } from '../../core/models/project.model';
-import { EmployeeModel } from '../../core/models/employee.model';
+import { ProjectModel } from '../../core/models/report.model';
+import { EmployeeModel } from '../../core/models/report.model';
 import { SpecialItemModel } from '../../core/models/specialItem.model';
-import { TaskModel } from '../../core/models/task.model';
+import { TaskModel } from '../../core/models/report.model';
 
 @Injectable({
   providedIn: 'root'

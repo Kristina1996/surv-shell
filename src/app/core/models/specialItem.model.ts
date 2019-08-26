@@ -1,11 +1,11 @@
 export class SpecialItemModel {
   employeeName: string;
   rate: number;
-  vacation: number;
-  sickLeave: number;
-  daysOff: number;
-  unpaidLeave: number;
-  nonCoreTasks: number;
-  downtime: number;
-  overtime: number;
+  specialTasks: SpecialTaskModel[];
+}
+
+export class SpecialTaskModel {
+  name: string;
+  hours: number;
+  comment: string;
 }
