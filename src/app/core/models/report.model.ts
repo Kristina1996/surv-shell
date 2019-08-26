@@ -2,11 +2,14 @@ import { SpecialItemModel } from './specialItem.model';
 
 export class ReportModel {
   common: ProjectModel[] = [];
-  specialTasks: SpecialItemModel[];
+  specialTasks: SpecialItemModel[] = [];
 
   getLastProject() {
-    console.log('количество проектов в отчете: ' + this.common[this.common.length])
     return this.common[this.common.length - 1]
+  }
+
+  getLastSpecialItem() {
+    return this.specialTasks[this.specialTasks.length - 1]
   }
 }
 

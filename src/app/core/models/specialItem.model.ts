@@ -1,7 +1,7 @@
 export class SpecialItemModel {
   employeeName: string;
   rate: number;
-  specialTasks: SpecialTaskModel[];
+  specialTasks: SpecialTaskModel[] = [];
 }
 
 export class SpecialTaskModel {

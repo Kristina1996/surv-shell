@@ -29,7 +29,7 @@ export class ReportComponent implements OnInit, OnChanges {
     this.homeService.getFileContent(this.filePath).then(result => {
       console.log(result)
       this.report = this.adapterService.getModel(result);
-      //console.log('Полученная модель отчета' + this.report);
+      console.log(this.report);
 
       this.fileContent = result;
       if(this.fileContent.length == 0) alert('Файл пустой.')
