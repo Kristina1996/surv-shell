@@ -1,6 +1,8 @@
 import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import * as fs from 'fs';
 
+import { ReportModel } from '../../../core/models/report.model';
+
 import { HomeService } from '../../../core/services/home.service';
 import { AdapterService } from '../../../core/services/adapter.service';
 
@@ -15,6 +17,8 @@ export class ReportComponent implements OnInit, OnChanges {
   @Input() filePath: string;
   public fileContent;
 
+  report: ReportModel;
+
   constructor(private homeService: HomeService,
               private adapterService: AdapterService) { }
 
@@ -24,7 +28,8 @@ export class ReportComponent implements OnInit, OnChanges {
     this.filePath = changes.filePath.currentValue
     this.homeService.getFileContent(this.filePath).then(result => {
       console.log(result)
-      let a = this.adapterService.getModel(result);
+      this.report = this.adapterService.getModel(result);
+      //console.log('Полученная модель отчета' + this.report);
 
       this.fileContent = result;
       if(this.fileContent.length == 0) alert('Файл пустой.')

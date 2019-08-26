@@ -17,48 +17,35 @@ export class AdapterService {
   constructor() { }
 
   getModel(obj): ReportModel {
-    let report: ReportModel;
-    /*
-    report.common = obj.Workbook.Worksheet[0];
-
-    // получение специальных задач
-    for(let item in obj.Workbook.Worksheet[1].Table[0].Row) {
-
-    }
-    let row = obj.Workbook.Worksheet[1].Table[0].Row;
-    let size = obj.Workbook.Worksheet[1].Table[0].Row.length;
-    let specialItems: SpecialItemModel[];
-    let iterator = 0;
-    for(let i = 1; i < size++; i++) {
-      while(row[i].Cell.indexOf('empl_') != -1 && i != 0) {
-        specialItems[]
-      }
-      if(row[i].Cell.indexOf('empl_') == -1)
-
-      row[i].Cell
-    }
-    */
-
-    //report.common = obj.Workbook.Worksheet[0];
-    //report.specialTasks = obj.Workbook.Worksheet[1];
+    let report: ReportModel = new ReportModel();
 
     let specialItems: SpecialItemModel[];
-    let iterator = 0;
-    let specialTasksXML = obj.Workbook.Worksheet[1].Table[0].Row;
+    const cells = obj.Workbook.Worksheet[0].Table[0].Row
+                  .map(item => item.Cell)
+                  .filter(item => Array.isArray(item));
 
-    specialTasksXML.forEach((row, index) => {
-      let rowString = JSON.stringify(row)
+    const dataItems = cells.map(cell => cell.filter(item => item.Data).map(item => item.Data));
+    const rows = dataItems.map(item => item.map(attr => attr[0]._))
+                          .filter(row => row.length > 0 && row[0] != 'comment_');
+    rows.shift();
 
-      if(rowString.includes('empl_')) {
+    rows.forEach(row => {
+      if(row.includes('prnm_')) {
+        let project: ProjectModel = new ProjectModel();
+        project.name = row[1];
+        report.common.push(project);
+      } else if(row.includes('empl_')) {
+        let employee: EmployeeModel = new EmployeeModel();
+        employee.name = row[1];
+        report.getLastProject().employee.push(employee);
+      } else {
+        let task: TaskModel = new TaskModel();
+        task.name = row[0];
+        task.hours = row[1];
+        report.getLastProject().getLastEmployee().tasks.push(task);
       }
+      console.log(report)
     });
-
     return report;
-
-
-    /*
-    let a = obj.Workbook.Worksheet[1].map(item => {
-      item
-    })*/
   }
 }
