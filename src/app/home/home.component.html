@@ -4,8 +4,8 @@
       <button type="button" class="btn btn-primary" (click)="openDialog()">Выберите папку</button>
       <button *ngIf="!isFolderChecked && folderPath" type="button" class="btn btn-success" (click)="getFilesFromFolder()">Просканировать папку</button>
     </div>
-    <div class="right-panel">
-      {{ folderPath }}
+    <div *ngIf="folderPath" class="right-panel">
+      Выбранный путь: {{ folderPath }}
     </div>
   </div>
 
@@ -15,7 +15,8 @@
     </div>
 
     <div class="report-panel">
-      <app-report *ngIf="showReportComponent" [filePath]="selectedFile"></app-report>
+      <app-report *ngIf="showReportComponent; else elseBlock" [filePath]="selectedFile"></app-report>
+      <ng-template #elseBlock>Выберите отчёт...</ng-template>
     </div>
   </div>
 </div>

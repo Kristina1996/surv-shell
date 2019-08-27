@@ -35,13 +35,22 @@
 .left-panel {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   //border-style: solid;
   border-right: 1px solid #cccacabd;
   width: 30%;
+  .btn {
+    margin: 1%;
+  }
 }
 
 .right-panel {
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+  text-align: center;
 }
 
 .files-panel {
