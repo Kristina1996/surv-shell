@@ -8,6 +8,8 @@
   justify-content: center;
   */
   flex-direction: column;
+  padding-bottom: 10px;
+  padding-top: 10px;
 
 }
 
@@ -16,21 +18,25 @@
   flex-direction: row !important;
   flex-wrap: nowrap;
   justify-content: flex-start;
-  border-style: solid;
+  //border-style: solid;
+  //border-width: thin;
+  //border-bottom-style:
+  border-bottom: 1px solid #cccacabd;
   height: 20%;
 }
 
 .main-content {
   display: flex;
   flex-direction: row;
-  border-style: solid;
+  //border-style: solid;
   height: 80%;
 }
 
 .left-panel {
   display: flex;
   flex-direction: column;
-  border-style: solid;
+  //border-style: solid;
+  border-right: 1px solid #cccacabd;
   width: 30%;
 }
 
@@ -42,10 +48,18 @@
   display: flex;
   flex-direction: column;
   width: 30%;
-  border-style: solid;
+  min-width: 30%;
+  //border-style: solid;
+  border-right: 1px solid #cccacabd;
 }
 
 .report-panel {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin: 1%;
+}
+
+app-report {
+  overflow-y: scroll;
 }

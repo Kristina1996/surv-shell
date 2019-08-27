@@ -1,5 +1,3 @@
-<p>report works!</p>
-
 <div class="tabs">
   <input id="tab1" type="radio" name="tabs" checked>
   <label for="tab1" title="Вкладка 1">Общие задачи</label>
@@ -7,12 +5,12 @@
   <input id="tab2" type="radio" name="tabs">
   <label for="tab2" title="Вкладка 2">Специальные задачи</label>
 
-  <ng-container *ngIf="fileContent">
-  <section id="content-tab1">
-    <app-common-part [data]="fileContent.Workbook.Worksheet[0]"></app-common-part>
-  </section>
-  <section id="content-tab2">
-    <app-special-part [data]="fileContent.Workbook.Worksheet[1]"></app-special-part>
-  </section>
+  <ng-container *ngIf="report">
+    <section id="content-tab1">
+      <app-common-part [data]="report.common"></app-common-part>
+    </section>
+    <section id="content-tab2">
+      <app-special-part [data]="report.specialTasks"></app-special-part>
+    </section>
   </ng-container>
 </div>

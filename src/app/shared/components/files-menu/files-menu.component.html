@@ -1,8 +1,6 @@
-<p>files-menu works!</p>
-
 <div class="list-files">
-  <ul *ngIf="files">
-    <li *ngFor="let file of files" class="list-group-item list-group-item-action" (click)="chooseFile(file)">
+  <ul *ngIf="files" class="ul-menu-files">
+    <li *ngFor="let file of files" (click)="chooseFile(file)">
       {{file}}
     </li>
   </ul>

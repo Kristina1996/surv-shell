@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
     let folderPath = localStorage.getItem('folderPath')
     let files = localStorage.getItem('files')
     let fileName = localStorage.getItem('fileName')
+    let isFolderChecked = localStorage.getItem('isFolderChecked')
 
     if(folderPath) {
       this.folderPath = folderPath
@@ -39,6 +40,9 @@ export class HomeComponent implements OnInit {
       this.selectedFile = this.folderPath + "\\" + fileName
       this.showReportComponent = true
     }
+    if(isFolderChecked) {
+      this.isFolderChecked = Boolean(isFolderChecked)
+    }
   }
 
   openDialog() {
@@ -48,6 +52,9 @@ export class HomeComponent implements OnInit {
       this.showFilesMenuComponent = false;
       this.showReportComponent = false;
       localStorage.setItem('folderPath', result.filePaths[0]);
+      localStorage.setItem('isFolderChecked', this.isFolderChecked.toString())
+      localStorage.setItem('files', '')
+      localStorage.setItem('fileName', '')
     }).catch(err => {
       console.log(err)
     })
@@ -66,6 +73,7 @@ export class HomeComponent implements OnInit {
       }
     });
     this.isFolderChecked = true;
+    localStorage.setItem('isFolderChecked', this.isFolderChecked.toString())
   }
 
   /**

@@ -15,7 +15,7 @@ import { AdapterService } from '../../../core/services/adapter.service';
 export class ReportComponent implements OnInit, OnChanges {
 
   @Input() filePath: string;
-  public fileContent;
+  //public fileContent;
 
   report: ReportModel;
 
@@ -28,11 +28,13 @@ export class ReportComponent implements OnInit, OnChanges {
     this.filePath = changes.filePath.currentValue
     this.homeService.getFileContent(this.filePath).then(result => {
       console.log(result)
+      
+
       this.report = this.adapterService.getModel(result);
       console.log(this.report);
 
-      this.fileContent = result;
-      if(this.fileContent.length == 0) alert('Файл пустой.')
+      //this.fileContent = result;
+      //if(this.report.length == 0) alert('Файл пустой.')
     });
   }
 

@@ -1,1 +1,20 @@
-<p>common-part works!</p>
+<div class="main">
+  <div *ngFor="let project of data">
+    <ul class="list-group">
+      <li class="list-group-item">
+        {{project.name}}
+        <div *ngFor="let employee of project.employee">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{employee.name}}</li>
+            <div *ngFor="let task of employee.tasks">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">{{task.name}}</li>
+                <li class="list-group-item">{{task.hours}}</li>
+              </ul>
+            </div>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

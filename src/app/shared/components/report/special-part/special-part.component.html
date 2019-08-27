@@ -1,23 +1,19 @@
-<p>special-part works!</p>
-
-<!--
-<div *ngFor="item of data">
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"></li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
-  </ul>
-</div>
--->
-
-<!--
-<div *ngFor="let item of data.Table[0].Row">
-  <div *ngFor="let i of item.Cell">
-    <div *ngIf="i.Data != 'undefined'">
-      {{i.Data[0]._}}
-    </div>
+<div class="main">
+  <div *ngFor="let item of data">
+    <ul class="list-group">
+      <li class="list-group-item">
+        {{item.employeeName}}
+        {{item.rate}}
+        <div *ngFor="let task of item.specialTasks">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">{{task.name}}</li>
+            <li class="list-group-item">{{task.hours}}</li>
+            <div *ngIf="task.comment">
+              <li class="list-group-item">{{task.comment}}</li>
+            </div>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </div>
 </div>
--->
