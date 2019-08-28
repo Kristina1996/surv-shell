@@ -95,6 +95,6 @@ export class HomeComponent implements OnInit {
   **/
   onCloseModal(show: Boolean) {
     if (show === false) this.showModalNewReport = false;
-    this.files = localStorage.getItem('files')
+    this.files = JSON.parse(localStorage.getItem('files'))
   }
 }
