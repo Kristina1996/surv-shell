@@ -1,20 +1,25 @@
+
 <div class="main">
-  <div *ngFor="let project of data">
+  <div *ngFor="let project of data; let prjNum = index">
     <ul class="list-group">
       <li class="list-group-item">
-        <div class="project-name">{{project.name}}</div>
-        <input value="{{project.name}}" placeholder="Имя проекта"/>
-        <div *ngFor="let employee of project.employee">
+        <div class="project-name"><input class="form-control" [(ngModel)]="project.name" name="name{{prjNum}}" placeholder="Имя проекта"/></div>
+        <div *ngFor="let employee of project.employee; let emplNum = index">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item employee-name">{{employee.name}}</li>
+            <li class="list-group-item employee-name"><input class="form-control" [(ngModel)]="employee.name" placeholder="Имя сотрудника"/></li>
             <div *ngFor="let task of employee.tasks" class="task">
 
-                <div >{{task.name}}</div>
-                <div>{{task.hours}}</div>
+                <div><input class="form-control" [(ngModel)]="task.name" placeholder="Задача"/></div>
+                <div><input class="form-control" [(ngModel)]="task.hours" placeholder="Количество часов"/></div>
             </div>
+            {{prjNum}}{{emplNum}}
+            <button (click)="addTask(prjNum, emplNum)">Add task</button>
           </ul>
         </div>
+        <button (click)="addEmployee(prjNum)">Add Employee</button>
       </li>
     </ul>
   </div>
+  <button (click)="addProject()">Add Project</button>
+  <button (click)="saveReport()">Save Report</button>
 </div>

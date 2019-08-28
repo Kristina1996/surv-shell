@@ -47,10 +47,9 @@
 
 .right-panel {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   width: 70%;
-  text-align: center;
+  margin: 1%;
 }
 
 .files-panel {
