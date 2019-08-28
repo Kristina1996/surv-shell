@@ -2,15 +2,15 @@
   <div *ngFor="let project of data">
     <ul class="list-group">
       <li class="list-group-item">
-        {{project.name}}
+        <div class="project-name">{{project.name}}</div>
+        <input value="{{project.name}}" placeholder="Имя проекта"/>
         <div *ngFor="let employee of project.employee">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{employee.name}}</li>
-            <div *ngFor="let task of employee.tasks">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">{{task.name}}</li>
-                <li class="list-group-item">{{task.hours}}</li>
-              </ul>
+            <li class="list-group-item employee-name">{{employee.name}}</li>
+            <div *ngFor="let task of employee.tasks" class="task">
+
+                <div >{{task.name}}</div>
+                <div>{{task.hours}}</div>
             </div>
           </ul>
         </div>

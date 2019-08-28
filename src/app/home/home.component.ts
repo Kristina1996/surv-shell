@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
 
   public showFilesMenuComponent: Boolean = false;
   public showReportComponent: Boolean = false;
+  public showModalNewReport: Boolean = false;
 
   public folderPath;
   public files;
@@ -85,4 +86,15 @@ export class HomeComponent implements OnInit {
     this.showReportComponent = true;
   }
 
+  openModalNewReport() {
+    this.showModalNewReport = true;
+  }
+
+  /**
+   *Метод для закрытия модального окна Create New Report
+  **/
+  onCloseModal(show: Boolean) {
+    if (show === false) this.showModalNewReport = false;
+    this.files = localStorage.getItem('files')
+  }
 }

@@ -3,11 +3,16 @@
     <div class="left-panel">
       <button type="button" class="btn btn-primary" (click)="openDialog()">Выберите папку</button>
       <button *ngIf="!isFolderChecked && folderPath" type="button" class="btn btn-success" (click)="getFilesFromFolder()">Просканировать папку</button>
+      <button *ngIf="folderPath" type="button" class="btn btn-success" (click)="openModalNewReport()">Создать новый отчет</button>
     </div>
     <div *ngIf="folderPath" class="right-panel">
       Выбранный путь: {{ folderPath }}
     </div>
   </div>
+
+  <ng-container *ngIf="showModalNewReport">
+    <app-new-report-modal [folderPath]="folderPath" (closeModal)="onCloseModal($event)"></app-new-report-modal>
+  </ng-container>
 
   <div class="main-content">
     <div class="files-panel">

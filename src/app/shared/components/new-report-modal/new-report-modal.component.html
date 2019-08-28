@@ -1,0 +1,10 @@
+<div id="error" class="modalbackground">
+    <div class="modalwindow">
+		    <a (click)="clickClose()" title="Закрыть" class="close">X</a>
+        <h3>Создание нового отчета</h3>
+        <p>Введите название файла:</p>
+        <p>Выбранный путь:</p>
+        <input [(ngModel)]="fileName" placeholder="Название файла">
+        <a (click)="createReport()" title="Создать" class="close">X</a>
+    </div>
+</div>

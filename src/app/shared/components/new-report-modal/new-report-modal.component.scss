@@ -1,0 +1,56 @@
+.modalbackground {
+  margin: 0; /* убираем отступы */
+  padding: 0; /* убираем отступы */
+  position: fixed; /* фиксируем положение */
+  top:0; /* растягиваем блок по всему экрану */
+  bottom:0;
+  left:0;
+  right:0;
+  background: rgba(0,0,0,0.5); /* полупрозрачный цвет фона */
+  z-index:100; /* выводим фон поверх всех слоев на странице браузера */
+  opacity: 1; /* Делаем окно видимым */
+  pointer-events: auto; /* элемент видим для событий мыши */
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ширина диалогового окна и его отступы от экрана */
+.modalwindow {
+  width: 30%;
+  height: 50%;
+  //max-width: 375px;
+  margin: 5% auto;
+  padding: 2%;
+  background: #fff;
+  border-radius: 3px;
+  color: darkslategrey;
+}
+
+.modalwindow h3 {
+  padding: 0;
+  margin: 0;
+}
+
+.modalwindow p {
+  padding: 0;
+  margin: 4% 0 8% 0;
+}
+
+.close {
+  display: block;
+  color: #fff;
+  background: #369;
+  padding: 2%;
+  margin: 0 auto;
+  width: 10%;
+  border-radius: 3px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.close:hover {
+  cursor: pointer;
+  background-color: steelblue;
+}
