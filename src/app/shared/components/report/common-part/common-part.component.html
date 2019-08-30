@@ -1,4 +1,5 @@
-
+<!--
+<form (change)="changeForm()">
 <div class="main">
   <div *ngFor="let project of data; let prjNum = index">
     <ul class="list-group">
@@ -6,11 +7,11 @@
         <div class="project-name"><input class="form-control" [(ngModel)]="project.name" name="name{{prjNum}}" placeholder="Имя проекта"/></div>
         <div *ngFor="let employee of project.employee; let emplNum = index">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item employee-name"><input class="form-control" [(ngModel)]="employee.name" placeholder="Имя сотрудника"/></li>
+            <li class="list-group-item employee-name"><input class="form-control" name="name{{employee.name}}" [(ngModel)]="employee.name" placeholder="Имя сотрудника"/></li>
             <div *ngFor="let task of employee.tasks" class="task">
 
-                <div><input class="form-control" [(ngModel)]="task.name" placeholder="Задача"/></div>
-                <div><input class="form-control" [(ngModel)]="task.hours" placeholder="Количество часов"/></div>
+                <div><input class="form-control" [(ngModel)]="task.name" name="name{{task.name}}" placeholder="Задача"/></div>
+                <div><input class="form-control" [(ngModel)]="task.hours" name="name{{task.hours}}" placeholder="Количество часов"/></div>
             </div>
             {{prjNum}}{{emplNum}}
             <button (click)="addTask(prjNum, emplNum)">Add task</button>
@@ -23,3 +24,23 @@
   <button (click)="addProject()">Add Project</button>
   <button (click)="saveReport()">Save Report</button>
 </div>
+</form>
+-->
+
+  <div>
+    <button (click)="addProject()">Add project</button>
+    <div *ngFor="let project of form.controls; let i = index">
+      <ng-container>
+        <input placeholder="Название проекта" [formControl]="project.get('name')">
+        <button (click)="addEmployee(project)">Add Employee</button>
+        <div *ngFor="let empl of project.controls.employee.controls; let ie = index">
+            <input placeholder="Имя сотрудника" [formControl]="empl.get('name')">
+            <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
+                <input placeholder="Задача" [formControl]="task.get('name')">
+                <input placeholder="Количество часов" [formControl]="task.get('hours')">
+            </div>
+            <button (click)="addTask(empl)">Add Task</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>

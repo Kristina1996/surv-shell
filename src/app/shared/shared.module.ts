@@ -2,7 +2,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -18,7 +18,7 @@ import { NewReportModalComponent } from './components/new-report-modal/new-repor
 
 @NgModule({
   declarations: [PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent],
-  imports: [CommonModule, TranslateModule, BrowserModule, FormsModule],
+  imports: [CommonModule, TranslateModule, BrowserModule, FormsModule, ReactiveFormsModule],
   exports: [TranslateModule, WebviewDirective, ReportComponent, FilesMenuComponent, NewReportModalComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
