@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray  } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import {Subscription} from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
 import { ProjectModel } from '../../../../core/models/report.model';
@@ -16,8 +17,8 @@ import { FormServiceService } from '../../../../core/services/form-service.servi
 export class CommonPartComponent implements OnInit {
 
   @Input() data: any;
-
   form: FormArray;
+  subscription: Subscription;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,10 +26,16 @@ export class CommonPartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.form = this.formService.makeCommonForm(this.data)
-    this.form.valueChanges.pipe( debounceTime(3000)).subscribe(values => {
+    this.form = this.formService.makeCommonForm(this.data);
+    this.form.valueChanges.pipe(debounceTime(1000)).subscribe(values => {
       console.log(values);
     });
+    /*
+    this.subscription = this.form.valueChanges.subscribe(values => {
+      console.log('в сабскрипшене');
+      console.log(values);
+    });
+     */
   }
 
   addTask(empl) {
@@ -44,14 +51,7 @@ export class CommonPartComponent implements OnInit {
   addProject() {
     const emptyPrj: ProjectModel = null;
     this.form.controls.push(this.formService.makeProjectForm(emptyPrj));
-  }
-
-  saveReport() {
-    console.log(this.data);
-  }
-
-  changeForm() {
-    console.log('change form');
+    this.form.updateValueAndValidity();
   }
 
 }

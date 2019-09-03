@@ -32,10 +32,18 @@ export class HomeService {
   }
 
   createFile(folderPath, fileName) {
-    let filePath = folderPath + "\\" + fileName
+    const filePath = folderPath + '\\' + fileName
     console.log(filePath)
     return new Promise(function(resolve, reject) {
       fs.writeFile(filePath, '', (err) => {
+        err ? reject(err) : resolve(filePath);
+      });
+    });
+  }
+
+  saveFile(filePath, data) {
+    return new Promise(function (resolve, reject) {
+      fs.writeFile(filePath, data, (err) => {
         err ? reject(err) : resolve(filePath);
       });
     });

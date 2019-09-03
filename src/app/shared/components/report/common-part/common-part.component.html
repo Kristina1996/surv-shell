@@ -34,12 +34,12 @@
         <input placeholder="Название проекта" [formControl]="project.get('name')">
         <button (click)="addEmployee(project)">Add Employee</button>
         <div *ngFor="let empl of project.controls.employee.controls; let ie = index">
-            <input placeholder="Имя сотрудника" [formControl]="empl.get('name')">
-            <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
-                <input placeholder="Задача" [formControl]="task.get('name')">
-                <input placeholder="Количество часов" [formControl]="task.get('hours')">
-            </div>
-            <button (click)="addTask(empl)">Add Task</button>
+          <input placeholder="Имя сотрудника" [formControl]="empl.get('name')">
+          <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
+            <input placeholder="Задача" [formControl]="task.get('name')">
+            <input placeholder="Количество часов" [formControl]="task.get('hours')">
+          </div>
+          <button (click)="addTask(empl)">Add Task</button>
         </div>
       </ng-container>
     </div>

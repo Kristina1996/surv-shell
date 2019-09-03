@@ -1,3 +1,4 @@
+<!--
 <div class="main">
   <div *ngFor="let item of data">
     <ul class="list-group">
@@ -15,5 +16,21 @@
         </div>
       </li>
     </ul>
+  </div>
+</div>
+-->
+
+<div>
+  <button (click)="addSpecialItem()">Add Special Item</button>
+  <div *ngFor="let specialItem of form.controls; let i = index">
+    <ng-container>
+      <input placeholder="Имя сотрудника" [formControl]="specialItem.get('employeeName')">
+      <input placeholder="Ставка" [formControl]="specialItem.get('rate')">
+      <button (click)="addSpecialTask(specialItem)">Add Special Task</button>
+      <div *ngFor="let specialTask of specialItem.controls.specialTasks.controls;">
+        <input placeholder="Задача" [formControl]="specialTask.get('name')">
+        <input placeholder="Количество часов" [formControl]="specialTask.get('hours')">
+      </div>
+    </ng-container>
   </div>
 </div>

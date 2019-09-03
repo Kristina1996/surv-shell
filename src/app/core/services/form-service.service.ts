@@ -12,19 +12,28 @@ import { SpecialTaskModel } from '../../core/models/specialItem.model';
   providedIn: 'root'
 })
 export class FormServiceService {
+  commonForm: FormArray;
+  specialForm: FormArray;
 
   constructor(private formBuilder: FormBuilder) { }
 
+  getForm() {
+    return this.formBuilder.group({
+      commonForm: this.commonForm,
+      specialForm: this.specialForm
+    });
+  }
+
   makeCommonForm(commonPart: ProjectModel[]): FormArray {
-      return this.formBuilder.array(
+      return this.commonForm = this.formBuilder.array(
         commonPart ? commonPart.map(prj => this.makeProjectForm(prj)) : []
-      )
+      );
   }
 
   makeSpecialForm(specialPart: SpecialItemModel[]): FormArray {
-      return this.formBuilder.array(
+      return this.specialForm = this.formBuilder.array(
         specialPart ? specialPart.map(specialItem => this.makeSpecialItemForm(specialItem)) : []
-      )
+      );
   }
 
   makeProjectForm(project: ProjectModel): FormGroup {
@@ -41,6 +50,9 @@ export class FormServiceService {
   }
 
   makeSpecialItemForm(specialPart: SpecialItemModel): FormGroup {
+    if (!specialPart) {
+      specialPart = new SpecialItemModel();
+    }
     const result = this.formBuilder.group({
       employeeName: specialPart.employeeName,
       rate: specialPart.rate,
@@ -52,7 +64,7 @@ export class FormServiceService {
   }
 
   makeEmployeeForm(employee: EmployeeModel): FormGroup {
-    if(!employee) {
+    if (!employee) {
       employee = new EmployeeModel();
     }
     const result = this.formBuilder.group({
@@ -76,6 +88,9 @@ export class FormServiceService {
   }
 
   makeSpecialTaskForm(task: SpecialTaskModel): FormGroup {
+    if (!task) {
+      task = new SpecialTaskModel();
+    }
     const result = this.formBuilder.group({
       name: task.name,
       hours: task.hours
