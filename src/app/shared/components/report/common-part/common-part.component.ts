@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {Subscription} from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { FormServiceService } from '../../../../core/services/form-service.servi
   templateUrl: './common-part.component.html',
   styleUrls: ['./common-part.component.scss']
 })
-export class CommonPartComponent implements OnInit {
+export class CommonPartComponent implements OnInit, OnChanges {
 
   @Input() data: any;
   form: FormArray;
@@ -26,16 +26,16 @@ export class CommonPartComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    console.log(this.data);
     this.form = this.formService.makeCommonForm(this.data);
     this.form.valueChanges.pipe(debounceTime(1000)).subscribe(values => {
       console.log(values);
     });
-    /*
-    this.subscription = this.form.valueChanges.subscribe(values => {
-      console.log('в сабскрипшене');
-      console.log(values);
-    });
-     */
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.data = changes.data.currentValue;
+    this.form = this.formService.makeCommonForm(this.data);
   }
 
   addTask(empl) {

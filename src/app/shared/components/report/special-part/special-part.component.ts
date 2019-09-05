@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
 import { FormArray } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 
@@ -11,7 +11,7 @@ import {SpecialItemModel, SpecialTaskModel} from '../../../../core/models/specia
   templateUrl: './special-part.component.html',
   styleUrls: ['./special-part.component.scss']
 })
-export class SpecialPartComponent implements OnInit {
+export class SpecialPartComponent implements OnInit, OnChanges {
 
   @Input() data: any;
   form: FormArray;
@@ -24,6 +24,11 @@ export class SpecialPartComponent implements OnInit {
     this.form.valueChanges.pipe( debounceTime(1000)).subscribe(values => {
       console.log(values);
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.data = changes.data.currentValue;
+    this.form = this.formService.makeSpecialForm(this.data);
   }
 
   addSpecialItem() {

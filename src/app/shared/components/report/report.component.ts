@@ -28,11 +28,14 @@ export class ReportComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.filePath = changes.filePath.currentValue;
+    console.log(this.filePath);
     this.homeService.getFileContent(this.filePath).then(result => {
-      console.log(result)
+      console.log('Содержимое выбранного отчета: ' + result);
       if (result) {
         this.report = this.adapterService.getModel(result);
         console.log(this.report);
+      } else {
+          this.report = new ReportModel();
       }
     });
   }
