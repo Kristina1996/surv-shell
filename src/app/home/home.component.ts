@@ -20,7 +20,6 @@ export class HomeComponent implements OnInit {
   public folderPath;
   public files;
   public selectedFile;
-  public isFolderChecked: Boolean = false;
 
   constructor(private homeService: HomeService) { }
 
@@ -28,53 +27,48 @@ export class HomeComponent implements OnInit {
     let folderPath = localStorage.getItem('folderPath')
     let files = localStorage.getItem('files')
     let fileName = localStorage.getItem('fileName')
-    let isFolderChecked = localStorage.getItem('isFolderChecked')
 
-    if(folderPath) {
-      this.folderPath = folderPath
+    if (folderPath) {
+      this.folderPath = folderPath;
     }
-    if(files) {
-      this.showFilesMenuComponent = true
-      this.files = JSON.parse(files)
+    if (files) {
+      this.showFilesMenuComponent = true;
+      this.files = JSON.parse(files);
     }
-    if(fileName) {
-      this.selectedFile = this.folderPath + "\\" + fileName
-      this.showReportComponent = true
-    }
-    if(isFolderChecked) {
-      this.isFolderChecked = Boolean(isFolderChecked)
+    if (fileName) {
+      this.selectedFile = this.folderPath + '\\' + fileName;
+      this.showReportComponent = true;
     }
   }
 
   openDialog() {
     electron.remote.dialog.showOpenDialog({ properties: ['openDirectory'] }).then(result => {
       this.folderPath = result.filePaths[0];
-      this.isFolderChecked = false;
-      this.showFilesMenuComponent = false;
       this.showReportComponent = false;
-      localStorage.setItem('folderPath', result.filePaths[0]);
-      localStorage.setItem('isFolderChecked', this.isFolderChecked.toString())
-      localStorage.setItem('files', '')
-      localStorage.setItem('fileName', '')
+      localStorage.setItem('files', '');
+      localStorage.setItem('fileName', '');
+
+      if (this.folderPath) {
+        localStorage.setItem('folderPath', result.filePaths[0]);
+        this.getFilesFromFolder();
+      }
     }).catch(err => {
-      console.log(err)
-    })
+      console.log(err);
+    });
   }
 
   getFilesFromFolder() {
     this.homeService.getFilesFromFolder(this.folderPath).then(result => {
       this.files = result;
-      if (this.files.length == 0) {
-         alert('Файлы не найдены! Пожалуйста, выберите другую папку.')
+      if (this.files.length === 0) {
+         alert('Файлы не найдены! Пожалуйста, выберите другую папку.');
          this.showFilesMenuComponent = false;
          this.showReportComponent = false;
       } else {
          this.showFilesMenuComponent = true;
-         localStorage.setItem('files', JSON.stringify(this.files))
+         localStorage.setItem('files', JSON.stringify(this.files));
       }
     });
-    this.isFolderChecked = true;
-    localStorage.setItem('isFolderChecked', this.isFolderChecked.toString())
   }
 
   /**
@@ -82,7 +76,7 @@ export class HomeComponent implements OnInit {
   **/
   onSendFileName(fileName: string) {
     localStorage.setItem('fileName', fileName)
-    this.selectedFile = this.folderPath + "\\" + fileName;
+    this.selectedFile = this.folderPath + '\\' + fileName;
     this.showReportComponent = true;
   }
 
@@ -94,7 +88,7 @@ export class HomeComponent implements OnInit {
    *Метод для закрытия модального окна Create New Report
   **/
   onCloseModal(show: Boolean) {
-    if (show === false) this.showModalNewReport = false;
-    this.files = JSON.parse(localStorage.getItem('files'))
+    if (show === false) { this.showModalNewReport = false; }
+    this.files = JSON.parse(localStorage.getItem('files'));
   }
 }
