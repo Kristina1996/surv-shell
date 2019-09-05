@@ -167,32 +167,32 @@ export class ParseToXmlService {
   </WorksheetOptions>
  </Worksheet>`
 
-  getProjectRow = (name) => `<Row ss:AutoFitHeight="0" ss:Height="20.25">
+  getProjectRow = (name = '') => `<Row ss:AutoFitHeight="0" ss:Height="20.25">
     <Cell ss:Index="3" ss:StyleID="s65"><Data ss:Type="String">prnm_</Data></Cell>
     <Cell ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="String">${name}</Data></Cell>
    </Row>`
 
-  getEmployeeRow = (name) => `<Row>
+  getEmployeeRow = (name = '') => `<Row>
     <Cell ss:StyleID="s68"><Data ss:Type="String">empl_</Data></Cell>
     <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">${name}</Data></Cell>
    </Row>`
 
-  getTaskRow = (task, hours) => `<Row>
+  getTaskRow = (task = '', hours = '') => `<Row>
     <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">${task}</Data></Cell>
     <Cell><Data ss:Type="Number">${hours}</Data></Cell>
    </Row>`
 
-  getSpecialEmplRow = (empl) => `<Row>
+  getSpecialEmplRow = ({employeeName = '', rate = ''}) => `<Row>
     <Cell ss:StyleID="s68"><Data ss:Type="String">empl_</Data></Cell>
-    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">${empl.employeeName}</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">${empl.rate}</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">${employeeName}</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${rate}</Data></Cell>
     <Cell ss:MergeAcross="3" ss:StyleID="s79"/>
    </Row>`
 
-  getSpecialTaskRow = (task) => `<Row>
-    <Cell ss:MergeAcross="3" ss:StyleID="s82"><Data ss:Type="String">${task.name}</Data></Cell>
-    <Cell ss:StyleID="s62"><Data ss:Type="Number">${task.hours}</Data></Cell>
-    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">${task.comment}</Data></Cell>
+  getSpecialTaskRow = ({name = '', hours = '', comment = ''}) => `<Row>
+    <Cell ss:MergeAcross="3" ss:StyleID="s82"><Data ss:Type="String">${name}</Data></Cell>
+    <Cell ss:StyleID="s62"><Data ss:Type="Number">${hours}</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">${comment}</Data></Cell>
    </Row>`
 
   constructor() { }
