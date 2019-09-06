@@ -24,9 +24,9 @@ export class HomeComponent implements OnInit {
   constructor(private homeService: HomeService) { }
 
   ngOnInit() {
-    let folderPath = localStorage.getItem('folderPath')
-    let files = localStorage.getItem('files')
-    let fileName = localStorage.getItem('fileName')
+    const folderPath = localStorage.getItem('folderPath');
+    const files = localStorage.getItem('files');
+    const fileName = localStorage.getItem('fileName');
 
     if (folderPath) {
       this.folderPath = folderPath;

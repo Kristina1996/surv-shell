@@ -7,4 +7,10 @@
 .li-menu-files {
   padding: 3%;
   border-bottom: 1px solid lightgrey;
+  opacity: 1;
+}
+
+.li-menu-files:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }

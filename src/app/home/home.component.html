@@ -1,15 +1,16 @@
 <div class="container">
   <div class="header">
     <div class="left-panel">
-      <button type="button" class="btn btn-primary" (click)="openDialog()">Выберите папку</button>
+      <i (click)="openDialog()" class="material-icons icon-folder" title="Выберите папку">folder</i>
       <!--
-      <button *ngIf="!isFolderChecked && folderPath" type="button" class="btn btn-success" (click)="getFilesFromFolder()">Просканировать папку</button>
+      <button type="button" class="btn btn-primary" (click)="openDialog()">Выберите папку</button>
       -->
+
+      <!--
       <button *ngIf="folderPath" type="button" class="btn btn-success" (click)="openModalNewReport()">Создать новый отчет</button>
+      -->
     </div>
-    <div *ngIf="folderPath" class="right-panel">
-      Выбранный путь: {{ folderPath }}
-    </div>
+    <div *ngIf="folderPath" class="right-panel">{{ folderPath }}</div>
   </div>
 
   <ng-container *ngIf="showModalNewReport">
