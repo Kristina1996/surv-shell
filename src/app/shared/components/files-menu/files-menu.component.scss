@@ -14,3 +14,14 @@
   cursor: pointer;
   opacity: 0.6;
 }
+
+.head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 1rem;
+}
+
+.add-report {
+  cursor: pointer;
+}

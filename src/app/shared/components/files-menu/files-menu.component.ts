@@ -9,11 +9,11 @@ export class FilesMenuComponent implements OnInit {
 
    @Input() files: string[];
    @Output() sendFileName = new EventEmitter<string>();
+   @Output() openModal = new EventEmitter<boolean>();
 
   constructor() { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   /**
    * Передача компоненту-родителю Home имя выбранного файла
@@ -22,5 +22,10 @@ export class FilesMenuComponent implements OnInit {
     console.log('передаю компоненту родителю имя выбранного файла')
     this.sendFileName.emit(fileName);
   }
+
+  openModalNewReport() {
+    this.openModal.emit(true);
+  }
+
 
 }

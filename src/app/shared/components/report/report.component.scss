@@ -3,6 +3,7 @@
 	min-width: 320px;
 	padding: 0px;
 	margin: 0 auto;
+  margin-right: 1%;
 }
 
 /* Стили секций с содержанием */
@@ -10,7 +11,7 @@
 	display: none;
 	padding: 15px;
 	background: #fff;
-	border: 1px solid #ddd;
+	border-top: 1px solid #ddd;
 }
 
 .tabs>section>p {
@@ -72,6 +73,7 @@
 	margin-right: 10px;
 }
 
+/*
 .tabs>label[for*="1"]:before {
 	content: "\f19a";
 }
@@ -87,6 +89,7 @@
 .tabs>label[for*="4"]:before {
 	content: "\f13c";
 }
+*/
 
 /* Изменения стиля переключателей вкладок при наведении */
 .tabs>label:hover {
@@ -97,7 +100,7 @@
 /* Стили для активной вкладки */
 .tabs>input:checked+label {
 	color: #555;
-	border-top: 1px solid #009933;
+	border-top: 1px solid #b98181;
 	border-bottom: 1px solid #fff;
 	background: #fff;
 }

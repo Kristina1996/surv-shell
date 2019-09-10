@@ -80,8 +80,15 @@ export class HomeComponent implements OnInit {
     this.showReportComponent = true;
   }
 
+  /*
   openModalNewReport() {
     this.showModalNewReport = true;
+  }
+   */
+
+  onShowModalNewReport(click: Boolean) {
+    console.log('клик пришел в хоме');
+    if (click) { this.showModalNewReport = true; }
   }
 
   /**

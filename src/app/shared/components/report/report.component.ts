@@ -30,7 +30,7 @@ export class ReportComponent implements OnInit, OnChanges {
     this.filePath = changes.filePath.currentValue;
     console.log(this.filePath);
     this.homeService.getFileContent(this.filePath).then(result => {
-      console.log('Содержимое выбранного отчета: ' + result);
+      console.log('Содержимое выбранного отчета: ' + JSON.stringify(result));
       if (result) {
         this.report = this.adapterService.getModel(result);
         console.log(this.report);

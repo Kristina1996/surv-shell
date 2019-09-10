@@ -1,5 +1,8 @@
-Отчеты
-<i class="material-icons">add_circle_outline</i>
+<div class="head">
+  <div>Отчеты</div>
+  <div (click)="openModalNewReport()"><i class="material-icons add-report">add_circle_outline</i></div>
+</div>
+
 <div class="list-files">
   <ul *ngIf="files" class="ul-menu-files">
     <li *ngFor="let file of files" class="li-menu-files" (click)="chooseFile(file)">
