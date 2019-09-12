@@ -1,3 +1,5 @@
+@import "../../../core/constants";
+
 .modalbackground {
   margin: 0; /* убираем отступы */
   padding: 0; /* убираем отступы */
@@ -40,7 +42,6 @@
 .close {
   display: block;
   color: darkgray;
-  width: 10%;
   border-radius: 3px;
   text-align: center;
   text-decoration: none;
@@ -56,7 +57,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 5%;
+  padding: $gutter;
   border-bottom: 1px solid #dcdcdc;
 }
 
