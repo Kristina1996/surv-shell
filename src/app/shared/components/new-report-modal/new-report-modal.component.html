@@ -1,10 +1,16 @@
 <div id="error" class="modalbackground">
     <div class="modalwindow">
-		    <a (click)="clickClose()" title="Закрыть" class="close">X</a>
+      <div class="header">
         <h3>Создание нового отчета</h3>
-        <p>Введите название файла:</p>
-        <p>Выбранный путь:</p>
-        <input [(ngModel)]="fileName" placeholder="Название файла">
-        <a (click)="createReport()" title="Создать" class="close">X</a>
+        <i class="material-icons close" (click)="clickClose()" title="Закрыть">close</i>
+      </div>
+      <div class="main">
+        <input [(ngModel)]="fileName" placeholder="Введите название файла...">
+
+      </div>
+      <div class="footer">
+        <a (click)="clickClose()" class="btn-close">Закрыть</a>
+        <a (click)="createReport()" class="btn-create">Создать</a>
+      </div>
     </div>
 </div>

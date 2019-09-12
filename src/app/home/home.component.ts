@@ -87,7 +87,6 @@ export class HomeComponent implements OnInit {
    */
 
   onShowModalNewReport(click: Boolean) {
-    console.log('клик пришел в хоме');
     if (click) { this.showModalNewReport = true; }
   }
 
