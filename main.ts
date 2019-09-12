@@ -8,8 +8,12 @@ serve = args.some(val => val === '--serve');
 
 function createWindow() {
 
+  const electron = require('electron');
   const electronScreen = screen;
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
+  const nativeImage = electron.nativeImage;
+
+  let demoIcon = nativeImage.createFromPath(path.join(__dirname, 'src', 'assets', 'icons', 'win', 'icon.ico'));
 
   // Create the browser window.
   win = new BrowserWindow({
@@ -17,6 +21,7 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
+    icon: demoIcon,
     webPreferences: {
       nodeIntegration: true,
     },
