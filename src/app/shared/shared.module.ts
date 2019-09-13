@@ -14,7 +14,7 @@ import { CommonPartComponent } from './components/report/common-part/common-part
 import { SpecialPartComponent } from './components/report/special-part/special-part.component';
 import { NewReportModalComponent } from './components/new-report-modal/new-report-modal.component';
 
-//import { HomeService } from '../core/services/home.service';
+//import { MainService } from '../core/services/main.service';
 
 @NgModule({
   declarations: [PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent],

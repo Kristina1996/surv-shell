@@ -6,7 +6,7 @@ import { ReportComponent } from './shared/components';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'main',
     pathMatch: 'full'
   },
   { path: 'report/:path', component: ReportComponent },

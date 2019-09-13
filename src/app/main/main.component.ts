@@ -1,17 +1,17 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
 import * as fs from 'fs';
 
-import { HomeService } from '../core/services/home.service';
+import { MainService } from '../core/services/main.service';
 
 const electron = require('electron')
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
-  providers: [ HomeService ]
+  selector: 'app-main',
+  templateUrl: './main.component.html',
+  styleUrls: ['./main.component.scss'],
+  providers: [ MainService ]
 })
-export class HomeComponent implements OnInit {
+export class MainComponent implements OnInit {
 
   public showFilesMenuComponent: Boolean = false;
   public showReportComponent: Boolean = false;
@@ -21,7 +21,7 @@ export class HomeComponent implements OnInit {
   public files;
   public selectedFile;
 
-  constructor(private homeService: HomeService) { }
+  constructor(private mainService: MainService) { }
 
   ngOnInit() {
     const folderPath = localStorage.getItem('folderPath');
@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFilesFromFolder() {
-    this.homeService.getFilesFromFolder(this.folderPath).then(result => {
+    this.mainService.getFilesFromFolder(this.folderPath).then(result => {
       this.files = result;
       if (this.files.length === 0) {
          alert('Файлы не найдены! Пожалуйста, выберите другую папку.');

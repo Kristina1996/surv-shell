@@ -15,7 +15,7 @@ describe('angular-electron App', function () {
   });
 
   it('should display message saying App works !', async function () {
-    const text = await browser.getText('app-home h1');
+    const text = await browser.getText('app-main h1');
     expect(text).to.equal('App works !');
   });
 

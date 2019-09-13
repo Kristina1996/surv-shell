@@ -16,7 +16,7 @@ export class FilesMenuComponent implements OnInit {
   ngOnInit() {}
 
   /**
-   * Передача компоненту-родителю Home имя выбранного файла
+   * Передача компоненту-родителю Main имя выбранного файла
   **/
   chooseFile(fileName) {
     console.log('передаю компоненту родителю имя выбранного файла')

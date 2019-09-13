@@ -6,7 +6,7 @@ import * as xml2js from 'xml2js';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class MainService {
 
   constructor() { }
 

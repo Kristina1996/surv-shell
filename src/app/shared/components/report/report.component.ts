@@ -3,7 +3,7 @@ import * as fs from 'fs';
 
 import { ReportModel } from '../../../core/models/report.model';
 
-import { HomeService } from '../../../core/services/home.service';
+import { MainService } from '../../../core/services/main.service';
 import { AdapterService } from '../../../core/services/adapter.service';
 import { FormServiceService } from '../../../core/services/form-service.service';
 import { ParseToXmlService } from '../../../core/services/parse-to-xml.service';
@@ -12,14 +12,14 @@ import { ParseToXmlService } from '../../../core/services/parse-to-xml.service';
   selector: 'app-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
-  providers: [ HomeService, AdapterService, FormServiceService ]
+  providers: [ MainService, AdapterService, FormServiceService ]
 })
 export class ReportComponent implements OnInit, OnChanges {
 
   @Input() filePath: string;
   report: ReportModel;
 
-  constructor(private homeService: HomeService,
+  constructor(private mainService: MainService,
               private adapterService: AdapterService,
               private formService: FormServiceService,
               private parseToXmlService: ParseToXmlService) { }
@@ -29,7 +29,7 @@ export class ReportComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
     this.filePath = changes.filePath.currentValue;
     console.log(this.filePath);
-    this.homeService.getFileContent(this.filePath).then(result => {
+    this.mainService.getFileContent(this.filePath).then(result => {
       console.log('Содержимое выбранного отчета: ' + JSON.stringify(result));
       if (result) {
         this.report = this.adapterService.getModel(result);
@@ -45,7 +45,7 @@ export class ReportComponent implements OnInit, OnChanges {
     console.log(formValue);
     console.log(this.filePath);
     const content = this.parseToXmlService.parseToXml(formValue);
-    this.homeService.saveFile(this.filePath, content);
+    this.mainService.saveFile(this.filePath, content);
   }
 
 }
