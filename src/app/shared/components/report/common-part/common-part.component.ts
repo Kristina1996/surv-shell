@@ -28,6 +28,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
   ngOnInit() {
     console.log(this.data);
     this.form = this.formService.makeCommonForm(this.data);
+    console.log(this.form);
     this.form.valueChanges.pipe(debounceTime(1000)).subscribe(values => {
       console.log(values);
     });

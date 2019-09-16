@@ -36,8 +36,8 @@
         <div *ngFor="let empl of project.controls.employee.controls; let ie = index">
           <input placeholder="Имя сотрудника" [formControl]="empl.get('name')">
           <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
-            <input placeholder="Задача" [formControl]="task.get('name')">
-            <input placeholder="Количество часов" [formControl]="task.get('hours')">
+            <app-form-input [placeHolder]="'Задача'" [control]="task.get('name')"></app-form-input>
+            <app-form-input [placeHolder]="'Количество часов'" [control]="task.get('hours')"></app-form-input>
           </div>
           <button (click)="addTask(empl)">Add Task</button>
         </div>
