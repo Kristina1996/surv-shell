@@ -26,7 +26,7 @@ export class MainComponent implements OnInit {
   ngOnInit() {
     const folderPath = localStorage.getItem('folderPath');
     const files = localStorage.getItem('files');
-    const fileName = localStorage.getItem('fileName');
+    const selectedFile = localStorage.getItem('selectedFile');
 
     if (folderPath) {
       this.folderPath = folderPath;
@@ -35,8 +35,8 @@ export class MainComponent implements OnInit {
       this.showFilesMenuComponent = true;
       this.files = JSON.parse(files);
     }
-    if (fileName) {
-      this.selectedFile = this.folderPath + '\\' + fileName;
+    if (selectedFile) {
+      this.selectedFile = this.folderPath + '\\' + selectedFile;
       this.showReportComponent = true;
     }
   }
@@ -46,7 +46,7 @@ export class MainComponent implements OnInit {
       this.folderPath = result.filePaths[0];
       this.showReportComponent = false;
       localStorage.setItem('files', '');
-      localStorage.setItem('fileName', '');
+      localStorage.setItem('selectedFile', '');
 
       if (this.folderPath) {
         localStorage.setItem('folderPath', result.filePaths[0]);
@@ -74,9 +74,9 @@ export class MainComponent implements OnInit {
   /**
    *Метод для получения имени выбранного файла от компонента FilesMenuComponent
   **/
-  onSendFileName(fileName: string) {
-    localStorage.setItem('fileName', fileName)
-    this.selectedFile = this.folderPath + '\\' + fileName;
+  onSendFileName(selectedFile: string) {
+    localStorage.setItem('selectedFile', selectedFile)
+    this.selectedFile = this.folderPath + '\\' + selectedFile;
     this.showReportComponent = true;
   }
 

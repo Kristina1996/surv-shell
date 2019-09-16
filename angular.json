@@ -19,6 +19,7 @@
             "assets": [
               "src/assets",
               "src/favicon.ico",
+              "src/icon.ico",
               "src/favicon.png",
               "src/favicon.icns",
               "src/favicon.256x256.png",
