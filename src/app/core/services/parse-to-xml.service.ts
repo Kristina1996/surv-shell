@@ -177,7 +177,7 @@ export class ParseToXmlService {
     <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">${name}</Data></Cell>
    </Row>`
 
-  getTaskRow = (task = '', hours = '') => `<Row>
+  getTaskRow = (task = '', hours = 0) => `<Row>
     <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">${task}</Data></Cell>
     <Cell><Data ss:Type="Number">${hours}</Data></Cell>
    </Row>`
@@ -226,14 +226,26 @@ export class ParseToXmlService {
 
   getEmployeeXml(employee) {
     const employeeXml = this.getEmployeeRow(employee.name);
-    const tasksXmlArray = employee.tasks.map(task => this.getTaskRow(task.name, task.hours));
+    const tasksXmlArray = employee.tasks.map(task => {
+      if (task.hours === undefined) {
+        this.getTaskRow(task.name, 0);
+      } else { this.getTaskRow(task.name, task.hours); }
+    });
     const tasksXml = tasksXmlArray.join();
     return employeeXml + tasksXml;
   }
 
   getSpecialItemXml(specialItem) {
+    console.log(specialItem);
     const emplXml = this.getSpecialEmplRow(specialItem);
-    const specialTasksXml = specialItem.specialTasks.map(specialTask => this.getSpecialTaskRow(specialTask)).join();
+    const specialTasksXml = specialItem.specialTasks.map(specialTask => {
+      if (specialTask.name) {
+        this.getSpecialTaskRow(specialTask);
+      } else {
+        specialTask.name = '';
+        this.getSpecialTaskRow(specialTask);
+      }
+    }).join();
     return emplXml + specialTasksXml;
   }
 

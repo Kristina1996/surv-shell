@@ -31,12 +31,15 @@ export class NewReportModalComponent implements OnInit {
 
   createReport() {
     const emptyReport = this.createEmptyReportObject();
+    console.log(emptyReport);
     const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
     this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
       alert('Файл ' + result + ' был успешно создан');
       let files = JSON.parse(localStorage.getItem('files'));
       files.push(this.fileName);
       localStorage.setItem('files', JSON.stringify(files));
+      localStorage.setItem('selectedFile', this.fileName);
+      this.clickClose();
     });
 
     /*
@@ -52,14 +55,22 @@ export class NewReportModalComponent implements OnInit {
   createEmptyReportObject() {
     const obj = {
       commonForm: [],
-      specialForm: []
+      specialForm: [{
+        employeeName: '',
+        rate: 0,
+        specialTasks: [{
+          hours: 0,
+          name: ''
+        }]
+      }]
     };
     obj.commonForm.push(new ProjectModel());
     obj.commonForm[0].employee.push(new EmployeeModel());
     obj.commonForm[0].employee[0].tasks.push(new TaskModel());
 
+    /*
     obj.specialForm.push(new SpecialItemModel());
-    obj.specialForm[0].specialTasks.push(new SpecialTaskModel());
+    obj.specialForm[0].specialTasks.push(new SpecialTaskModel());*/
     return obj;
   }
 
