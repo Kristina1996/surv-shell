@@ -20,6 +20,7 @@ export class MainComponent implements OnInit {
   public folderPath;
   public files;
   public selectedFile;
+  public selectedFileName;
 
   constructor(private mainService: MainService) { }
 
@@ -96,5 +97,9 @@ export class MainComponent implements OnInit {
   onCloseModal(show: Boolean) {
     if (show === false) { this.showModalNewReport = false; }
     this.files = JSON.parse(localStorage.getItem('files'));
+    this.selectedFile = this.folderPath + '\\' + localStorage.getItem('selectedFile');
+    this.selectedFileName = localStorage.getItem('selectedFile');
+    console.log(this.selectedFile);
+    this.showReportComponent = true;
   }
 }

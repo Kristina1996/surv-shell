@@ -15,6 +15,11 @@
   opacity: 0.6;
 }
 
+.selected {
+  background-color: #CFD8DC;
+  color: white;
+}
+
 .head {
   display: flex;
   flex-direction: row;

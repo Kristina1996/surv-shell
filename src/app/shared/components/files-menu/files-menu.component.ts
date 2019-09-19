@@ -8,6 +8,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FilesMenuComponent implements OnInit {
 
    @Input() files: string[];
+   @Input() selectedFile;
    @Output() sendFileName = new EventEmitter<string>();
    @Output() openModal = new EventEmitter<boolean>();
 
@@ -19,6 +20,7 @@ export class FilesMenuComponent implements OnInit {
    * Передача компоненту-родителю Main имя выбранного файла
   **/
   chooseFile(fileName) {
+    this.selectedFile = fileName;
     console.log('передаю компоненту родителю имя выбранного файла')
     this.sendFileName.emit(fileName);
   }
