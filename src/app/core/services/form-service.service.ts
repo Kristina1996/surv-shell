@@ -82,7 +82,8 @@ export class FormServiceService {
     }
     const result = this.formBuilder.group({
       name: task.name,
-      hours: task.hours
+      hours: task.hours,
+      date: task.date
     });
     return result;
   }

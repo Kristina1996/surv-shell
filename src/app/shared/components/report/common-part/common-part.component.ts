@@ -2,6 +2,7 @@ import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core'
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import {Subscription} from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
+import * as moment from 'moment';
 
 import { ProjectModel } from '../../../../core/models/report.model';
 import { EmployeeModel } from '../../../../core/models/report.model';
@@ -19,6 +20,8 @@ export class CommonPartComponent implements OnInit, OnChanges {
   @Input() data: any;
   form: FormArray;
   subscription: Subscription;
+
+  public currentDate = moment().format('YYYY-MM-DD');
 
   constructor(
     private formBuilder: FormBuilder,

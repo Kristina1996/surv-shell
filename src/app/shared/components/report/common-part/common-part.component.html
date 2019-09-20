@@ -38,6 +38,7 @@
           <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
             <app-form-input [placeHolder]="'Задача'" [control]="task.get('name')"></app-form-input>
             <app-form-input [placeHolder]="'Количество часов'" [control]="task.get('hours')"></app-form-input>
+            <input [formControl]="task.get('date')" type="date" id="start" name="trip-start">
           </div>
           <button (click)="addTask(empl)">Add Task</button>
         </div>

@@ -30,4 +30,5 @@ export class EmployeeModel {
 export class TaskModel {
   name: string;
   hours: number;
+  date: string;
 }

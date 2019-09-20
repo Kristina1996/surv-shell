@@ -83,5 +83,8 @@
   },
   "engines": {
     "node": ">=10.9.0"
+  },
+  "dependencies": {
+    "moment": "^2.24.0"
   }
 }
