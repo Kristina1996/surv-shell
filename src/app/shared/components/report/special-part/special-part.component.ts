@@ -5,6 +5,8 @@ import { debounceTime } from 'rxjs/operators';
 import { FormServiceService } from '../../../../core/services/form-service.service';
 import {TaskModel} from '../../../../core/models/report.model';
 import {SpecialItemModel, SpecialTaskModel} from '../../../../core/models/specialItem.model';
+import {ParseToXmlService} from '../../../../core/services/parse-to-xml.service';
+import {MainService} from '../../../../core/services/main.service';
 
 @Component({
   selector: 'app-special-part',
@@ -16,19 +18,29 @@ export class SpecialPartComponent implements OnInit, OnChanges {
   @Input() data: any;
   form: FormArray;
 
-  constructor(private formService: FormServiceService) { }
+  constructor(private formService: FormServiceService,
+              private parseToXmlService: ParseToXmlService,
+              private mainService: MainService) { }
 
   ngOnInit() {
     this.form = this.formService.makeSpecialForm(this.data);
-    console.log(this.form);
-    this.form.valueChanges.pipe( debounceTime(1000)).subscribe(values => {
-      console.log(values);
-    });
+    this.formValueChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.data = changes.data.currentValue;
     this.form = this.formService.makeSpecialForm(this.data);
+    this.formValueChanges();
+  }
+
+  formValueChanges() {
+    this.form.valueChanges.pipe(debounceTime(2000)).subscribe(values => {
+      console.log(values);
+      const formValue = this.formService.getForm().getRawValue();
+      const content = this.parseToXmlService.parseToXml(formValue);
+      this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
+      console.log('данные сохранены');
+    });
   }
 
   addSpecialItem() {

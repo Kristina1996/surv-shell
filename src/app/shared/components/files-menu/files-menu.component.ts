@@ -14,7 +14,10 @@ export class FilesMenuComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    const file = localStorage.getItem('selectedFile');
+    if (file) { this.selectedFile = file; }
+  }
 
   ngOnChanges() {
     this.files.sort((a, b) => {
