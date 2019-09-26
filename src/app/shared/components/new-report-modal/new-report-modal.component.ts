@@ -55,7 +55,11 @@ export class NewReportModalComponent implements OnInit {
       file.startWeek = moment(firstDay).startOf('week').format('DD.MM.YYYY');
       file.endWeek = moment(firstDay).endOf('week').format('DD.MM.YYYY')
       file.nameListItem = file.numberOfWeek + ': ' + file.startWeek + ' - ' + file.endWeek;
-      file.fileName = file.numberOfWeek + '_' + file.startWeek + '-' + file.endWeek + '.xls';
+      if (file.numberOfWeek < 10) {
+        file.fileName = '0' + file.numberOfWeek + '_' + file.startWeek + '-' + file.endWeek + '.xls';
+      } else {
+        file.fileName = file.numberOfWeek + '_' + file.startWeek + '-' + file.endWeek + '.xls';
+      }
 
       if (this.currentWeek === file.numberOfWeek) {
         this.fileName = file.fileName;

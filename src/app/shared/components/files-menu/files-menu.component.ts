@@ -1,11 +1,11 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
 
 @Component({
   selector: 'app-files-menu',
   templateUrl: './files-menu.component.html',
   styleUrls: ['./files-menu.component.scss']
 })
-export class FilesMenuComponent implements OnInit {
+export class FilesMenuComponent implements OnInit, OnChanges {
 
    @Input() files: string[];
    @Input() selectedFile;
@@ -15,6 +15,12 @@ export class FilesMenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {}
+
+  ngOnChanges() {
+    this.files.sort((a, b) => {
+      return Number(a.substr(0, 1)) - Number(b.substr(0, 1));
+    });
+  }
 
   /**
    * Передача компоненту-родителю Main имя выбранного файла
