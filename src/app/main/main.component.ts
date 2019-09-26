@@ -62,9 +62,10 @@ export class MainComponent implements OnInit {
     this.mainService.getFilesFromFolder(this.folderPath).then(result => {
       this.files = result;
       if (this.files.length === 0) {
-         alert('Файлы не найдены! Пожалуйста, выберите другую папку.');
-         this.showFilesMenuComponent = false;
+         // alert('Файлы не найдены! Пожалуйста, выберите другую папку.');
+         this.showFilesMenuComponent = true;
          this.showReportComponent = false;
+        localStorage.setItem('files', JSON.stringify(this.files));
       } else {
          this.showFilesMenuComponent = true;
          localStorage.setItem('files', JSON.stringify(this.files));

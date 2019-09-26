@@ -14,7 +14,8 @@ export class MainService {
     console.log('запустился метод getFilesFromFolder в сервисе')
     return new Promise(function(resolve, reject) {
       fs.readdir(folderPath, function(err, items) {
-        let files = items.filter(item => item.indexOf('.xml') != -1 || item.indexOf('.xls') != -1);
+        // let files = items.filter(item => item.indexOf('.xml') != -1 || item.indexOf('.xls') != -1);
+        const files = items.filter(item => item.endsWith('.xml') || item.endsWith('.xls'));
         err ? reject(err) : resolve(files);
       });
     });
