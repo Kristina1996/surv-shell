@@ -36,6 +36,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
     console.log(this.data);
     this.form = this.formService.makeCommonForm(this.data);
     console.log(this.form);
+    /*
     this.form.valueChanges.pipe(debounceTime(2000)).subscribe(values => {
       console.log(values);
       const formValue = this.formService.getForm().getRawValue();
@@ -43,11 +44,23 @@ export class CommonPartComponent implements OnInit, OnChanges {
       this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
       console.log('данные сохранены');
     });
+    */
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.data = changes.data.currentValue;
     this.form = this.formService.makeCommonForm(this.data);
+    this.formValueChanges();
+  }
+
+  formValueChanges() {
+    this.form.valueChanges.pipe(debounceTime(2000)).subscribe(values => {
+      console.log(values);
+      const formValue = this.formService.getForm().getRawValue();
+      const content = this.parseToXmlService.parseToXml(formValue);
+      this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
+      console.log('данные сохранены');
+    });
   }
 
   addTask(empl) {
