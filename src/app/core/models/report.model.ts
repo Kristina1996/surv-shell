@@ -5,11 +5,11 @@ export class ReportModel {
   specialTasks: SpecialItemModel[] = [];
 
   getLastProject() {
-    return this.common[this.common.length - 1]
+    return this.common[this.common.length - 1];
   }
 
   getLastSpecialItem() {
-    return this.specialTasks[this.specialTasks.length - 1]
+    return this.specialTasks[this.specialTasks.length - 1];
   }
 }
 
@@ -18,7 +18,7 @@ export class ProjectModel {
   employee: EmployeeModel[] = [];
 
   getLastEmployee() {
-    return this.employee[this.employee.length - 1]
+    return this.employee[this.employee.length - 1];
   }
 }
 

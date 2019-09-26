@@ -5,7 +5,20 @@
         <i class="material-icons close" (click)="clickClose()" title="Закрыть">close</i>
       </div>
       <div class="main">
-        <input [(ngModel)]="fileName" placeholder="Введите название файла...">
+
+        <!--<input [(ngModel)]="fileName" placeholder="Введите название файла...">-->
+
+        <select size="5" [(ngModel)]="selectedYear" (change)="changeYear()">
+          <ng-container *ngFor="let year of yearsList">
+            <option [ngValue]="year" [selected]="year == selectedYear">{{year}}</option>
+          </ng-container>
+        </select>
+
+        <select size="5">
+          <ng-container *ngFor="let file of filesList; let ind = index">
+            <option [ngValue]="file.fileName" [selected]="ind+1 == currentWeek" (click)="chooseFile(file.fileName)">{{file.nameListItem}}</option>
+          </ng-container>
+        </select>
 
       </div>
       <div class="footer">
