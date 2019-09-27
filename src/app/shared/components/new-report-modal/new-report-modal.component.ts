@@ -5,6 +5,7 @@ import { MainService } from '../../../core/services/main.service';
 import {ParseToXmlService} from '../../../core/services/parse-to-xml.service';
 import {FormServiceService} from '../../../core/services/form-service.service';
 import {EmployeeModel, ProjectModel, ReportModel, TaskModel} from '../../../core/models/report.model';
+import { SPECIALTASKS } from '../../../core/models/special-tasks-data';
 import {FileModel} from './file.model';
 import {SpecialItemModel, SpecialTaskModel} from '../../../core/models/specialItem.model';
 
@@ -101,10 +102,13 @@ export class NewReportModalComponent implements OnInit {
       specialForm: [{
         employeeName: '',
         rate: 0,
+        specialTasks: SPECIALTASKS
+        /*
         specialTasks: [{
           hours: 0,
           name: ''
         }]
+         */
       }]
     };
     obj.commonForm.push(new ProjectModel());

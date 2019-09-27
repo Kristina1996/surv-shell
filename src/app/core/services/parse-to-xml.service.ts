@@ -214,7 +214,6 @@ export class ParseToXmlService {
     const commonWorksheet = this.getCommonWorksheet(common);
     const specialWorksheet = this.getSpecialWorksheet(special);
     const content = this.getMainXml(commonWorksheet + specialWorksheet);
-    console.log(content);
     return content;
   }
 
@@ -236,62 +235,23 @@ export class ParseToXmlService {
 
   getEmployeeXml(employee) {
     const employeeXml = this.getEmployeeRow(employee.name);
-    console.log('EMPLOYEe: ', employee);
     const tasksXmlArray = employee.tasks.map(task => this.getTaskRow(task.name, task.hours, task.date));
     const tasksXml = tasksXmlArray.join();
     return employeeXml + tasksXml;
   }
 
   getSpecialItemXml(specialItem) {
-    console.log(specialItem);
     const emplXml = this.getSpecialEmplRow(specialItem);
-    const specialTasksXml = specialItem.specialTasks.map(specialTask => {
+    const specialTasksXml = specialItem.specialTasks.map(specialTask => this.getSpecialTaskRow(specialTask)
+      /*
       if (specialTask.name) {
         this.getSpecialTaskRow(specialTask);
       } else {
         specialTask.name = '';
         this.getSpecialTaskRow(specialTask);
       }
-    }).join();
+       */
+    ).join();
     return emplXml + specialTasksXml;
   }
-
-
-
-  // без async await:
-
-  /*
-  parseToXml(model) {
-    model.common.forEach(report => {
-      this.getProjectXml(report);
-    });
-  }
-
-  getProjectXml(report) {
-    this.getProjectRow(report.name);
-    let xml = '';
-    report.employee.forEach(employee => {
-      xml = xml + this.getEmployeeXml(employee);
-    });
-  }
-
-  getEmployeeXml(employee) {
-    this.getEmployeeRow(employee.name);
-    employee.tasks.forEach(task => {
-      this.getTaskXml(task);
-    });
-  }
-
-  getTaskXml(task) {
-    return this.getTaskRow(task.name, task.hours);
-  }
-
-  getSpecialItemXml() {
-
-  }
-
-  getSpecialTaskXml() {
-
-  }
-   */
 }
