@@ -52,7 +52,7 @@ export class MainComponent implements OnInit {
       if (this.folderPath) {
         localStorage.setItem('folderPath', result.filePaths[0]);
         this.getFilesFromFolder();
-      }
+      } else { this.showFilesMenuComponent = false; }
     }).catch(err => {
       console.log(err);
     });
