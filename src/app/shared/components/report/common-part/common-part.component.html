@@ -29,15 +29,20 @@
 
   <div>
     <button (click)="addProject()">Add project</button>
-    <div *ngFor="let project of form.controls; let i = index">
+    <div class="project" *ngFor="let project of form.controls; let i = index">
       <ng-container>
-        <input placeholder="Название проекта" [formControl]="project.get('name')">
+        <app-form-input [placeHolder]="'Название проекта'" [control]="project.get('name')"></app-form-input>
+        <!--<input placeholder="Название проекта" [formControl]="project.get('name')">-->
+
         <button (click)="addEmployee(project)">Add Employee</button>
         <div *ngFor="let empl of project.controls.employee.controls; let ie = index">
-          <input placeholder="Имя сотрудника" [formControl]="empl.get('name')">
+          <app-form-input [placeHolder]="'Имя сотрудника'" [control]="empl.get('name')"></app-form-input>
+          <!--<input placeholder="Имя сотрудника" [formControl]="empl.get('name')">-->
+
           <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
             <app-form-input [placeHolder]="'Задача'" [control]="task.get('name')"></app-form-input>
             <app-form-input [placeHolder]="'Количество часов'" [control]="task.get('hours')"></app-form-input>
+
             <input [formControl]="task.get('date')" type="date" id="start" name="trip-start">
           </div>
           <button (click)="addTask(empl)">Add Task</button>
