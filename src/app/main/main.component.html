@@ -1,28 +1,22 @@
 <div class="container">
-  <div class="header">
-    <div class="left-panel">
-      <i (click)="openDialog()" class="material-icons icon-folder" title="Выберите папку">folder</i>
-      <!--
-      <button type="button" class="btn btn-primary" (click)="openDialog()">Выберите папку</button>
-      -->
-
-      <!--
-      <button *ngIf="folderPath" type="button" class="btn btn-success" (click)="openModalNewReport()">Создать новый отчет</button>
-      -->
+  <div class="folder-chooser">
+    <div class="folder-chooser__button-wrapper">
+      <!--<i (click)="openDialog()" class="material-icons folder-chooser__icon-button icon-button" title="Выберите папку">folder</i>-->
+      <app-icon-button [iconType]="'folder'" [title]="'Выберите папку'" (click)="openDialog()"></app-icon-button>
     </div>
-    <div *ngIf="folderPath" class="right-panel">{{ folderPath }}</div>
+    <div *ngIf="folderPath" class="folder-chooser__text">{{ folderPath }}</div>
   </div>
 
   <ng-container *ngIf="showModalNewReport">
     <app-new-report-modal [folderPath]="folderPath" (closeModal)="onCloseModal($event)"></app-new-report-modal>
   </ng-container>
 
-  <div class="main-content">
-    <div class="files-panel">
+  <div class="content">
+    <nav class="content__sidebar">
       <app-files-menu *ngIf="showFilesMenuComponent" [selectedFile]="selectedFileName" [files]="files" (sendFileName)="onSendFileName($event)" (openModal)="onShowModalNewReport($event)"></app-files-menu>
-    </div>
+    </nav>
 
-    <div class="report-panel">
+    <div class="content__report">
       <app-report *ngIf="showReportComponent; else elseBlock" [filePath]="selectedFile"></app-report>
       <ng-template #elseBlock>Выберите отчёт...</ng-template>
     </div>

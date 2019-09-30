@@ -3,18 +3,10 @@
   min-width: 100%;
   min-height: 100%;
   display: flex;
-  /*
-  align-items: center;
-  justify-content: center;
-  */
   flex-direction: column;
-  /*
-  padding-bottom: 10px;
-  padding-top: 10px;
-   */
 }
 
-.header {
+.folder-chooser {
   display: flex;
   flex-direction: row !important;
   flex-wrap: nowrap;
@@ -23,69 +15,49 @@
   height: 5%;
   background-color: #343a40;
 
-  .icon-folder {
-    font-size: 27px;
-    color: #ebebeb;
-    -webkit-transition: all 0.3s ease;;
-    -moz-transition: all 0.3s ease;;
-    -o-transition: all 0.3s ease;;
-    transition: all 0.3s ease;
+  &__button-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1%;
+    .btn {
+      margin: 1%;
+    }
   }
 
-  .icon-folder:hover {
-    cursor: pointer;
-    -webkit-transform: scale(1.2);
-    -ms-transform: scale(1.2);
-    transform: scale(1.2);
-    color: #b98181;
+  &__text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 90%;
+    color: #ebebeb;
+    font-size: 16px;
   }
 }
 
-.main-content {
+.content {
   display: flex;
   flex-direction: row;
   height: 93%;
-}
 
-.left-panel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  //border-right: 1px solid #cccacabd;
-  //width: 10%;
-  margin: 1%;
-  .btn {
-    margin: 1%;
+  &__sidebar {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 30%;
+    border-right: 1px solid #cccacabd;
+    overflow-y: scroll;
   }
-}
 
-.right-panel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 90%;
-  //margin: 1%;
-  color: #ebebeb;
-  font-size: 16px;
-}
+  &__report {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 1%;
 
-.files-panel {
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  min-width: 30%;
-  border-right: 1px solid #cccacabd;
-  overflow-y: scroll;
-}
-
-.report-panel {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 1%;
-}
-
-app-report {
-  overflow-y: scroll;
+    app-report {
+      overflow-y: scroll;
+    }
+  }
 }
