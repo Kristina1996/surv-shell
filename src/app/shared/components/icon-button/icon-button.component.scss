@@ -1,0 +1,11 @@
+.icon-button {
+  font-size: 27px;
+  color: #c7c6c6;
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+  color: #b98181;
+}
