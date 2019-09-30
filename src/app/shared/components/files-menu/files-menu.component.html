@@ -1,13 +1,12 @@
 <section>
-  <div class="head">
-    <div>Отчеты</div>
-    <!--<div (click)="openModalNewReport()"><i class="material-icons add-report">add_circle_outline</i></div>-->
+  <div class="sidebar-header">
+    <h2 class="sidebar-header__title">Отчеты</h2>
     <app-icon-button [iconType]="'add_circle_outline'" [title]="'Создать отчет'" (click)="openModalNewReport()"></app-icon-button>
   </div>
 
-  <nav class="list-files">
-    <ul *ngIf="files" class="ul-menu-files">
-      <li *ngFor="let file of files" class="li-menu-files" (click)="chooseFile(file)"  [class.selected]="file === selectedFile">
+  <nav class="nav">
+    <ul *ngIf="files" class="nav__inner">
+      <li *ngFor="let file of files" class="nav__item" (click)="chooseFile(file)"  [class.selected]="file === selectedFile">
         {{file}}
       </li>
     </ul>
