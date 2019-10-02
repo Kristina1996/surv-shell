@@ -1,5 +1,9 @@
 @import "../../../../core/constants";
 
+app-icon-button {
+  display: flex;
+}
+
 .project-name {
   text-align: center;
   font-size: 1.5em;
@@ -18,4 +22,75 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+}
+
+
+
+.grid {
+  display: grid;
+  border-radius: 10px;
+  border: 1px solid #b9818180;
+  background-color: #a271718f;
+
+  .project-item {
+
+    display: grid;
+    grid-template-columns: 85% 1fr 60px;
+
+    .btn-icon{
+      align-self: center;
+      justify-self: center;
+    }
+
+    .project-item-row {
+      display: grid;
+      grid-template-columns: 85% 1fr 60px;
+      border-bottom: 1px solid #b9818180;
+      //padding: 8px;
+    }
+
+    .employees {
+      display: grid;
+      grid-column: span 3;
+    }
+
+    .employee-name-row {
+      display: grid;
+      grid-template-columns: 85% 1fr 60px;
+
+      border-bottom: 1px solid #b9818180;
+      background-color: #f9e4e4b8;
+      padding-left: $gutter * 2;
+      //padding: 4px 4px 4px $gutter * 2;
+    }
+
+    .employee-item {
+
+      .tasks-list {
+
+      }
+
+      .task-item {
+        display: grid;
+        grid-template-columns: 1fr 10% 150px 60px;
+        border-bottom: 1px solid #b9818180;
+        background-color: #fdf3f3d9;
+        padding-left: $gutter * 4;
+        //padding: 2px 2px 2px $gutter * 4;
+      }
+    }
+
+  }
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  color: #555;
+}
+
+.input-calendar {
+  align-self: center;
+  height: 20px;
 }

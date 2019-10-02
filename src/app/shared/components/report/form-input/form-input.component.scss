@@ -1,3 +1,6 @@
+@import "../../../../core/constants";
+
+/*
 input {
   font-size: 16px;
   padding: 10px;
@@ -5,6 +8,21 @@ input {
   width: 300px;
   border: none;
   border-bottom: 1px solid #ccc;
+}
+
+input:focus {
+  outline: none;
+}
+*/
+
+input {
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  padding: $half-gutter;
+
+  font-family: "Noto Sans", sans-serif !important;
+  color: #555;
 }
 
 input:focus {

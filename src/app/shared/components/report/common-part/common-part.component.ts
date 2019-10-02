@@ -72,4 +72,17 @@ export class CommonPartComponent implements OnInit, OnChanges {
     // this.form.updateValueAndValidity();
   }
 
+  deleteProject(index) {
+    this.form.removeAt(index);
+  }
+
+  deleteEmployee(proj, index) {
+    proj.controls.employee.removeAt(index);
+  }
+
+  deleteTask(empl, index) {
+    // empl.controls.tasks.filter(item => item !== task);
+    empl.controls.tasks.removeAt(index);
+  }
+
 }

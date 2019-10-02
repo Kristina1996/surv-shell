@@ -1,43 +1,13 @@
 <!--
-<form (change)="changeForm()">
-<div class="main">
-  <div *ngFor="let project of data; let prjNum = index">
-    <ul class="list-group">
-      <li class="list-group-item">
-        <div class="project-name"><input class="form-control" [(ngModel)]="project.name" name="name{{prjNum}}" placeholder="Имя проекта"/></div>
-        <div *ngFor="let employee of project.employee; let emplNum = index">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item employee-name"><input class="form-control" name="name{{employee.name}}" [(ngModel)]="employee.name" placeholder="Имя сотрудника"/></li>
-            <div *ngFor="let task of employee.tasks" class="task">
-
-                <div><input class="form-control" [(ngModel)]="task.name" name="name{{task.name}}" placeholder="Задача"/></div>
-                <div><input class="form-control" [(ngModel)]="task.hours" name="name{{task.hours}}" placeholder="Количество часов"/></div>
-            </div>
-            {{prjNum}}{{emplNum}}
-            <button (click)="addTask(prjNum, emplNum)">Add task</button>
-          </ul>
-        </div>
-        <button (click)="addEmployee(prjNum)">Add Employee</button>
-      </li>
-    </ul>
-  </div>
-  <button (click)="addProject()">Add Project</button>
-  <button (click)="saveReport()">Save Report</button>
-</div>
-</form>
--->
-
-  <div>
+<div>
     <button (click)="addProject()">Add project</button>
     <div class="project" *ngFor="let project of form.controls; let i = index">
       <ng-container>
         <app-form-input [placeHolder]="'Название проекта'" [control]="project.get('name')"></app-form-input>
-        <!--<input placeholder="Название проекта" [formControl]="project.get('name')">-->
 
         <button (click)="addEmployee(project)">Add Employee</button>
         <div *ngFor="let empl of project.controls.employee.controls; let ie = index">
           <app-form-input [placeHolder]="'Имя сотрудника'" [control]="empl.get('name')"></app-form-input>
-          <!--<input placeholder="Имя сотрудника" [formControl]="empl.get('name')">-->
 
           <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
             <app-form-input [placeHolder]="'Задача'" [control]="task.get('name')"></app-form-input>
@@ -49,4 +19,37 @@
         </div>
       </ng-container>
     </div>
+</div>
+-->
+
+<div class="grid">
+  <div class="project-item" *ngFor="let project of form.controls; let i = index">
+    <app-form-input [placeHolder]="'Название проекта'" [control]="project.get('name')"></app-form-input>
+    <app-icon-button [iconType]="'add'" [title]="'Добавить сотрудника'" (click)="addEmployee(project)" class="btn-icon"></app-icon-button>
+    <app-icon-button [iconType]="'delete'" [title]="'Удалить проект'" (click)="deleteProject(i)" class="btn-icon"></app-icon-button>
+
+    <div class="employees">
+      <div class="employee-item" *ngFor="let empl of project.controls.employee.controls; let ie = index">
+       <div class="employee-name-row">
+          <app-form-input [placeHolder]="'Имя сотрудника'" [control]="empl.get('name')"></app-form-input>
+          <app-icon-button [iconType]="'add'" [title]="'Добавить задачу'" (click)="addTask(empl)" class="btn-icon"></app-icon-button>
+          <app-icon-button [iconType]="'delete'" [title]="'Удалить сотрудника'" (click)="deleteEmployee(project, ie)" class="btn-icon"></app-icon-button>
+       </div>
+
+        <div class="tasks-list">
+          <div class="task-item" *ngFor="let task of empl.controls.tasks.controls; let ie = index">
+            <app-form-input [placeHolder]="'Задача'" [control]="task.get('name')"></app-form-input>
+            <app-form-input [placeHolder]="'0'" [control]="task.get('hours')"></app-form-input>
+            <input class="input-calendar" [formControl]="task.get('date')" type="date" id="start" name="trip-start">
+            <app-icon-button [iconType]="'delete'" [title]="'Удалить задачу'" (click)="deleteTask(empl, ie)" class="btn-icon"></app-icon-button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
+  <div class="footer">
+    <app-icon-button [iconType]="'add'" [title]="'Добавить новый проект'" (click)="addProject()" class="btn-icon"></app-icon-button>
+    <span>Добавить новый проект</span>
+  </div>
+</div>
