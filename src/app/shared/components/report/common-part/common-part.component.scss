@@ -35,7 +35,7 @@ app-icon-button {
   .project-item {
 
     display: grid;
-    grid-template-columns: 85% 1fr 60px;
+    grid-template-columns: 1fr 30px 60px;
 
     .btn-icon{
       align-self: center;
@@ -56,12 +56,17 @@ app-icon-button {
 
     .employee-name-row {
       display: grid;
-      grid-template-columns: 85% 1fr 60px;
+      grid-template-columns: 1fr 30px 60px;
 
       border-bottom: 1px solid #b9818180;
       background-color: #f9e4e4b8;
-      padding-left: $gutter * 2;
-      //padding: 4px 4px 4px $gutter * 2;
+      // padding-left: $gutter * 2;
+
+      ::ng-deep {
+        input {
+          padding-left: $gutter * 2;
+        }
+      }
     }
 
     .employee-item {
@@ -72,11 +77,18 @@ app-icon-button {
 
       .task-item {
         display: grid;
-        grid-template-columns: 1fr 10% 150px 60px;
+        grid-template-columns: 1fr 50px 150px 60px;
         border-bottom: 1px solid #b9818180;
         background-color: #fdf3f3d9;
-        padding-left: $gutter * 4;
-        //padding: 2px 2px 2px $gutter * 4;
+        // padding-left: $gutter * 4;
+
+        .input-task-name {
+          ::ng-deep {
+            input {
+              padding-left: $gutter * 4;
+            }
+          }
+        }
       }
     }
 
@@ -87,8 +99,10 @@ app-icon-button {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  padding: 7px;
   color: #555;
 }
+
 
 .input-calendar {
   align-self: center;

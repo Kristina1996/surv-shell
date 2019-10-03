@@ -16,6 +16,8 @@ input:focus {
 */
 
 input {
+  box-sizing: border-box;
+  width: 100%;
   font-size: 16px;
   border: none;
   background-color: transparent;
@@ -26,5 +28,7 @@ input {
 }
 
 input:focus {
-  outline: none;
+  //outline: none;
+  outline-color: #a27171;
+  font-weight: bold;
 }

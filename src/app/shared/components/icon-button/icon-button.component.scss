@@ -1,6 +1,6 @@
 .icon-button {
-  font-size: 27px;
-  color: #c7c6c6;
+  //font-size: 27px;
+  //color: #c7c6c6;
   transition: all 0.3s ease;
 }
 
@@ -8,4 +8,20 @@
   cursor: pointer;
   transform: scale(1.2);
   color: #b98181;
+}
+
+.light {
+  color: #ebebeb;
+}
+
+.dark {
+  color: #777;
+}
+
+.size-small {
+  font-size: 23px;
+}
+
+.size-normal {
+  font-size: 27px;
 }
