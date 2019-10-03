@@ -40,6 +40,7 @@ export class ReportComponent implements OnInit, OnChanges {
     });
   }
 
+  /*
   saveReport() {
     const formValue = this.formService.getForm().getRawValue();
     console.log(formValue);
@@ -47,5 +48,5 @@ export class ReportComponent implements OnInit, OnChanges {
     const content = this.parseToXmlService.parseToXml(formValue);
     this.mainService.saveFile(this.filePath, content);
   }
-
+  */
 }
