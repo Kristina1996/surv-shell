@@ -7,10 +7,12 @@ import * as moment from 'moment';
 import { ProjectModel } from '../../../../core/models/report.model';
 import { EmployeeModel } from '../../../../core/models/report.model';
 import { TaskModel } from '../../../../core/models/report.model';
+import { SPECIALTASKS } from '../../../../core/models/special-tasks-data';
 
 import { FormServiceService } from '../../../../core/services/form-service.service';
 import {ParseToXmlService} from '../../../../core/services/parse-to-xml.service';
 import {MainService} from '../../../../core/services/main.service';
+import {SpecialItemModel} from '../../../../core/models/specialItem.model';
 
 @Component({
   selector: 'app-common-part',
@@ -34,21 +36,46 @@ export class CommonPartComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     console.log(this.data);
-    this.form = this.formService.makeCommonForm(this.data);
+    this.form = this.formService.makeCommonForm(this.data.common);
     console.log(this.form);
     this.formValueChanges();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.data = changes.data.currentValue;
-    this.form = this.formService.makeCommonForm(this.data);
+    this.form = this.formService.makeCommonForm(this.data.common);
     this.formValueChanges();
   }
 
   formValueChanges() {
     this.form.valueChanges.pipe(debounceTime(2000)).subscribe(values => {
       console.log(values);
+
+      const uniqueEmployee = new Set();
+      values.forEach(project => {
+        project.employee.forEach(empl => {
+          uniqueEmployee.add(empl.name);
+        });
+      });
+      // console.log(uniqueEmployee);
+
       const formValue = this.formService.getForm().getRawValue();
+
+      const specialItems: SpecialItemModel[] = [];
+      uniqueEmployee.forEach(empl => {
+        const index = formValue.specialForm.findIndex(element => element.employeeName === empl);
+        if (index !== -1) { specialItems.push(formValue.specialForm[index]);
+        } else {
+          const newSpecialItem: SpecialItemModel = new SpecialItemModel();
+          newSpecialItem.employeeName = String(empl);
+          newSpecialItem.rate = 0;
+          newSpecialItem.specialTasks = SPECIALTASKS;
+          specialItems.push(newSpecialItem);
+        }
+      });
+      formValue.specialForm = specialItems;
+      this.data.specialTasks = specialItems;
+
       const content = this.parseToXmlService.parseToXml(formValue);
       this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
       console.log('данные сохранены');
@@ -67,9 +94,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
 
   addProject() {
     const emptyPrj: ProjectModel = null;
-    // this.form.controls.push(this.formService.makeProjectForm(emptyPrj));
     this.form.push(this.formService.makeProjectForm(emptyPrj));
-    // this.form.updateValueAndValidity();
   }
 
   deleteProject(index) {
@@ -81,7 +106,6 @@ export class CommonPartComponent implements OnInit, OnChanges {
   }
 
   deleteTask(empl, index) {
-    // empl.controls.tasks.filter(item => item !== task);
     empl.controls.tasks.removeAt(index);
   }
 
