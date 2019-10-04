@@ -30,7 +30,8 @@ app-icon-button {
   display: grid;
   border-radius: 10px;
   border: 1px solid #b9818180;
-  background-color: #a271718f;
+  //background-color: #a271718f;
+  background-color: #f9e4e4b8;
 
   .project-item {
 
@@ -59,8 +60,8 @@ app-icon-button {
       grid-template-columns: 1fr 30px 60px;
 
       border-bottom: 1px solid #b9818180;
-      background-color: #f9e4e4b8;
-      // padding-left: $gutter * 2;
+      //background-color: #f9e4e4b8;
+      background-color: #fdf3f3d9;
 
       ::ng-deep {
         input {
@@ -79,8 +80,7 @@ app-icon-button {
         display: grid;
         grid-template-columns: 1fr 50px 150px 60px;
         border-bottom: 1px solid #b9818180;
-        background-color: #fdf3f3d9;
-        // padding-left: $gutter * 4;
+        background-color: #ffffff;
 
         .input-task-name {
           ::ng-deep {

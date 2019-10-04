@@ -1,27 +1,7 @@
 <!--
-<div class="main">
-  <div *ngFor="let item of data">
-    <ul class="list-group">
-      <li class="list-group-item">
-        {{item.employeeName}}
-        {{item.rate}}
-        <div *ngFor="let task of item.specialTasks">
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">{{task.name}}</li>
-            <li class="list-group-item">{{task.hours}}</li>
-            <div *ngIf="task.comment">
-              <li class="list-group-item">{{task.comment}}</li>
-            </div>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </div>
-</div>
--->
-
 <div>
   <button (click)="addSpecialItem()">Add Special Item</button>
+
   <div *ngFor="let specialItem of form.controls; let i = index">
     <ng-container>
       <input placeholder="Имя сотрудника" [formControl]="specialItem.get('employeeName')">
@@ -34,3 +14,36 @@
     </ng-container>
   </div>
 </div>
+-->
+
+
+<div class="grid">
+  <div class="special-item" *ngFor="let specialItem of form.controls; let i = index">
+    <ng-container>
+      <app-form-input [placeHolder]="'Имя сотрудника'" [control]="specialItem.get('employeeName')"></app-form-input>
+      <app-form-input [placeHolder]="'Ставка'" [control]="specialItem.get('rate')"></app-form-input>
+
+      <!--<button (click)="addSpecialTask(specialItem)">Add Special Task</button>-->
+      <app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'add'" [title]="'Добавить задачу'" (click)="addSpecialTask(specialItem)" class="btn-icon"></app-icon-button>
+
+      <div class="special-tasks">
+        <div class="special-task" *ngFor="let specialTask of specialItem.controls.specialTasks.controls;">
+          <!--
+          <input placeholder="Задача" [formControl]="specialTask.get('name')">
+          <input placeholder="Количество часов" [formControl]="specialTask.get('hours')">
+          -->
+
+          <app-form-input [placeHolder]="'Задача'" [control]="specialTask.get('name')"></app-form-input>
+          <app-form-input [placeHolder]="'0'" [control]="specialTask.get('hours')"></app-form-input>
+          <app-form-input [placeHolder]="'Комментарий'" [control]="specialTask.get('comment')"></app-form-input>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+<!--
+<app-form-input [placeHolder]="'Название проекта'" [control]="project.get('name')"></app-form-input>
+<app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'person_add'" [title]="'Добавить сотрудника'" (click)="addEmployee(project)" class="btn-icon"></app-icon-button>
+<app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'delete'" [title]="'Удалить проект'" (click)="deleteProject(i)" class="btn-icon"></app-icon-button>
+-->

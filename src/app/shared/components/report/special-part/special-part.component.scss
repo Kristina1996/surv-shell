@@ -1,1 +1,27 @@
+.grid {
+  display: grid;
+  border-radius: 10px;
+  border: 1px solid #b9818180;
+  background-color: #f9e4e4b8;
 
+  .special-item {
+    display: grid;
+    grid-template-columns: 1fr 100px 60px;
+
+    .btn-icon {
+      align-self: center;
+      justify-self: center;
+    }
+
+    .special-tasks {
+      display: grid;
+      grid-column: span 3;
+
+      .special-task {
+        display: grid;
+        grid-template-columns: 1fr 100px 1fr;
+        background-color: #ffffff;
+      }
+    }
+  }
+}
