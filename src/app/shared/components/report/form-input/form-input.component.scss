@@ -31,3 +31,7 @@ input:focus {
   outline-color: #a27171;
   font-weight: bold;
 }
+
+::placeholder {
+  color: #bbb6b6c2;
+}
