@@ -65,7 +65,7 @@ app-icon-button {
 
       ::ng-deep {
         input {
-          padding-left: $gutter * 2;
+          padding-left: $gutter;
         }
       }
     }
@@ -85,7 +85,7 @@ app-icon-button {
         .input-task-name {
           ::ng-deep {
             input {
-              padding-left: $gutter * 4;
+              padding-left: $gutter * 2;
             }
           }
         }
