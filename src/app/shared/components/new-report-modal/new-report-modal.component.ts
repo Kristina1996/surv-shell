@@ -24,7 +24,8 @@ export class NewReportModalComponent implements OnInit {
   public yearsList = [];
 
   public selectedYear = moment().year();
-  public currentWeek = moment().week();
+  public currentWeek = moment().isoWeek();
+  //public currentWeek = moment().week();
 
   public fileName;
 
@@ -47,14 +48,16 @@ export class NewReportModalComponent implements OnInit {
 
   getWeeksList(year) {
     const selectedDate = moment().set('year', year);
-    const weeks = moment(selectedDate).weeksInYear();
+    //const weeks = moment(selectedDate).weeksInYear();
+    const weeks = moment(selectedDate).isoWeeksInYear();
+
     let firstDay = moment(selectedDate).startOf('year');
 
     for (let i = 0; i < weeks; i++) {
       const file = new FileModel();
       file.numberOfWeek = i + 1;
-      file.startWeek = moment(firstDay).startOf('week').format('DD.MM.YYYY');
-      file.endWeek = moment(firstDay).endOf('week').format('DD.MM.YYYY')
+      file.startWeek = moment(firstDay).startOf('isoWeek').format('DD.MM.YYYY');
+      file.endWeek = moment(firstDay).endOf('isoWeek').format('DD.MM.YYYY')
       file.nameListItem = file.numberOfWeek + ': ' + file.startWeek + ' - ' + file.endWeek;
       if (file.numberOfWeek < 10) {
         file.fileName = '0' + file.numberOfWeek + '_' + file.startWeek + '-' + file.endWeek + '.xls';
