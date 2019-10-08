@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnChanges} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-files-menu',
@@ -19,9 +19,10 @@ export class FilesMenuComponent implements OnInit, OnChanges {
     if (file) { this.selectedFile = file; }
   }
 
-  ngOnChanges() {
+  ngOnChanges(changes: SimpleChanges) {
+    this.files = changes.files.currentValue;
     this.files.sort((a, b) => {
-      return Number(a.substr(0, 1)) - Number(b.substr(0, 1));
+      return Number(b.substr(0, 2)) - Number(a.substr(0, 2));
     });
   }
 
