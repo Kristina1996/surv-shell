@@ -39,7 +39,7 @@
         <div class="tasks-list">
           <div class="task-item" *ngFor="let task of empl.controls.tasks.controls; let ie = index">
             <app-form-input class="input-task-name" [placeHolder]="'Задача'" [control]="task.get('name')"></app-form-input>
-            <app-form-input [placeHolder]="'0'" [control]="task.get('hours')"></app-form-input>
+            <app-form-input [placeHolder]="'0'" [control]="task.get('hours')" [type]="'number'"></app-form-input>
             <input class="input-calendar" [formControl]="task.get('date')" type="date" id="start" name="trip-start">
             <app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'delete'" [title]="'Удалить задачу'" (click)="deleteTask(empl, ie)" class="btn-icon"></app-icon-button>
           </div>
