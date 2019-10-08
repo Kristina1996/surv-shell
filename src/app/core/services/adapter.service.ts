@@ -22,8 +22,11 @@ export class AdapterService {
     const commonRows = this.getRows(obj, 0);
     const specialRows = this.getRows(obj, 1);
 
-    commonRows.shift();
-    specialRows.shift();
+    // commonRows.shift();
+    // specialRows.shift();
+
+    if (commonRows.includes('Отчет по проекту')) { commonRows.shift(); }
+    if (specialRows.includes('Специальные задачи')) { specialRows.shift(); }
 
     commonRows.forEach(row => {
       if(row.includes('prnm_')) {

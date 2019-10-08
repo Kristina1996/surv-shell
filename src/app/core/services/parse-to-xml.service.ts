@@ -104,9 +104,6 @@ export class ParseToXmlService {
   <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="20" x:FullColumns="1"
    x:FullRows="1" ss:StyleID="s62">
    <Column ss:Index="4" ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="58.5"/>
-   <Row ss:AutoFitHeight="0" ss:Height="20.25">
-    <Cell ss:MergeAcross="8" ss:StyleID="s64"><Data ss:Type="String">Отчет по проекту</Data></Cell>
-   </Row>
     ${rows}
     <Row>
     <Cell ss:MergeAcross="3" ss:StyleID="s71"/>
@@ -139,9 +136,6 @@ export class ParseToXmlService {
   getSpecialWorksheet = (rows) => `<Worksheet ss:Name="специальные задачи">
   <Table ss:ExpandedColumnCount="9" ss:ExpandedRowCount="19" x:FullColumns="1"
    x:FullRows="1">
-   <Row ss:AutoFitHeight="0" ss:Height="20.25">
-    <Cell ss:MergeAcross="8" ss:StyleID="s74"><Data ss:Type="String">Специальные задачи</Data></Cell>
-   </Row>
    ${rows}
    </Table>
   <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
