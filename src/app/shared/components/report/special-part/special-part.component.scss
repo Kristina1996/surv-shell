@@ -6,7 +6,8 @@
 
   .special-item {
     display: grid;
-    grid-template-columns: 1fr 100px 60px;
+    grid-template-columns: 1fr 100px;
+    // grid-template-columns: 1fr 100px 60px;
 
     .btn-icon {
       align-self: center;
@@ -15,7 +16,8 @@
 
     .special-tasks {
       display: grid;
-      grid-column: span 3;
+      grid-column: span 2;
+      // grid-column: span 3;
 
       .special-task {
         display: grid;
