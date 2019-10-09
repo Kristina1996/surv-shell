@@ -92,7 +92,9 @@ export class CommonPartComponent implements OnInit, OnChanges {
   }
 
   addProject() {
-    const emptyPrj: ProjectModel = null;
+    const emptyPrj: ProjectModel = new ProjectModel();
+    emptyPrj.employee.push(new EmployeeModel());
+    emptyPrj.employee[0].tasks.push(new TaskModel());
     this.form.push(this.formService.makeProjectForm(emptyPrj));
   }
 
