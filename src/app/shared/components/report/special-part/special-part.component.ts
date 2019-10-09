@@ -34,7 +34,7 @@ export class SpecialPartComponent implements OnInit, OnChanges {
   }
 
   formValueChanges() {
-    this.form.valueChanges.pipe(debounceTime(2000)).subscribe(values => {
+    this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
       console.log(values);
       const formValue = this.formService.getForm().getRawValue();
       const content = this.parseToXmlService.parseToXml(formValue);

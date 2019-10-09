@@ -48,7 +48,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
   }
 
   formValueChanges() {
-    this.form.valueChanges.pipe(debounceTime(2000)).subscribe(values => {
+    this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
       console.log(values);
 
       const uniqueEmployee = new Set();
@@ -57,7 +57,6 @@ export class CommonPartComponent implements OnInit, OnChanges {
           uniqueEmployee.add(empl.name);
         });
       });
-      // console.log(uniqueEmployee);
 
       const formValue = this.formService.getForm().getRawValue();
 
