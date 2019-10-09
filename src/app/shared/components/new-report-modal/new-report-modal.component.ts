@@ -25,7 +25,6 @@ export class NewReportModalComponent implements OnInit {
 
   public selectedYear = moment().year();
   public currentWeek = moment().isoWeek();
-  //public currentWeek = moment().week();
 
   public fileName;
 
@@ -48,7 +47,6 @@ export class NewReportModalComponent implements OnInit {
 
   getWeeksList(year) {
     const selectedDate = moment().set('year', year);
-    //const weeks = moment(selectedDate).weeksInYear();
     const weeks = moment(selectedDate).isoWeeksInYear();
 
     let firstDay = moment(selectedDate).startOf('year');
@@ -83,22 +81,27 @@ export class NewReportModalComponent implements OnInit {
   }
 
   clickClose() {
-    this.closeModal.emit(false);
+    this.close();
   }
 
   createReport() {
     if (localStorage.getItem('files').includes(this.fileName)) {
       const isOverwrite = confirm('Отчёт с таким именем уже существует. Перезаписать отчёт?');
       if (isOverwrite) {
-        const emptyReport = this.createEmptyReportObject();
+        const emptyReport = this.getFirstEmployee();
         const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
         this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
+          const files = JSON.parse(localStorage.getItem('files'));
+          const index = files.indexOf(this.fileName);
+          files.splice(index, 1);
+          files.push(this.fileName);
+          localStorage.setItem('files', JSON.stringify(files));
           localStorage.setItem('selectedFile', this.fileName);
-          this.clickClose();
+          this.close();
         });
       }
     } else {
-      const emptyReport = this.createEmptyReportObject();
+      const emptyReport = this.getFirstEmployee();
       const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
       this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
         const files = JSON.parse(localStorage.getItem('files'));
@@ -110,7 +113,7 @@ export class NewReportModalComponent implements OnInit {
     }
   }
 
-  createEmptyReportObject() {
+  getFirstEmployee() {
     const obj = {
       commonForm: [],
       specialForm: [{
@@ -123,6 +126,10 @@ export class NewReportModalComponent implements OnInit {
     obj.commonForm[0].employee.push(new EmployeeModel());
     obj.commonForm[0].employee[0].tasks.push(new TaskModel());
     return obj;
+  }
+
+  private close() {
+    this.closeModal.emit(false);
   }
 
 }
