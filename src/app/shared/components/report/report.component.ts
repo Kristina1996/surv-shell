@@ -39,6 +39,8 @@ export class ReportComponent implements OnInit, OnChanges {
       } else {
           this.report = new ReportModel();
       }
+    }, error => {
+      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.');
     });
   }
 
