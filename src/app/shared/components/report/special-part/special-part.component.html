@@ -4,11 +4,9 @@
       <app-form-input [placeHolder]="'Имя сотрудника'" [control]="specialItem.get('employeeName')"></app-form-input>
       <app-form-input [placeHolder]="'Ставка'" [control]="specialItem.get('rate')" [type]="'number'"></app-form-input>
 
-      <!--<app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'add'" [title]="'Добавить задачу'" (click)="addSpecialTask(specialItem)" class="btn-icon"></app-icon-button>-->
-
       <div class="special-tasks">
         <div class="special-task" *ngFor="let specialTask of specialItem.controls.specialTasks.controls;">
-          <app-form-input [placeHolder]="'Задача'" [control]="specialTask.get('name')"></app-form-input>
+          <app-form-input [placeHolder]="'Задача'" [control]="specialTask.get('name')" class="special-task-name"></app-form-input>
           <app-form-input [placeHolder]="'0'" [control]="specialTask.get('hours')" [type]="'number'"></app-form-input>
           <app-form-input [placeHolder]="'Комментарий'" [control]="specialTask.get('comment')"></app-form-input>
         </div>

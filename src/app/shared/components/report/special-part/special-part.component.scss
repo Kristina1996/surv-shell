@@ -7,7 +7,6 @@
   .special-item {
     display: grid;
     grid-template-columns: 1fr 100px;
-    // grid-template-columns: 1fr 100px 60px;
 
     .btn-icon {
       align-self: center;
@@ -17,12 +16,20 @@
     .special-tasks {
       display: grid;
       grid-column: span 2;
-      // grid-column: span 3;
 
       .special-task {
         display: grid;
         grid-template-columns: 1fr 100px 1fr;
         background-color: #ffffff;
+
+        .special-task-name {
+
+          ::ng-deep {
+            input {
+              pointer-events: none;
+            }
+          }
+        }
       }
     }
   }

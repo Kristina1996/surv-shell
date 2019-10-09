@@ -26,11 +26,11 @@ app-icon-button {
 
 
 
+
 .grid {
   display: grid;
   border-radius: 10px;
   border: 1px solid #b9818180;
-  //background-color: #a271718f;
   background-color: #f9e4e4b8;
 
   .project-item {
@@ -47,7 +47,6 @@ app-icon-button {
       display: grid;
       grid-template-columns: 85% 1fr 60px;
       border-bottom: 1px solid #b9818180;
-      //padding: 8px;
     }
 
     .employees {
@@ -60,7 +59,6 @@ app-icon-button {
       grid-template-columns: 1fr 30px 60px;
 
       border-bottom: 1px solid #b9818180;
-      //background-color: #f9e4e4b8;
       background-color: #fdf3f3d9;
 
       ::ng-deep {
