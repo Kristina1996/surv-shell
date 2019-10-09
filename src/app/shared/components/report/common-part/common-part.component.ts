@@ -99,11 +99,20 @@ export class CommonPartComponent implements OnInit, OnChanges {
   }
 
   deleteProject(index) {
-    this.form.removeAt(index);
+    if (this.form.controls[index].controls.employee.controls.length > 0) {
+    // if (this.form.controls.length > 0) {
+      const conf = confirm('В этом проекте есть сотрудники. Вы уверены, что хотите его удалить?');
+      if (conf) { this.form.removeAt(index); }
+    } else { this.form.removeAt(index); }
   }
 
   deleteEmployee(proj, index) {
-    proj.controls.employee.removeAt(index);
+    if (proj.controls.employee.controls[index].controls.tasks.controls.length > 0) {
+      const conf = confirm('Вы хотите удалить сотрудника, у которого есть задачи. Удалить?');
+      if (conf) { proj.controls.employee.removeAt(index); }
+    } else {  proj.controls.employee.removeAt(index); }
+
+    // proj.controls.employee.removeAt(index);
   }
 
   deleteTask(empl, index) {

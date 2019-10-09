@@ -24,7 +24,9 @@ export class ReportComponent implements OnInit, OnChanges {
               private formService: FormServiceService,
               private parseToXmlService: ParseToXmlService) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.getReportContent();
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.filePath = changes.filePath.currentValue;
@@ -40,13 +42,15 @@ export class ReportComponent implements OnInit, OnChanges {
     });
   }
 
-  /*
-  saveReport() {
-    const formValue = this.formService.getForm().getRawValue();
-    console.log(formValue);
-    console.log(this.filePath);
-    const content = this.parseToXmlService.parseToXml(formValue);
-    this.mainService.saveFile(this.filePath, content);
+  getReportContent() {
+    this.mainService.getFileContent(this.filePath).then(result => {
+      console.log('Содержимое выбранного отчета: ' + JSON.stringify(result));
+      if (result) {
+        this.report = this.adapterService.getModel(result);
+        console.log(this.report);
+      } else {
+        this.report = new ReportModel();
+      }
+    });
   }
-  */
 }
