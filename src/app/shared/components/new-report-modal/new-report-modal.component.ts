@@ -87,15 +87,27 @@ export class NewReportModalComponent implements OnInit {
   }
 
   createReport() {
-    const emptyReport = this.createEmptyReportObject();
-    const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
-    this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
-      const files = JSON.parse(localStorage.getItem('files'));
-      files.push(this.fileName);
-      localStorage.setItem('files', JSON.stringify(files));
-      localStorage.setItem('selectedFile', this.fileName);
-      this.clickClose();
-    });
+    if (localStorage.getItem('files').includes(this.fileName)) {
+      const isOverwrite = confirm('Отчёт с таким именем уже существует. Перезаписать отчёт?');
+      if (isOverwrite) {
+        const emptyReport = this.createEmptyReportObject();
+        const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
+        this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
+          localStorage.setItem('selectedFile', this.fileName);
+          this.clickClose();
+        });
+      }
+    } else {
+      const emptyReport = this.createEmptyReportObject();
+      const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
+      this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
+        const files = JSON.parse(localStorage.getItem('files'));
+        files.push(this.fileName);
+        localStorage.setItem('files', JSON.stringify(files));
+        localStorage.setItem('selectedFile', this.fileName);
+        this.clickClose();
+      });
+    }
   }
 
   createEmptyReportObject() {
