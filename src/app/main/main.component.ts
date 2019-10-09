@@ -62,7 +62,6 @@ export class MainComponent implements OnInit {
     this.mainService.getFilesFromFolder(this.folderPath).then(result => {
       this.files = result;
       if (this.files.length === 0) {
-         // alert('Файлы не найдены! Пожалуйста, выберите другую папку.');
          this.showFilesMenuComponent = true;
          this.showReportComponent = false;
         localStorage.setItem('files', JSON.stringify(this.files));
@@ -81,12 +80,6 @@ export class MainComponent implements OnInit {
     this.selectedFile = this.folderPath + '\\' + selectedFile;
     this.showReportComponent = true;
   }
-
-  /*
-  openModalNewReport() {
-    this.showModalNewReport = true;
-  }
-   */
 
   onShowModalNewReport(click: Boolean) {
     if (click) { this.showModalNewReport = true; }

@@ -90,7 +90,6 @@ export class NewReportModalComponent implements OnInit {
     const emptyReport = this.createEmptyReportObject();
     const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
     this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
-      alert('Файл ' + result + ' был успешно создан');
       const files = JSON.parse(localStorage.getItem('files'));
       files.push(this.fileName);
       localStorage.setItem('files', JSON.stringify(files));
@@ -106,12 +105,6 @@ export class NewReportModalComponent implements OnInit {
         employeeName: '',
         rate: 0,
         specialTasks: SPECIALTASKS
-        /*
-        specialTasks: [{
-          hours: 0,
-          name: ''
-        }]
-         */
       }]
     };
     obj.commonForm.push(new ProjectModel());
