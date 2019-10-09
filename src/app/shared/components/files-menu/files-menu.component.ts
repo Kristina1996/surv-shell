@@ -29,7 +29,7 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   /**
    * Передача компоненту-родителю Main имя выбранного файла
   **/
-  chooseFile(fileName) {
+  onChooseFile(fileName) {
     this.selectedFile = fileName;
     console.log('передаю компоненту родителю имя выбранного файла')
     this.sendFileName.emit(fileName);

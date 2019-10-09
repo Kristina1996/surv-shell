@@ -6,7 +6,7 @@
 
   <nav class="nav">
     <ul *ngIf="files" class="nav__inner">
-      <li *ngFor="let file of files" class="nav__item" (click)="chooseFile(file)"  [class.selected]="file === selectedFile">
+      <li *ngFor="let file of files" class="nav__item" (click)="onChooseFile(file)"  [class.selected]="file === selectedFile">
         {{file}}
       </li>
     </ul>
