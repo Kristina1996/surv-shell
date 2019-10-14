@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormArray } from '@angular/forms';
 import {Subscription} from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import * as moment from 'moment';
@@ -74,6 +74,17 @@ export class CommonPartComponent implements OnInit, OnChanges {
       });
       formValue.specialForm = specialItems;
       this.data.specialTasks = specialItems;
+
+      /**
+       * trim() для каждого названия задачи
+       */
+      formValue.commonForm.forEach(project => {
+        project.employee.forEach(empl => {
+          empl.tasks.forEach(task => {
+            task.name.trim();
+          });
+        });
+      });
 
       const content = this.parseToXmlService.parseToXml(formValue);
       this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
