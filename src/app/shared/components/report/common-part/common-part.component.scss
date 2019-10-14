@@ -80,6 +80,14 @@ app-icon-button {
         border-bottom: 1px solid #b9818180;
         background-color: #ffffff;
 
+        ::ng-deep {
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
+
         .input-task-name {
           ::ng-deep {
             input {

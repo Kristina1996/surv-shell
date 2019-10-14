@@ -8,6 +8,14 @@
     display: grid;
     grid-template-columns: 1fr 100px;
 
+    ::ng-deep {
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+
     .btn-icon {
       align-self: center;
       justify-self: center;
@@ -21,6 +29,14 @@
         display: grid;
         grid-template-columns: 1fr 100px 1fr;
         background-color: #ffffff;
+
+        ::ng-deep {
+          input::-webkit-outer-spin-button,
+          input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+          }
+        }
 
         .special-task-name {
 
