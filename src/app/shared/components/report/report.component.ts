@@ -1,47 +1,37 @@
-import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
-import * as fs from 'fs';
+import {Component, OnInit, OnChanges, SimpleChanges, Input, OnDestroy} from '@angular/core';
 
 import { ReportModel } from '../../../core/models/report.model';
 
 import { MainService } from '../../../core/services/main.service';
 import { AdapterService } from '../../../core/services/adapter.service';
 import { FormServiceService } from '../../../core/services/form-service.service';
-import { ParseToXmlService } from '../../../core/services/parse-to-xml.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-report',
   templateUrl: './report.component.html',
   styleUrls: ['./report.component.scss'],
-  providers: [ MainService, AdapterService, FormServiceService ]
+  providers: [ AdapterService, FormServiceService ]
 })
-export class ReportComponent implements OnInit, OnChanges {
+export class ReportComponent implements OnInit, OnChanges, OnDestroy {
 
   @Input() filePath: string;
   report: ReportModel;
+  subscription: Subscription;
 
   constructor(private mainService: MainService,
-              private adapterService: AdapterService,
-              private formService: FormServiceService,
-              private parseToXmlService: ParseToXmlService) { }
+              private adapterService: AdapterService) {
+    this.subscription = this.mainService.data.subscribe(val => {
+      if (val === 1) { this.getReportContent(); }
+    });
+  }
 
   ngOnInit() {
-    // this.getReportContent();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.filePath = changes.filePath.currentValue;
-    console.log(this.filePath);
-    this.mainService.getFileContent(this.filePath).then(result => {
-      console.log('Содержимое выбранного отчета: ' + JSON.stringify(result));
-      if (result) {
-        this.report = this.adapterService.getModel(result);
-        console.log(this.report);
-      } else {
-          this.report = new ReportModel();
-      }
-    }, error => {
-      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.');
-    });
+    this.getReportContent();
   }
 
   getReportContent() {
@@ -50,9 +40,13 @@ export class ReportComponent implements OnInit, OnChanges {
       if (result) {
         this.report = this.adapterService.getModel(result);
         console.log(this.report);
-      } else {
-        this.report = new ReportModel();
-      }
+      } else { this.report = new ReportModel(); }
+    }, error => {
+      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.');
     });
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 }

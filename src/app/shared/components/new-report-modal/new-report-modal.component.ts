@@ -3,17 +3,15 @@ import * as moment from 'moment';
 
 import { MainService } from '../../../core/services/main.service';
 import {ParseToXmlService} from '../../../core/services/parse-to-xml.service';
-import {FormServiceService} from '../../../core/services/form-service.service';
-import {EmployeeModel, ProjectModel, ReportModel, TaskModel} from '../../../core/models/report.model';
+import {EmployeeModel, ProjectModel, TaskModel} from '../../../core/models/report.model';
 import { SPECIALTASKS } from '../../../core/models/special-tasks-data';
 import {FileModel} from './file.model';
-import {SpecialItemModel, SpecialTaskModel} from '../../../core/models/specialItem.model';
 
 @Component({
   selector: 'app-new-report-modal',
   templateUrl: './new-report-modal.component.html',
   styleUrls: ['./new-report-modal.component.scss'],
-  providers: [MainService]
+  providers: []
 })
 export class NewReportModalComponent implements OnInit {
 
@@ -29,8 +27,7 @@ export class NewReportModalComponent implements OnInit {
   public fileName;
 
   constructor(private mainService: MainService,
-              private parseToXmlService: ParseToXmlService,
-              private formService: FormServiceService) { }
+              private parseToXmlService: ParseToXmlService) { }
 
   ngOnInit() {
     this.getYearsList();
@@ -55,7 +52,7 @@ export class NewReportModalComponent implements OnInit {
       const file = new FileModel();
       file.numberOfWeek = i + 1;
       file.startWeek = moment(firstDay).startOf('isoWeek').format('DD.MM.YYYY');
-      file.endWeek = moment(firstDay).endOf('isoWeek').format('DD.MM.YYYY')
+      file.endWeek = moment(firstDay).endOf('isoWeek').format('DD.MM.YYYY');
       file.nameListItem = file.numberOfWeek + ': ' + file.startWeek + ' - ' + file.endWeek;
       if (file.numberOfWeek < 10) {
         file.fileName = '0' + file.numberOfWeek + '_' + file.startWeek + '-' + file.endWeek + '.xls';
@@ -97,6 +94,7 @@ export class NewReportModalComponent implements OnInit {
           files.push(this.fileName);
           localStorage.setItem('files', JSON.stringify(files));
           localStorage.setItem('selectedFile', this.fileName);
+          this.mainService.newReportAlert();
           this.close();
         });
       }
