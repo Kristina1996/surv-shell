@@ -196,10 +196,16 @@ export class ParseToXmlService {
   getSpecialTaskRow = ({name = '', hours = '', comment = ''}) => `<Row>
     <Cell ss:MergeAcross="3" ss:StyleID="s82"><Data ss:Type="String">${name}</Data></Cell>
     <Cell ss:StyleID="s62"><Data ss:Type="Number">${hours}</Data></Cell>
-    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">${comment}</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s79"><Data ss:Type="String">${this.getSaveValue(comment)}</Data></Cell>
    </Row>`
 
   constructor() { }
+
+  getSaveValue(value) {
+    if (!value) {
+      return '';
+    } else { return value; }
+  }
 
   parseToXml(model) {
     const common = this.getCommonPartReport(model.commonForm);
