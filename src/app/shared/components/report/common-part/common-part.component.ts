@@ -23,6 +23,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
 
   @Input() data: any;
   form: FormArray;
+  public totalHours;
   subscription: Subscription;
 
   public currentDate = moment().format('YYYY-MM-DD');
@@ -34,10 +35,20 @@ export class CommonPartComponent implements OnInit, OnChanges {
     private mainService: MainService,
   ) {}
 
+  getTotalHours() {
+    this.totalHours = [];
+    this.form.value.forEach((project, projectIndex) => {
+      this.totalHours.push([[0]]);
+      project.employee.forEach((empl, emplIndex) => {
+        let sum = 0;
+        empl.tasks.forEach(task => sum += Number(task.hours));
+        this.totalHours[projectIndex][emplIndex] = sum;
+      });
+    });
+  }
+
   ngOnInit() {
-    console.log(this.data);
     this.form = this.formService.makeCommonForm(this.data.common);
-    console.log(this.form);
     this.formValueChanges();
   }
 
@@ -48,8 +59,10 @@ export class CommonPartComponent implements OnInit, OnChanges {
   }
 
   formValueChanges() {
+    this.getTotalHours();
     this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
       console.log(values);
+      this.getTotalHours();
 
       const uniqueEmployee = new Set();
       values.forEach(project => {
@@ -81,7 +94,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
       formValue.commonForm.forEach(project => {
         project.employee.forEach(empl => {
           empl.tasks.forEach(task => {
-            task.name.trim();
+            if (task.name !== null) { task.name.trim(); }
           });
         });
       });

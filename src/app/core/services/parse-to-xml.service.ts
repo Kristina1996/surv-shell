@@ -242,16 +242,7 @@ export class ParseToXmlService {
 
   getSpecialItemXml(specialItem) {
     const emplXml = this.getSpecialEmplRow(specialItem);
-    const specialTasksXml = specialItem.specialTasks.map(specialTask => this.getSpecialTaskRow(specialTask)
-      /*
-      if (specialTask.name) {
-        this.getSpecialTaskRow(specialTask);
-      } else {
-        specialTask.name = '';
-        this.getSpecialTaskRow(specialTask);
-      }
-       */
-    ).join();
+    const specialTasksXml = specialItem.specialTasks.map(specialTask => this.getSpecialTaskRow(specialTask)).join();
     return emplXml + specialTasksXml;
   }
 }

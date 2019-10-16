@@ -1,27 +1,3 @@
-<!--
-<div>
-    <button (click)="addProject()">Add project</button>
-    <div class="project" *ngFor="let project of form.controls; let i = index">
-      <ng-container>
-        <app-form-input [placeHolder]="'Название проекта'" [control]="project.get('name')"></app-form-input>
-
-        <button (click)="addEmployee(project)">Add Employee</button>
-        <div *ngFor="let empl of project.controls.employee.controls; let ie = index">
-          <app-form-input [placeHolder]="'Имя сотрудника'" [control]="empl.get('name')"></app-form-input>
-
-          <div *ngFor="let task of empl.controls.tasks.controls; let ie = index">
-            <app-form-input [placeHolder]="'Задача'" [control]="task.get('name')"></app-form-input>
-            <app-form-input [placeHolder]="'Количество часов'" [control]="task.get('hours')"></app-form-input>
-
-            <input [formControl]="task.get('date')" type="date" id="start" name="trip-start">
-          </div>
-          <button (click)="addTask(empl)">Add Task</button>
-        </div>
-      </ng-container>
-    </div>
-</div>
--->
-
 <div class="grid">
   <div class="project-item" *ngFor="let project of form.controls; let i = index">
     <app-form-input [placeHolder]="'Название проекта'" [control]="project.get('name')"></app-form-input>
@@ -32,6 +8,12 @@
       <div class="employee-item" *ngFor="let empl of project.controls.employee.controls; let ie = index">
        <div class="employee-name-row">
           <app-form-input [placeHolder]="'Имя сотрудника'" [control]="empl.get('name')"></app-form-input>
+
+         <div class="total-hours" *ngIf="totalHours[i]" title="Общее количество часов">
+           <ng-container *ngIf="totalHours[i][ie]">
+             {{totalHours[i][ie]}}
+           </ng-container>
+         </div>
           <app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'add'" [title]="'Добавить задачу'" (click)="addTask(empl)" class="btn-icon"></app-icon-button>
           <app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'delete'" [title]="'Удалить сотрудника'" (click)="deleteEmployee(project, ie)" class="btn-icon"></app-icon-button>
        </div>
