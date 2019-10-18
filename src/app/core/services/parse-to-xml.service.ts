@@ -202,14 +202,12 @@ export class ParseToXmlService {
   constructor() { }
 
   getSaveValue(value) {
-    if (!value) {
-      return '';
-    } else { return value; }
+    if (!value) { return ''; } else { return value; }
   }
 
   parseToXml(model) {
-    const common = this.getCommonPartReport(model.commonForm);
-    const special = this.getSpecialPartReport(model.specialForm);
+    const common = this.getCommonPartReport(model.common);
+    const special = this.getSpecialPartReport(model.specialTasks);
 
     const commonWorksheet = this.getCommonWorksheet(common);
     const specialWorksheet = this.getSpecialWorksheet(special);

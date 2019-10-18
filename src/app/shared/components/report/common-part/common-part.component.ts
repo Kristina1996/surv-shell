@@ -75,8 +75,8 @@ export class CommonPartComponent implements OnInit, OnChanges {
 
       const specialItems: SpecialItemModel[] = [];
       uniqueEmployee.forEach(empl => {
-        const index = formValue.specialForm.findIndex(element => element.employeeName === empl);
-        if (index !== -1) { specialItems.push(formValue.specialForm[index]);
+        const index = formValue.specialTasks.findIndex(element => element.employeeName === empl);
+        if (index !== -1) { specialItems.push(formValue.specialTasks[index]);
         } else {
           const newSpecialItem: SpecialItemModel = new SpecialItemModel();
           newSpecialItem.employeeName = String(empl);
@@ -85,13 +85,13 @@ export class CommonPartComponent implements OnInit, OnChanges {
           specialItems.push(newSpecialItem);
         }
       });
-      formValue.specialForm = specialItems;
+      formValue.specialTasks = specialItems;
       this.data.specialTasks = specialItems;
 
       /**
        * trim() для каждого названия задачи
        */
-      formValue.commonForm.forEach(project => {
+      formValue.common.forEach(project => {
         project.employee.forEach(empl => {
           empl.tasks.forEach(task => {
             if (task.name !== null) { task.name.trim(); }

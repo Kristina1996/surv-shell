@@ -12,26 +12,26 @@ import { SpecialTaskModel } from '../../core/models/specialItem.model';
   providedIn: 'root'
 })
 export class FormServiceService {
-  commonForm: FormArray;
-  specialForm: FormArray;
+  common: FormArray;
+  specialTasks: FormArray;
 
   constructor(private formBuilder: FormBuilder) { }
 
   getForm() {
     return this.formBuilder.group({
-      commonForm: this.commonForm,
-      specialForm: this.specialForm
+      common: this.common,
+      specialTasks: this.specialTasks
     });
   }
 
   makeCommonForm(commonPart: ProjectModel[]): FormArray {
-      return this.commonForm = this.formBuilder.array(
+      return this.common = this.formBuilder.array(
         commonPart ? commonPart.map(prj => this.makeProjectForm(prj)) : []
       );
   }
 
   makeSpecialForm(specialPart: SpecialItemModel[]): FormArray {
-      return this.specialForm = this.formBuilder.array(
+      return this.specialTasks = this.formBuilder.array(
         specialPart ? specialPart.map(specialItem => this.makeSpecialItemForm(specialItem)) : []
       );
   }
