@@ -31,9 +31,23 @@ export class MainService {
     console.log('запустился метод getFileContent в сервисе');
     return new Promise(function(resolve, reject) {
       fs.readFile(filePath, function(err, content) {
-        xml2js.parseString(content.toString(), function (error, result) {
-          error ? reject(error) : resolve(result);
-           });
+        // Проверка на существование файла
+        if (!content) {
+          console.log('отчета не существует. выкидываю реджект');
+          reject(err);
+        } else {
+          xml2js.parseString(content.toString(), function (error, result) {
+            error ? reject(error) : resolve(result);
+          });
+        }
+      });
+    });
+  }
+
+  isExistReport(filePath) {
+    return new Promise(function(resolve, reject) {
+      fs.readFile(filePath, function(err, content) {
+        if (content) { resolve(true); } else { reject(false); }
       });
     });
   }
