@@ -42,7 +42,7 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
         console.log(this.report);
       } else { this.report = new ReportModel(); }
     }, error => {
-      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.');
+      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.' + error);
     });
   }
 

@@ -24,6 +24,8 @@ export class FilesMenuComponent implements OnInit, OnChanges {
     this.files.sort((a, b) => {
       return Number(b.substr(0, 2)) - Number(a.substr(0, 2));
     });
+    const file = localStorage.getItem('selectedFile');
+    if (file) { this.selectedFile = file; }
   }
 
   /**
@@ -31,7 +33,6 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   **/
   onChooseFile(fileName) {
     this.selectedFile = fileName;
-    console.log('передаю компоненту родителю имя выбранного файла')
     this.sendFileName.emit(fileName);
   }
 

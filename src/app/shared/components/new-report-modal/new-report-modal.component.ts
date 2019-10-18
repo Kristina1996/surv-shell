@@ -2,10 +2,13 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import * as moment from 'moment';
 
 import { MainService } from '../../../core/services/main.service';
-import {ParseToXmlService} from '../../../core/services/parse-to-xml.service';
-import {EmployeeModel, ProjectModel, TaskModel} from '../../../core/models/report.model';
-import { SPECIALTASKS } from '../../../core/models/special-tasks-data';
-import {FileModel} from './file.model';
+import { ParseToXmlService } from '../../../core/services/parse-to-xml.service';
+import { AdapterService } from '../../../core/services/adapter.service';
+
+import { TaskModel } from '../../../core/models/report.model';
+import { FileModel } from './file.model';
+import { getYearsList, getWeeksList } from './date-util';
+import { getFirstReport } from './report-adapter';
 
 @Component({
   selector: 'app-new-report-modal',
@@ -27,50 +30,21 @@ export class NewReportModalComponent implements OnInit {
   public fileName;
 
   constructor(private mainService: MainService,
-              private parseToXmlService: ParseToXmlService) { }
+              private parseToXmlService: ParseToXmlService,
+              private adapterService: AdapterService) { }
 
   ngOnInit() {
-    this.getYearsList();
-    this.getWeeksList(this.selectedYear);
-  }
-
-  getYearsList() {
-    const currentYear = moment().year();
-    const nextYear = currentYear + 1;
-    for (let i = 2006; i <= nextYear; i++) {
-      this.yearsList.push(i);
-    }
-  }
-
-  getWeeksList(year) {
-    const selectedDate = moment().set('year', year);
-    const weeks = moment(selectedDate).isoWeeksInYear();
-
-    let firstDay = moment(selectedDate).startOf('year');
-
-    for (let i = 0; i < weeks; i++) {
-      const file = new FileModel();
-      file.numberOfWeek = i + 1;
-      file.startWeek = moment(firstDay).startOf('isoWeek').format('DD.MM.YYYY');
-      file.endWeek = moment(firstDay).endOf('isoWeek').format('DD.MM.YYYY');
-      file.nameListItem = file.numberOfWeek + ': ' + file.startWeek + ' - ' + file.endWeek;
-      if (file.numberOfWeek < 10) {
-        file.fileName = '0' + file.numberOfWeek + '_' + file.startWeek + '-' + file.endWeek + '.xls';
-      } else {
-        file.fileName = file.numberOfWeek + '_' + file.startWeek + '-' + file.endWeek + '.xls';
-      }
-
-      if (this.currentWeek === file.numberOfWeek) {
-        this.fileName = file.fileName;
-      }
-      this.filesList.push(file);
-      firstDay = firstDay.add(1, 'week');
-    }
+    this.yearsList = getYearsList();
+    const res = getWeeksList(this.selectedYear);
+    this.fileName = res.currentFileName;
+    this.filesList = res.filesList;
   }
 
   changeYear() {
     this.filesList = [];
-    this.getWeeksList(this.selectedYear);
+    const res = getWeeksList(this.selectedYear);
+    this.fileName = res.currentFileName;
+    this.filesList = res.filesList;
   }
 
   chooseFile(fileName) {
@@ -85,45 +59,46 @@ export class NewReportModalComponent implements OnInit {
     if (localStorage.getItem('files').includes(this.fileName)) {
       const isOverwrite = confirm('Отчёт с таким именем уже существует. Перезаписать отчёт?');
       if (isOverwrite) {
-        const emptyReport = this.getFirstEmployee();
-        const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
-        this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
-          const files = JSON.parse(localStorage.getItem('files'));
-          const index = files.indexOf(this.fileName);
-          files.splice(index, 1);
-          files.push(this.fileName);
-          localStorage.setItem('files', JSON.stringify(files));
-          localStorage.setItem('selectedFile', this.fileName);
-          this.mainService.newReportAlert();
-          this.close();
-        });
+        this.isExistLastReport(isOverwrite);
+        this.mainService.newReportAlert();
       }
-    } else {
-      const emptyReport = this.getFirstEmployee();
-      const emptyReportXml = this.parseToXmlService.parseToXml(emptyReport);
-      this.mainService.saveFile(this.folderPath + '\\' + this.fileName, emptyReportXml).then(result => {
-        const files = JSON.parse(localStorage.getItem('files'));
-        files.push(this.fileName);
-        localStorage.setItem('files', JSON.stringify(files));
-        localStorage.setItem('selectedFile', this.fileName);
-        this.clickClose();
-      });
-    }
+    } else { this.isExistLastReport(false); }
   }
 
-  getFirstEmployee() {
-    const obj = {
-      commonForm: [],
-      specialForm: [{
-        employeeName: '',
-        rate: 0,
-        specialTasks: SPECIALTASKS
-      }]
-    };
-    obj.commonForm.push(new ProjectModel());
-    obj.commonForm[0].employee.push(new EmployeeModel());
-    obj.commonForm[0].employee[0].tasks.push(new TaskModel());
-    return obj;
+  isExistLastReport(isOverwrite) {
+    const currentIndex = this.filesList.findIndex(element => element.fileName === this.fileName);
+    const lastReportName = this.filesList[currentIndex - 1].fileName;
+    this.mainService.isExistReport(this.folderPath + '\\' + lastReportName).then(result => {
+      this.getDataFromLastReport(lastReportName, isOverwrite);
+    }, error => {
+      const emptyReportModel = getFirstReport();
+      this.saveReport(emptyReportModel, isOverwrite);
+    });
+  }
+
+  getDataFromLastReport(lastReportName, isOverwrite) {
+    this.mainService.getFileContent(this.folderPath + '\\' + lastReportName).then(result => {
+      const report = this.adapterService.getModel(result);
+      report.common.map(project => {
+        project.employee.map(empl =>  {
+          empl.tasks.splice(0, empl.tasks.length);
+          empl.tasks.push(new TaskModel());
+        });
+      });
+      this.saveReport(report, isOverwrite);
+    });
+  }
+
+  saveReport(report, isOverwrite) {
+    const reportXml = this.parseToXmlService.parseToXml(report);
+    this.mainService.saveFile(this.folderPath + '\\' + this.fileName, reportXml).then(result => {
+      const files = JSON.parse(localStorage.getItem('files'));
+      if (isOverwrite) { files.splice(files.indexOf(this.fileName), 1); }
+      files.push(this.fileName);
+      localStorage.setItem('files', JSON.stringify(files));
+      localStorage.setItem('selectedFile', this.fileName);
+      this.clickClose();
+    });
   }
 
   private close() {
