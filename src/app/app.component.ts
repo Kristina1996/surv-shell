@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ElectronService } from './core/services';
 import { TranslateService } from '@ngx-translate/core';
 import { AppConfig } from '../environments/environment';
+import {Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
@@ -9,15 +10,12 @@ import { AppConfig } from '../environments/environment';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    public electronService: ElectronService,
-    private translate: TranslateService
-  ) {
+  constructor(public electronService: ElectronService,
+              private translate: TranslateService,
+              private titleService: Title) {
     translate.setDefaultLang('en');
-
-    if (electronService.isElectron) {
-
-    } else {
-    }
+    if (electronService.isElectron) { } else { }
+    const appVersion = window.require('electron').remote.app.getVersion();
+    this.titleService.setTitle('SurvShell ' + appVersion);
   }
 }
