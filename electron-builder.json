@@ -1,6 +1,8 @@
 {
-  "productName": "surv-shell",
+  "productName": "SurvShell",
+  "artifactName": "${productName} ${version}.${ext}",
   "directories": {
+    "buildResources": "resources",
     "output": "release/"
   },
     "files": [
@@ -20,19 +22,16 @@
         "!tslint.json"
     ],
   "win": {
-    "icon": "dist",
     "target": [
       "portable"
     ]
   },
   "mac": {
-    "icon": "dist",
     "target": [
       "dmg"
     ]
   },
   "linux": {
-    "icon": "dist",
     "target": [
       "AppImage"
     ]

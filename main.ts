@@ -13,7 +13,7 @@ function createWindow() {
   const size = electronScreen.getPrimaryDisplay().workAreaSize;
   const nativeImage = electron.nativeImage;
 
-  const appIcon = nativeImage.createFromPath(path.join(__dirname, 'src', 'assets', 'icons', 'win', 'icon.ico'));
+  const appIcon = nativeImage.createFromPath(path.join(__dirname, 'resources', 'icon.ico'));
 
   // Create the browser window.
   win = new BrowserWindow({
