@@ -1,18 +1,19 @@
 {
   "name": "surv-shell",
-  "version": "6.1.0",
-  "description": "Angular 8 with Electron (Typescript + SASS + Hot Reload)",
-  "homepage": "https://github.com/maximegris/angular-electron",
+  "version": "0.0.1",
+  "description": "Angular 8 - Electron App for create and edit reports",
+  "homepage": "https://github.com/Kristina1996/surv-shell",
   "author": {
-    "name": "Maxime GRIS",
-    "email": "maxime.gris@gmail.com"
+    "name": "Kristina Baskakova",
+    "email": "bka@mail.inrecolan.com"
   },
   "keywords": [
     "angular",
     "angular 8",
     "electron",
     "typescript",
-    "sass"
+    "sass",
+    "surv"
   ],
   "main": "main.js",
   "private": true,
