@@ -2,24 +2,19 @@
     <div class="modalwindow">
       <div class="header">
         <h3>Создание нового отчета</h3>
-        <i class="material-icons close" (click)="clickClose()" title="Закрыть">close</i>
+        <app-icon-button [iconType]="'close'" [title]="'Закрыть'" (click)="clickClose()"></app-icon-button>
       </div>
       <div class="main">
-
-        <!--<input [(ngModel)]="fileName" placeholder="Введите название файла...">-->
-
         <select size="5" [(ngModel)]="selectedYear" (change)="changeYear()">
           <ng-container *ngFor="let year of yearsList">
             <option [ngValue]="year" [selected]="year == selectedYear">{{year}}</option>
           </ng-container>
         </select>
-
         <select size="5">
           <ng-container *ngFor="let file of filesList; let ind = index">
             <option [ngValue]="file.fileName" [selected]="ind+1 == currentWeek" (click)="chooseFile(file.fileName)">{{file.nameListItem}}</option>
           </ng-container>
         </select>
-
       </div>
       <div class="footer">
         <a (click)="clickClose()" class="btn-close">Закрыть</a>

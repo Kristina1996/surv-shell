@@ -1,12 +1,10 @@
 <div class="container">
   <header class="folder-chooser">
     <div class="folder-chooser__button-wrapper">
-      <!--<i (click)="openDialog()" class="material-icons folder-chooser__icon-button icon-button" title="Выберите папку">folder</i>-->
       <app-icon-button [iconType]="'folder'" [title]="'Выберите папку'" (click)="openDialog()"></app-icon-button>
     </div>
     <div *ngIf="folderPath" class="folder-chooser__text">{{ folderPath }}</div>
   </header>
-
   <ng-container *ngIf="showModalNewReport">
     <app-new-report-modal [folderPath]="folderPath" (closeModal)="onCloseModal($event)"></app-new-report-modal>
   </ng-container>
