@@ -1,5 +1,8 @@
 [![SurvShell Logo](https://github.com/Kristina1996/surv-shell/blob/master/resources/64x64.png)](https://github.com/Kristina1996/surv-shell/)[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
+[![Make a pull request][prs-badge]][prs]
+[![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE2.md)
+
 # Введение
 
 Десктопное Angular, Electron, SASS приложение для создания и редактирования excel отчётов, основанное на шаблоне https://github.com/maximegris/angular-electron.git.
