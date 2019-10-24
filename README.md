@@ -1,3 +1,4 @@
+[![SurvShell Logo](https://github.com/Kristina1996/surv-shell/blob/master/resources/icon.png)](https://github.com/Kristina1996/surv-shell/)
 [![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
 [![Make a pull request][prs-badge]][prs]
@@ -57,11 +58,11 @@ npm start
 https://github.com/Kristina1996/surv-shell/issues
 
 [license-badge]: https://img.shields.io/badge/license-Apache2-blue.svg?style=flat
-[license]: https://github.com/maximegris/angular-electron/blob/master/LICENSE2.md
+[license]: https://github.com/Kristina1996/surv-shell/blob/master/LICENSE2.md
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
 [github-watch-badge]: https://img.shields.io/github/watchers/maximegris/angular-electron.svg?style=social
-[github-watch]: https://github.com/maximegris/angular-electron/watchers
+[github-watch]: https://github.com/Kristina1996/surv-shell/watchers
 [github-star-badge]: https://img.shields.io/github/stars/maximegris/angular-electron.svg?style=social
-[github-star]: https://github.com/maximegris/angular-electron/stargazers
+[github-star]: https://github.com/Kristina1996/surv-shell/stargazers
 
