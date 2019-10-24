@@ -1,4 +1,4 @@
-[![SurvShell Logo](https://github.com/Kristina1996/surv-shell/blob/master/resources/icon.png)](https://github.com/Kristina1996/surv-shell/)[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
+[![SurvShell Logo](https://github.com/Kristina1996/surv-shell/blob/master/resources/icon.png)](https://github.com/Kristina1996/surv-shell/){:height="50%" width="50%"}[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
 [![Make a pull request][prs-badge]][prs]
 [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE2.md)
