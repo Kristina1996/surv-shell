@@ -1,16 +1,11 @@
-[![SurvShell Logo](https://github.com/Kristina1996/surv-shell/blob/master/resources/icon.png)](https://github.com/Kristina1996/surv-shell/)
-[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
+[![SurvShell Logo](https://github.com/Kristina1996/surv-shell/blob/master/resources/icon.png)](https://github.com/Kristina1996/surv-shell/)[![Angular Logo](https://www.vectorlogo.zone/logos/angular/angular-icon.svg)](https://angular.io/) [![Electron Logo](https://www.vectorlogo.zone/logos/electronjs/electronjs-icon.svg)](https://electronjs.org/)
 
 [![Make a pull request][prs-badge]][prs]
 [![License](http://img.shields.io/badge/Licence-MIT-brightgreen.svg)](LICENSE2.md)
 
-[![Watch on GitHub][github-watch-badge]][github-watch]
-[![Star on GitHub][github-star-badge]][github-star]
-
 # Введение
 
 Десктопное Angular, Electron, SASS приложение для создания и редактирования excel отчётов, основанное на шаблоне https://github.com/maximegris/angular-electron.git.
-
 
 ## Разработчикам
 
@@ -61,8 +56,3 @@ https://github.com/Kristina1996/surv-shell/issues
 [license]: https://github.com/Kristina1996/surv-shell/blob/master/LICENSE2.md
 [prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
 [prs]: http://makeapullrequest.com
-[github-watch-badge]: https://img.shields.io/github/watchers/maximegris/angular-electron.svg?style=social
-[github-watch]: https://github.com/Kristina1996/surv-shell/watchers
-[github-star-badge]: https://img.shields.io/github/stars/maximegris/angular-electron.svg?style=social
-[github-star]: https://github.com/Kristina1996/surv-shell/stargazers
-
