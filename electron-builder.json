@@ -1,6 +1,6 @@
 {
   "productName": "SurvShell",
-  "artifactName": "${productName} ${version}.${ext}",
+  "artifactName": "${productName}.${ext}",
   "directories": {
     "buildResources": "resources",
     "output": "release/"
