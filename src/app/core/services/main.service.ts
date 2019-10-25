@@ -18,7 +18,6 @@ export class MainService {
   }
 
   getFilesFromFolder(folderPath) {
-    console.log('запустился метод getFilesFromFolder в сервисе');
     return new Promise(function(resolve, reject) {
       fs.readdir(folderPath, function(err, items) {
         const files = items.filter(item => item.endsWith('.xml') || item.endsWith('.xls'));
@@ -28,12 +27,10 @@ export class MainService {
   }
 
   getFileContent(filePath) {
-    console.log('запустился метод getFileContent в сервисе');
     return new Promise(function(resolve, reject) {
       fs.readFile(filePath, function(err, content) {
         // Проверка на существование файла
         if (!content) {
-          console.log('отчета не существует. выкидываю реджект');
           reject(err);
         } else {
           xml2js.parseString(content.toString(), function (error, result) {

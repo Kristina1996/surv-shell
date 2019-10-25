@@ -38,7 +38,6 @@ export class AdapterService {
         task.name = row[0];
         task.hours = row[1];
         if (row[2]) { task.date = row[2]; } else { task.date = ''; }
-        console.log(report);
         report.getLastProject().getLastEmployee().tasks.push(task);
       }
 

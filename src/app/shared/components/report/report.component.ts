@@ -36,10 +36,8 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
 
   getReportContent() {
     this.mainService.getFileContent(this.filePath).then(result => {
-      console.log('Содержимое выбранного отчета: ' + JSON.stringify(result));
       if (result) {
         this.report = this.adapterService.getModel(result);
-        console.log(this.report);
       } else { this.report = new ReportModel(); }
     }, error => {
       alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.' + error);

@@ -93,7 +93,6 @@ export class MainComponent implements OnInit {
     this.files = JSON.parse(localStorage.getItem('files'));
     this.selectedFile = this.folderPath + '\\' + localStorage.getItem('selectedFile');
     this.selectedFileName = localStorage.getItem('selectedFile');
-    console.log(this.selectedFile);
     this.showReportComponent = true;
   }
 }

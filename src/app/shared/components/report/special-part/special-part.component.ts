@@ -35,18 +35,15 @@ export class SpecialPartComponent implements OnInit, OnChanges {
 
   formValueChanges() {
     this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
-      console.log(values);
       const formValue = this.formService.getForm().getRawValue();
       const content = this.parseToXmlService.parseToXml(formValue);
       this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
-      console.log('данные сохранены');
     });
   }
 
   addSpecialItem() {
     const emptySpecialItem: SpecialItemModel = null;
     this.form.controls.push(this.formService.makeSpecialItemForm(emptySpecialItem));
-    console.log(this.form);
   }
 
   addSpecialTask(specialItem) {

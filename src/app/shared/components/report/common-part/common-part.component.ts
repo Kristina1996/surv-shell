@@ -61,7 +61,6 @@ export class CommonPartComponent implements OnInit, OnChanges {
   formValueChanges() {
     this.getTotalHours();
     this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
-      console.log(values);
       this.getTotalHours();
 
       const uniqueEmployee = new Set();
@@ -101,7 +100,6 @@ export class CommonPartComponent implements OnInit, OnChanges {
 
       const content = this.parseToXmlService.parseToXml(formValue);
       this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
-      console.log('данные сохранены');
     });
   }
 
