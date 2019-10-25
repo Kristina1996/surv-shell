@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject} from 'rxjs';
 import * as fs from 'fs';
 import * as xml2js from 'xml2js';
+import * as path from 'path';
 
 @Injectable({
   providedIn: 'root'
@@ -50,7 +51,7 @@ export class MainService {
   }
 
   createFile(folderPath, fileName) {
-    const filePath = folderPath + '\\' + fileName;
+    const filePath = path.join(folderPath, fileName);
     return new Promise(function(resolve, reject) {
       fs.writeFile(filePath, '', (err) => {
         err ? reject(err) : resolve(filePath);

@@ -2,6 +2,7 @@ import { Component, OnInit, EventEmitter } from '@angular/core';
 import * as fs from 'fs';
 
 import { MainService } from '../core/services/main.service';
+import * as path from 'path';
 
 const electron = require('electron')
 
@@ -37,7 +38,7 @@ export class MainComponent implements OnInit {
       this.files = JSON.parse(files);
     }
     if (selectedFile) {
-      this.selectedFile = this.folderPath + '\\' + selectedFile;
+      this.selectedFile = path.join(this.folderPath, selectedFile);
       this.showReportComponent = true;
     }
   }
@@ -77,7 +78,7 @@ export class MainComponent implements OnInit {
   **/
   onSendFileName(selectedFile: string) {
     localStorage.setItem('selectedFile', selectedFile)
-    this.selectedFile = this.folderPath + '\\' + selectedFile;
+    this.selectedFile = path.join(this.folderPath, selectedFile);
     this.showReportComponent = true;
   }
 
@@ -91,7 +92,7 @@ export class MainComponent implements OnInit {
   onCloseModal(show: Boolean) {
     if (show === false) { this.showModalNewReport = false; }
     this.files = JSON.parse(localStorage.getItem('files'));
-    this.selectedFile = this.folderPath + '\\' + localStorage.getItem('selectedFile');
+    this.selectedFile = path.join(this.folderPath, localStorage.getItem('selectedFile'));
     this.selectedFileName = localStorage.getItem('selectedFile');
     this.showReportComponent = true;
   }

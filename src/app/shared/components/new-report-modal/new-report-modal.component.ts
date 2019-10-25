@@ -9,6 +9,7 @@ import { TaskModel } from '../../../core/models/report.model';
 import { FileModel } from './file.model';
 import { getYearsList, getWeeksList } from './date-util';
 import { getFirstReport } from './report-adapter';
+import * as path from 'path';
 
 @Component({
   selector: 'app-new-report-modal',
@@ -68,7 +69,7 @@ export class NewReportModalComponent implements OnInit {
   isExistLastReport(isOverwrite) {
     const currentIndex = this.filesList.findIndex(element => element.fileName === this.fileName);
     const lastReportName = this.filesList[currentIndex - 1].fileName;
-    this.mainService.isExistReport(this.folderPath + '\\' + lastReportName).then(result => {
+    this.mainService.isExistReport(path.join(this.folderPath, lastReportName)).then(result => {
       this.getDataFromLastReport(lastReportName, isOverwrite);
     }, error => {
       const emptyReportModel = getFirstReport();
@@ -77,7 +78,7 @@ export class NewReportModalComponent implements OnInit {
   }
 
   getDataFromLastReport(lastReportName, isOverwrite) {
-    this.mainService.getFileContent(this.folderPath + '\\' + lastReportName).then(result => {
+    this.mainService.getFileContent(path.join(this.folderPath, lastReportName)).then(result => {
       const report = this.adapterService.getModel(result);
       report.common.map(project => {
         project.employee.map(empl =>  {
@@ -91,7 +92,7 @@ export class NewReportModalComponent implements OnInit {
 
   saveReport(report, isOverwrite) {
     const reportXml = this.parseToXmlService.parseToXml(report);
-    this.mainService.saveFile(this.folderPath + '\\' + this.fileName, reportXml).then(result => {
+    this.mainService.saveFile(path.join(this.folderPath, this.fileName), reportXml).then(result => {
       const files = JSON.parse(localStorage.getItem('files'));
       if (isOverwrite) { files.splice(files.indexOf(this.fileName), 1); }
       files.push(this.fileName);

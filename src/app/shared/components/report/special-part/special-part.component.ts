@@ -7,6 +7,7 @@ import {TaskModel} from '../../../../core/models/report.model';
 import {SpecialItemModel, SpecialTaskModel} from '../../../../core/models/specialItem.model';
 import {ParseToXmlService} from '../../../../core/services/parse-to-xml.service';
 import {MainService} from '../../../../core/services/main.service';
+import * as path from 'path';
 
 @Component({
   selector: 'app-special-part',
@@ -37,7 +38,7 @@ export class SpecialPartComponent implements OnInit, OnChanges {
     this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
       const formValue = this.formService.getForm().getRawValue();
       const content = this.parseToXmlService.parseToXml(formValue);
-      this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
+      this.mainService.saveFile(path.join(localStorage.getItem('folderPath'), localStorage.getItem('selectedFile')), content);
     });
   }
 

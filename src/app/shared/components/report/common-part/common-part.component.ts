@@ -13,6 +13,7 @@ import { FormServiceService } from '../../../../core/services/form-service.servi
 import {ParseToXmlService} from '../../../../core/services/parse-to-xml.service';
 import {MainService} from '../../../../core/services/main.service';
 import {SpecialItemModel} from '../../../../core/models/specialItem.model';
+import * as path from 'path';
 
 @Component({
   selector: 'app-common-part',
@@ -99,7 +100,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
       });
 
       const content = this.parseToXmlService.parseToXml(formValue);
-      this.mainService.saveFile(localStorage.getItem('folderPath') + '\\' + localStorage.getItem('selectedFile'), content);
+      this.mainService.saveFile(path.join(localStorage.getItem('folderPath'), localStorage.getItem('selectedFile')), content);
     });
   }
 
