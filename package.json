@@ -1,7 +1,7 @@
 {
   "name": "surv-shell",
-  "version": "0.0.1",
-  "description": "Angular 8 - Electron App for create and edit reports",
+  "version": "1.0.0",
+  "description": "Angular - Electron Application for create and edit timetracker reports",
   "homepage": "https://github.com/Kristina1996/surv-shell",
   "author": {
     "name": "Kristina Baskakova",
