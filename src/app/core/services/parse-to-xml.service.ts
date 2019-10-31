@@ -169,14 +169,30 @@ export class ParseToXmlService {
 
   getEmployeeRow = (name = '') => `<Row>
     <Cell ss:StyleID="s68"><Data ss:Type="String">empl_</Data></Cell>
-    <Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">${name}</Data></Cell>
+    ${this.getEmplNameCell(name)}
    </Row>`
 
   getTaskRow = (task = '', hours = 0, date) => `<Row>
-    <Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">${task}</Data></Cell>
+    ${this.getTaskTitleCell(task)}
     <Cell><Data ss:Type="Number">${hours || 0}</Data></Cell>
     ${this.getDateCell(date)}
    </Row>`
+
+  getEmplNameCell(name) {
+    if (name) {
+      return `<Cell ss:MergeAcross="2" ss:StyleID="s70"><Data ss:Type="String">${name}</Data></Cell>`;
+    } else {
+      return `<Cell><Data></Data></Cell>`;
+    }
+  }
+
+  getTaskTitleCell(title) {
+    if (title) {
+      return `<Cell ss:MergeAcross="3" ss:StyleID="s71"><Data ss:Type="String">${title}</Data></Cell>`;
+    } else {
+      return `<Cell><Data></Data></Cell>`;
+    }
+  }
 
   getDateCell(date) {
     if (date) {
