@@ -164,7 +164,7 @@ export class ParseToXmlService {
 
   getProjectRow = (name = '') => `<Row ss:AutoFitHeight="0" ss:Height="20.25">
     <Cell ss:Index="3" ss:StyleID="s65"><Data ss:Type="String">prnm_</Data></Cell>
-    <Cell ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="String">${name}</Data></Cell>
+    ${this.getProjectNameCell(name)}
    </Row>`
 
   getEmployeeRow = (name = '') => `<Row>
@@ -177,6 +177,14 @@ export class ParseToXmlService {
     <Cell><Data ss:Type="Number">${hours || 0}</Data></Cell>
     ${this.getDateCell(date)}
    </Row>`
+
+  getProjectNameCell(name) {
+    if (name) {
+      return `<Cell ss:MergeAcross="2" ss:StyleID="s67"><Data ss:Type="String">${name}</Data></Cell>`;
+    } else {
+      return `<Cell><Data></Data></Cell>`;
+    }
+  }
 
   getEmplNameCell(name) {
     if (name) {
