@@ -86,6 +86,14 @@ export class NewReportModalComponent implements OnInit {
           empl.tasks.push(new TaskModel());
         });
       });
+      report.specialTasks.map(specialItem => {
+        console.log(specialItem);
+        specialItem.specialTasks.map(task => {
+          task.name = '';
+          task.hours = 0;
+          task.comment = '';
+        });
+      });
       this.saveReport(report, isOverwrite);
     });
   }
