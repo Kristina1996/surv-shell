@@ -9,25 +9,31 @@
 
 ## Разработчикам
 
-Клонируйте репозиторий:
+Для внесения правок в проект выполните следующие шаги:
 
+* Авторизуйтесь на GitHub
+* Сделайте fork репозитория (подробнее в ["About forks"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-forks))
+* Клонируйте форкнутый репозиторий на компьютер:
 
 ``` bash
-git clone https://github.com/Kristina1996/surv-shell.git
+git clone https://github.com/<your-github-account-name>/surv-shell.git
 ```
 
-Установите зависимости с помощью npm:
+* Установите Node, если требуется
+* Установите зависимости с помощью npm:
 
 ``` bash
 npm install
 ```
 
-При необходимости глобально установите @angular/cli с помощью команды:
-
+* При необходимости глобально установите @angular/cli с помощью команды:
 
 ``` bash
 npm install -g @angular/cli
 ```
+
+* Создайте ветку типа ```issue/<issue-number>```
+* Залейте изменения на GitHub и создайте pull request в [репозиторий SurvShell](https://github.com/Kristina1996/surv-shell) (Подробнее в ["Creating a pull request from a fork"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork))
 
 ## Сборка приложения
 
