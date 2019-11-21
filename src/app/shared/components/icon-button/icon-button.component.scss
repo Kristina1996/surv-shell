@@ -4,8 +4,8 @@
 
 .icon-button:hover {
   cursor: pointer;
-  transform: scale(1.2);
   fill: #b98181;
+  transform: scale(1.5);
 }
 
 .light {
@@ -17,11 +17,11 @@
 }
 
 .size-small {
-  width: 25px;
   height: 25px;
+  width: 25px;
 }
 
 .size-normal {
-  width: 29px;
   height: 29px;
+  width: 29px;
 }
