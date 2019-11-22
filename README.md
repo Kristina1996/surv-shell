@@ -5,7 +5,7 @@
 
 # Введение
 
-Десктопное Angular, Electron, SASS приложение для создания и редактирования excel отчётов, основанное на шаблоне https://github.com/maximegris/angular-electron.git.
+Настольное Angular/Electron/SASS-приложение для создания и редактирования Excel-отчётов для одной Системы управления рабочим временем (СУРВ), основанное на шаблоне https://github.com/maximegris/angular-electron.git.
 
 ## Разработчикам
 
@@ -13,7 +13,7 @@
 
 * Авторизуйтесь на GitHub
 * Сделайте fork репозитория (подробнее в ["About forks"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/about-forks))
-* Клонируйте форкнутый репозиторий на компьютер:
+* Клонируйте fork'нутый репозиторий на свой локальный компьютер:
 
 ``` bash
 git clone https://github.com/<your-github-account-name>/surv-shell.git
@@ -33,7 +33,7 @@ npm install -g @angular/cli
 ```
 
 * Создайте ветку типа ```issue/<issue-number>```
-* Залейте изменения на GitHub и создайте pull request в [репозиторий SurvShell](https://github.com/Kristina1996/surv-shell) (Подробнее в ["Creating a pull request from a fork"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork))
+* Закачайте изменения на GitHub и создайте pull request в [репозиторий SurvShell](https://github.com/Kristina1996/surv-shell) (Подробнее в ["Creating a pull request from a fork"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork))
 
 ## Сборка приложения
 
@@ -46,15 +46,15 @@ npm start
 
 |Команда|Описание|
 |--|--|
-|`npm run ng:serve:web`| Выполняет приложение в браузере |
+|`npm run ng:serve:web`| Выполняет приложение в Интернет-обозревателе |
 |`npm run build`| Сборка приложения |
-|`npm run build:prod`| Сборка приложения с  Angular aot |
-|`npm run electron:local`| Сборка приложения и запуск electron
-|`npm run electron:linux`| Сборка приложения под linux |
+|`npm run build:prod`| Сборка приложения с Angular aot |
+|`npm run electron:local`| Сборка приложения и запуск Electron
+|`npm run electron:linux`| Сборка приложения под Linux |
 |`npm run electron:windows`| Сборка приложения под Windows 32/64 bit |
-|`npm run electron:mac`|  Сборка приложения и генерация файла `.app` для запуска на ОС Mac |
+|`npm run electron:mac`|  Сборка приложения и генерация файла `.app` для запуска на Mac'е под iOS |
 
-## Feedback
+## Обратная связь
 
 https://github.com/Kristina1996/surv-shell/issues
 
