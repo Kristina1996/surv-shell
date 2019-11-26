@@ -111,6 +111,14 @@ app-icon-button {
   justify-content: center;
   padding: 7px;
   color: #555;
+
+  .wrapper {
+    display: inline-flex;
+  }
+
+  .wrapper:hover {
+    cursor: pointer;
+  }
 }
 
 

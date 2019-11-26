@@ -31,7 +31,9 @@
     </div>
   </div>
   <div class="footer">
-    <app-icon-button [color]="'dark'" [size]="'size-normal'" [iconType]="'add'" [title]="'Добавить новый проект'" (click)="addProject()" class="btn-icon"></app-icon-button>
-    <span>Добавить проект</span>
+    <div class="wrapper" (click)="addProject()">
+      <app-icon-button [color]="'dark'" [size]="'size-normal'" [iconType]="'add'" [title]="'Добавить новый проект'" (click)="addProject()" class="btn-icon"></app-icon-button>
+      <span>Добавить проект</span>
+    </div>
   </div>
 </div>
