@@ -7,16 +7,19 @@ import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges
 })
 export class FilesMenuComponent implements OnInit, OnChanges {
 
-   @Input() files: string[];
-   @Input() selectedFile;
-   @Output() sendFileName = new EventEmitter<string>();
-   @Output() openModal = new EventEmitter<boolean>();
+  @Input() files: string[];
+  @Input() selectedFile;
+  @Output() sendFileName = new EventEmitter<string>();
+  @Output() openModal = new EventEmitter<boolean>();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
     const file = localStorage.getItem('selectedFile');
-    if (file) { this.selectedFile = file; }
+    if (file) {
+      this.selectedFile = file;
+    }
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -25,12 +28,14 @@ export class FilesMenuComponent implements OnInit, OnChanges {
       return Number(b.substr(0, 2)) - Number(a.substr(0, 2));
     });
     const file = localStorage.getItem('selectedFile');
-    if (file) { this.selectedFile = file; }
+    if (file) {
+      this.selectedFile = file;
+    }
   }
 
   /**
    * Передача компоненту-родителю Main имя выбранного файла
-  **/
+   **/
   onChooseFile(fileName) {
     this.selectedFile = fileName;
     this.sendFileName.emit(fileName);
