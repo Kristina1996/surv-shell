@@ -24,9 +24,6 @@ app-icon-button {
   justify-content: space-around;
 }
 
-
-
-
 .grid {
   display: grid;
   border-radius: 10px;
@@ -121,8 +118,8 @@ app-icon-button {
   }
 }
 
-
 .input-calendar {
   align-self: center;
   height: 20px;
+  text-transform: uppercase;
 }

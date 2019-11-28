@@ -35,24 +35,15 @@ npm install -g @angular/cli
 * Создайте ветку типа ```issue/<issue-number>```
 * Закачайте изменения на GitHub и создайте pull request в [репозиторий SurvShell](https://github.com/Kristina1996/surv-shell) (Подробнее в ["Creating a pull request from a fork"](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request-from-a-fork))
 
-## Сборка приложения
-
-Для сборки приложения выполните команду start:
-
-``` bash
-npm start
-```
-Дополнительные команды:
+## Сборка, запуск и разработка приложения
 
 |Команда|Описание|
 |--|--|
-|`npm run ng:serve:web`| Выполняет приложение в Интернет-обозревателе |
-|`npm run build`| Сборка приложения |
-|`npm run build:prod`| Сборка приложения с Angular aot |
-|`npm run electron:local`| Сборка приложения и запуск Electron
+|`npm start`| Сборка приложения и запуск его для разработки |
 |`npm run electron:linux`| Сборка приложения под Linux |
 |`npm run electron:windows`| Сборка приложения под Windows 32/64 bit |
-|`npm run electron:mac`|  Сборка приложения и генерация файла `.app` для запуска на Mac'е под iOS |
+
+Остальные команды см. в файле ```package.json```. 
 
 ## Обратная связь
 

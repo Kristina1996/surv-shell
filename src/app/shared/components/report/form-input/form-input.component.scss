@@ -1,20 +1,5 @@
 @import "../../../../core/constants";
 
-/*
-input {
-  font-size: 16px;
-  padding: 10px;
-  // display: block;
-  width: 300px;
-  border: none;
-  border-bottom: 1px solid #ccc;
-}
-
-input:focus {
-  outline: none;
-}
-*/
-
 input {
   box-sizing: border-box;
   width: 100%;
@@ -22,7 +7,6 @@ input {
   border: none;
   background-color: transparent;
   padding: $half-gutter;
-
   font-family: "Noto Sans", sans-serif !important;
   color: #555;
 }
@@ -34,4 +18,8 @@ input:focus {
 
 ::placeholder {
   color: #bbb6b6c2;
+}
+
+input.ng-invalid {
+  color: red;
 }
