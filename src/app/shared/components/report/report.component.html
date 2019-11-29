@@ -1,14 +1,15 @@
 <div class="tabs">
   <input id="tab1" type="radio" name="tabs" checked>
-  <label for="tab1">Основные задачи</label>
+  <label for="tab1">Основные задачи {{commonTotalHours}}</label>
   <input id="tab2" type="radio" name="tabs">
-  <label for="tab2">Специальные задачи</label>
+  <label for="tab2">Специальные задачи {{specialTotalHours}}</label>
+  <span>{{totalHours}}</span>
   <ng-container *ngIf="report">
     <section id="content-tab1">
-      <app-common-part [data]="report"></app-common-part>
+      <app-common-part [data]="report" (onTotalHoursChange)="onCommonTotalHoursChange($event)"></app-common-part>
     </section>
     <section id="content-tab2">
-      <app-special-part [data]="report.specialTasks"></app-special-part>
+      <app-special-part [data]="report.specialTasks" (onTotalHoursChange)="onSpecialTotalHoursChange($event)"></app-special-part>
     </section>
   </ng-container>
 </div>

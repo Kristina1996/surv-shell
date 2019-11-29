@@ -1,12 +1,11 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter} from '@angular/core';
 import {FormArray} from '@angular/forms';
 import {debounceTime} from 'rxjs/operators';
 
 import {FormServiceService} from '../../../../core/services/form-service.service';
-import {TaskModel} from '../../../../core/models/report.model';
-import {SpecialItemModel, SpecialTaskModel} from '../../../../core/models/specialItem.model';
-import {ParseToXmlService} from '../../../../core/services/parse-to-xml.service';
-import {MainService} from '../../../../core/services/main.service';
+import { SpecialItemModel, SpecialTaskModel } from '../../../../core/models/specialItem.model';
+import { ParseToXmlService } from '../../../../core/services/parse-to-xml.service';
+import { MainService } from '../../../../core/services/main.service';
 import * as path from 'path';
 
 import {SPECIAL_TASKS_DESCRIPTIONS} from '../../../../core/models/special-tasks-data';
@@ -19,6 +18,7 @@ import {SPECIAL_TASKS_DESCRIPTIONS} from '../../../../core/models/special-tasks-
 export class SpecialPartComponent implements OnInit, OnChanges {
 
   @Input() data: any;
+  @Output() onTotalHoursChange = new EventEmitter<number>();
   form: FormArray;
   specialTaskDescriptions: {name: string, description: string}[];
 
@@ -39,7 +39,20 @@ export class SpecialPartComponent implements OnInit, OnChanges {
     this.formValueChanges();
   }
 
+  getTotalHours() {
+    let totalHours = 0;
+    this.form.value.forEach((item, itemkIndex) => {
+      item.specialTasks.forEach((task, taskIndex) => {
+        if (taskIndex !== 6) {
+          totalHours += Number(task.hours);
+        }
+      });
+    });
+    this.onTotalHoursChange.emit(totalHours);
+  }
+
   formValueChanges() {
+    this.getTotalHours();
     this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
       const formValue = this.formService.getForm().getRawValue();
       const content = this.parseToXmlService.parseToXml(formValue);

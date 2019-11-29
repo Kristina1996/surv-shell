@@ -1,11 +1,12 @@
 import {Component, OnInit, OnChanges, SimpleChanges, Input, OnDestroy} from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { ReportModel } from '../../../core/models/report.model';
 
 import { MainService } from '../../../core/services/main.service';
+import { TimeTrackerWebService } from '../../../core/services/time-tracker-web.service';
 import { AdapterService } from '../../../core/services/adapter.service';
 import { FormServiceService } from '../../../core/services/form-service.service';
-import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-report',
@@ -18,20 +19,42 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filePath: string;
   report: ReportModel;
   subscription: Subscription;
+  projectsFromService;
+  commonTotalHours = 0;
+  specialTotalHours = 0;
+  totalHours = 0;
 
   constructor(private mainService: MainService,
-              private adapterService: AdapterService) {
+              private adapterService: AdapterService,
+              private timeTrackerWebService: TimeTrackerWebService) {
     this.subscription = this.mainService.data.subscribe(val => {
       if (val === 1) { this.getReportContent(); }
     });
   }
 
   ngOnInit() {
+    console.log('Вызываю сервис для получения проектов');
+    /*
+    this.timeTrackerWebService.getProjects().subscribe(data => {
+      // this.projectsFromService = this.adapterService.getProjectsXmlModel(data);
+      console.log(this.projectsFromService);
+    });
+     */
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.filePath = changes.filePath.currentValue;
     this.getReportContent();
+  }
+
+  onCommonTotalHoursChange(hours) {
+    this.commonTotalHours = hours;
+    this.totalHours = this.commonTotalHours + this.specialTotalHours;
+  }
+
+  onSpecialTotalHoursChange(hours) {
+    this.specialTotalHours = hours;
+    this.totalHours = this.commonTotalHours + this.specialTotalHours;
   }
 
   getReportContent() {

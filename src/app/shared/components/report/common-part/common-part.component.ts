@@ -1,4 +1,4 @@
-import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges} from '@angular/core';
 import { FormBuilder, FormArray } from '@angular/forms';
 import {Subscription} from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
@@ -23,8 +23,10 @@ import * as path from 'path';
 export class CommonPartComponent implements OnInit, OnChanges {
 
   @Input() data: any;
+  @Output() onTotalHoursChange = new EventEmitter<number>();
   form: FormArray;
-  public totalHours;
+  public employeeHoursArray;
+  totalHours;
   subscription: Subscription;
 
   public currentDate = moment().format('YYYY-MM-DD');
@@ -36,16 +38,27 @@ export class CommonPartComponent implements OnInit, OnChanges {
     private mainService: MainService,
   ) {}
 
-  getTotalHours() {
-    this.totalHours = [];
+  getEmployeeHours() {
+    this.employeeHoursArray = [];
     this.form.value.forEach((project, projectIndex) => {
-      this.totalHours.push([[0]]);
+      this.employeeHoursArray.push([[0]]);
       project.employee.forEach((empl, emplIndex) => {
         let sum = 0;
         empl.tasks.forEach(task => sum += Number(task.hours));
-        this.totalHours[projectIndex][emplIndex] = sum;
+        this.employeeHoursArray[projectIndex][emplIndex] = sum;
       });
     });
+    this.getTotalHours();
+  }
+
+  getTotalHours() {
+    this.totalHours = 0;
+    this.employeeHoursArray.forEach(project => {
+      project.forEach(hour => {
+        this.totalHours += hour;
+      });
+    });
+    this.onTotalHoursChange.emit(this.totalHours);
   }
 
   ngOnInit() {
@@ -60,23 +73,22 @@ export class CommonPartComponent implements OnInit, OnChanges {
   }
 
   formValueChanges() {
-    this.getTotalHours();
+    this.getEmployeeHours();
     this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
-      this.getTotalHours();
-
+      this.getEmployeeHours();
       const uniqueEmployee = new Set();
       values.forEach(project => {
         project.employee.forEach(empl => {
           uniqueEmployee.add(empl.name);
         });
       });
-
       const formValue = this.formService.getForm().getRawValue();
 
       const specialItems: SpecialItemModel[] = [];
       uniqueEmployee.forEach(empl => {
         const index = formValue.specialTasks.findIndex(element => element.employeeName === empl);
-        if (index !== -1) { specialItems.push(formValue.specialTasks[index]);
+        if (index !== -1) {
+          specialItems.push(formValue.specialTasks[index]);
         } else {
           const newSpecialItem: SpecialItemModel = new SpecialItemModel();
           newSpecialItem.employeeName = String(empl);
