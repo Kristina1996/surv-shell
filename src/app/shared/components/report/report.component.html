@@ -3,7 +3,7 @@
   <label for="tab1">Основные задачи {{commonTotalHours}}</label>
   <input id="tab2" type="radio" name="tabs">
   <label for="tab2">Специальные задачи {{specialTotalHours}}</label>
-  <span>{{totalHours}}</span>
+  <span class="total-hours">{{totalHours}}</span>
   <ng-container *ngIf="report">
     <section id="content-tab1">
       <app-common-part [data]="report" (onTotalHoursChange)="onCommonTotalHoursChange($event)"></app-common-part>
