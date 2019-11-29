@@ -1,5 +1,15 @@
 import { SpecialItemModel } from './specialItem.model';
 
+export class ProjectXml {
+  id: number;
+  name: string;
+
+  constructor(id: number, name: string) {
+    this.id = id;
+    this.name = name;
+  }
+}
+
 export class ReportModel {
   common: ProjectModel[] = [];
   specialTasks: SpecialItemModel[] = [];
