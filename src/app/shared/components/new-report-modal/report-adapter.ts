@@ -1,4 +1,4 @@
-import { SPECIALTASKS } from '../../../core/models/special-tasks-data';
+import { SPECIAL_TASKS } from '../../../core/models/special-tasks-data';
 import { EmployeeModel, ProjectModel, TaskModel } from '../../../core/models/report.model';
 
 export function getFirstReport() {
@@ -7,7 +7,7 @@ export function getFirstReport() {
     specialTasks: [{
       employeeName: '',
       rate: 0,
-      specialTasks: SPECIALTASKS
+      specialTasks: SPECIAL_TASKS
     }]
   };
   report.common.push(new ProjectModel());

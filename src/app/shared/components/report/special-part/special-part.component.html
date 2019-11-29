@@ -1,13 +1,13 @@
 <div class="grid">
   <div class="special-item" *ngFor="let specialItem of form.controls; let i = index">
     <ng-container>
-      <app-form-input [placeHolder]="'Имя сотрудника'" [control]="specialItem.get('employeeName')" [pattern]="'[a-zA-Z ]*'"></app-form-input>
+      <app-form-input [placeHolder]="'Name Surname сотрудника'" [control]="specialItem.get('employeeName')" [pattern]="'[a-zA-Z ]*'"></app-form-input>
       <app-form-input [placeHolder]="'Ставка'" [control]="specialItem.get('rate')" [type]="'number'"></app-form-input>
       <div class="special-tasks">
         <div class="special-task" *ngFor="let specialTask of specialItem.controls.specialTasks.controls;">
-          <app-form-input [placeHolder]="'Задача'" [control]="specialTask.get('name')" class="special-task-name"></app-form-input>
-          <app-form-input [placeHolder]="'0'" [control]="specialTask.get('hours')" [type]="'number'"></app-form-input>
-          <app-form-input [placeHolder]="'Комментарий'" [control]="specialTask.get('comment')"></app-form-input>
+          <app-form-input [control]="specialTask.get('name')" class="special-task-name" title="{{getDescriptionForName(specialTask.get('name').value)}}"></app-form-input>
+          <app-form-input [control]="specialTask.get('hours')" [type]="'number'" [placeHolder]="'0'"></app-form-input>
+          <app-form-input [control]="specialTask.get('comment')" [placeHolder]="'Комментарий'"></app-form-input>
         </div>
       </div>
     </ng-container>

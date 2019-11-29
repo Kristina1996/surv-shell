@@ -40,7 +40,7 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
         this.report = this.adapterService.getModel(result);
       } else { this.report = new ReportModel(); }
     }, error => {
-      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.' + error);
+      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.\n\n' + error);
     });
   }
 

@@ -6,7 +6,7 @@
     <div class="employees">
       <div class="employee-item" *ngFor="let empl of project.controls.employee.controls; let ie = index">
         <div class="employee-name-row">
-          <app-form-input [placeHolder]="'Имя сотрудника'" [control]="empl.get('name')" [pattern]="'[a-zA-Z ]*'"></app-form-input>
+          <app-form-input [placeHolder]="'Name Surname сотрудника'" [control]="empl.get('name')" [pattern]="'[a-zA-Z ]*'"></app-form-input>
           <div class="total-hours" *ngIf="totalHours[i]" title="Общее количество часов">
             <ng-container *ngIf="totalHours[i][ie]">{{totalHours[i][ie]}}</ng-container>
           </div>

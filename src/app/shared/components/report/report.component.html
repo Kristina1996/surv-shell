@@ -1,10 +1,8 @@
 <div class="tabs">
   <input id="tab1" type="radio" name="tabs" checked>
-  <label for="tab1" title="Вкладка 1">Общие задачи</label>
-
+  <label for="tab1">Основные задачи</label>
   <input id="tab2" type="radio" name="tabs">
-  <label for="tab2" title="Вкладка 2">Специальные задачи</label>
-
+  <label for="tab2">Специальные задачи</label>
   <ng-container *ngIf="report">
     <section id="content-tab1">
       <app-common-part [data]="report"></app-common-part>
@@ -13,6 +11,4 @@
       <app-special-part [data]="report.specialTasks"></app-special-part>
     </section>
   </ng-container>
-
-  <!--<button (click)="saveReport()">Сохранить</button>-->
 </div>

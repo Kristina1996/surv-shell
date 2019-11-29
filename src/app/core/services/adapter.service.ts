@@ -21,7 +21,7 @@ export class AdapterService {
     const commonRows = this.getRows(obj, 0);
     const specialRows = this.getRows(obj, 1);
 
-    if (commonRows[0].includes('Отчет по проекту')) { commonRows.shift(); }
+    if (commonRows[0].includes('Отчёт по проекту')) { commonRows.shift(); }
     if (specialRows[0].includes('Специальные задачи')) { specialRows.shift(); }
 
     commonRows.forEach(row => {

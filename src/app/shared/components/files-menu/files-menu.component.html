@@ -1,9 +1,8 @@
 <section>
   <div class="sidebar-header">
-    <h2 class="sidebar-header__title">Отчеты</h2>
-    <app-icon-button [color]="'dark'" [iconType]="'add_circle_outline'" [title]="'Создать отчет'" (click)="openModalNewReport()"></app-icon-button>
+    <h2 class="sidebar-header__title">Отчёты</h2>
+    <app-icon-button [color]="'dark'" [iconType]="'add_circle_outline'" [title]="'Создать отчёт'" (click)="openModalNewReport()"></app-icon-button>
   </div>
-
   <nav class="nav">
     <ul *ngIf="files" class="nav__inner">
       <li *ngFor="let file of files" class="nav__item" (click)="onChooseFile(file)"  [class.selected]="file === selectedFile">
