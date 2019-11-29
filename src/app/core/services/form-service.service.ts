@@ -88,14 +88,14 @@ export class FormServiceService {
     return result;
   }
 
-  makeSpecialTaskForm(task: SpecialTaskModel): FormGroup {
-    if (!task) {
-      task = new SpecialTaskModel();
+  makeSpecialTaskForm(specialTask: SpecialTaskModel): FormGroup {
+    if (!specialTask) {
+      specialTask = new SpecialTaskModel();
     }
     const result = this.formBuilder.group({
-      name: task.name,
-      hours: task.hours,
-      comment: task.comment
+      name: specialTask.name,
+      hours: specialTask.hours,
+      comment: specialTask.comment
     });
     return result;
   }

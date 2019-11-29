@@ -1,13 +1,15 @@
 import {Component, OnInit, Input, OnChanges, SimpleChanges} from '@angular/core';
-import { FormArray } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import {FormArray} from '@angular/forms';
+import {debounceTime} from 'rxjs/operators';
 
-import { FormServiceService } from '../../../../core/services/form-service.service';
+import {FormServiceService} from '../../../../core/services/form-service.service';
 import {TaskModel} from '../../../../core/models/report.model';
 import {SpecialItemModel, SpecialTaskModel} from '../../../../core/models/specialItem.model';
 import {ParseToXmlService} from '../../../../core/services/parse-to-xml.service';
 import {MainService} from '../../../../core/services/main.service';
 import * as path from 'path';
+
+import {SPECIAL_TASKS_DESCRIPTIONS} from '../../../../core/models/special-tasks-data';
 
 @Component({
   selector: 'app-special-part',
@@ -18,10 +20,13 @@ export class SpecialPartComponent implements OnInit, OnChanges {
 
   @Input() data: any;
   form: FormArray;
+  specialTaskDescriptions: {name: string, description: string}[];
 
   constructor(private formService: FormServiceService,
               private parseToXmlService: ParseToXmlService,
-              private mainService: MainService) { }
+              private mainService: MainService) {
+    this.specialTaskDescriptions = SPECIAL_TASKS_DESCRIPTIONS;
+  }
 
   ngOnInit() {
     this.form = this.formService.makeSpecialForm(this.data);
@@ -50,6 +55,10 @@ export class SpecialPartComponent implements OnInit, OnChanges {
   addSpecialTask(specialItem) {
     const emptySpecialTask: SpecialTaskModel = null;
     specialItem.controls.specialTasks.push(this.formService.makeSpecialTaskForm(emptySpecialTask));
+  }
+
+  getDescriptionForName(name: string): string {
+    return this.specialTaskDescriptions.find(specialTask => specialTask.name === name).description;
   }
 
 }

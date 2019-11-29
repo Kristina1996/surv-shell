@@ -7,7 +7,7 @@ import * as moment from 'moment';
 import { ProjectModel } from '../../../../core/models/report.model';
 import { EmployeeModel } from '../../../../core/models/report.model';
 import { TaskModel } from '../../../../core/models/report.model';
-import { SPECIALTASKS } from '../../../../core/models/special-tasks-data';
+import { SPECIAL_TASKS } from '../../../../core/models/special-tasks-data';
 
 import { FormServiceService } from '../../../../core/services/form-service.service';
 import {ParseToXmlService} from '../../../../core/services/parse-to-xml.service';
@@ -81,7 +81,7 @@ export class CommonPartComponent implements OnInit, OnChanges {
           const newSpecialItem: SpecialItemModel = new SpecialItemModel();
           newSpecialItem.employeeName = String(empl);
           newSpecialItem.rate = 0;
-          newSpecialItem.specialTasks = SPECIALTASKS;
+          newSpecialItem.specialTasks = SPECIAL_TASKS;
           specialItems.push(newSpecialItem);
         }
       });
