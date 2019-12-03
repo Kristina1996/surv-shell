@@ -1,0 +1,35 @@
+<ng-container *ngIf="!isInputAutocomplete">
+  <input placeholder="{{placeHolder}}"
+         type="{{type}}"
+         [formControl]="control"
+         (input)="changeInput(control.value)">
+</ng-container>
+<ng-container *ngIf="isInputAutocomplete">
+  <input placeholder="{{placeHolder}}"
+         type="{{type}}"
+         [formControl]="control"
+         (blur)="toogleSearchBox(false)"
+         (focus)="toogleSearchBox(true)"
+         (input)="changeInput(control.value)">
+
+  <ng-container *ngIf="autoCompleteType === 'projects'">
+    <ul class="autocomplete" *ngIf="isShowSearchBox">
+      <li *ngFor="let project of projects | filter : control.value" (click)="chooseItem(project.name)">
+        <span *ngFor="let item of getLighterItem(project.name); let index = index">{{item}}<strong *ngIf="index !== (getLighterItem(project.name).length - 1)">{{control.value}}</strong>
+        </span>
+      </li>
+      <li *ngIf="!hasResult('projects')">Такой проект не найден</li>
+    </ul>
+  </ng-container>
+  <ng-container *ngIf="autoCompleteType === 'users'">
+    <ul class="autocomplete" *ngIf="isShowSearchBox">
+      <li *ngFor="let user of users | filter : control.value" (click)="chooseItem(user.fullName)">
+        <span *ngFor="let item of getLighterItem(user.fullName); let index = index">{{item}}<strong *ngIf="index !== (getLighterItem(user.fullName).length - 1)">{{control.value}}</strong>
+        </span>
+      </li>
+      <li *ngIf="!hasResult('users')">Такой сотрудник не найден</li>
+    </ul>
+  </ng-container>
+</ng-container>
+
+

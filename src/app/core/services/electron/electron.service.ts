@@ -6,6 +6,9 @@ import { ipcRenderer, webFrame, remote } from 'electron';
 import * as childProcess from 'child_process';
 import * as fs from 'fs';
 import * as soap from 'soap';
+import * as crypto from 'crypto';
+import * as os from 'os';
+import * as httpntlm from 'httpntlm';
 
 @Injectable({
   providedIn: 'root'
@@ -17,13 +20,15 @@ export class ElectronService {
   childProcess: typeof childProcess;
   fs: typeof fs;
   soap: typeof soap;
+  crypto: typeof crypto;
+  os: typeof os;
+  httpntlm: typeof httpntlm;
 
   get isElectron() {
     return window && window.process && window.process.type;
   }
 
   constructor() {
-    // Conditional imports
     if (this.isElectron) {
       this.ipcRenderer = window.require('electron').ipcRenderer;
       this.webFrame = window.require('electron').webFrame;
@@ -32,6 +37,9 @@ export class ElectronService {
       this.childProcess = window.require('child_process');
       this.fs = window.require('fs');
       this.soap = window.require('soap');
+      this.crypto = window.require('crypto');
+      this.os = window.require('os');
+      this.httpntlm = window.require('httpntlm');
     }
   }
 }

@@ -30,6 +30,18 @@ export class NewReportModalComponent implements OnInit {
 
   public fileName;
 
+  config = {
+    title: 'Создание нового отчета',
+    cancel: {
+      title: 'Закрыть',
+      visible: true
+    },
+    save: {
+      title: 'Сохранить',
+      visible: true
+    }
+  };
+
   constructor(private mainService: MainService,
               private parseToXmlService: ParseToXmlService,
               private adapterService: AdapterService) { }
@@ -52,7 +64,7 @@ export class NewReportModalComponent implements OnInit {
     this.fileName = fileName;
   }
 
-  clickClose() {
+  onCloseModal() {
     this.close();
   }
 
@@ -87,7 +99,6 @@ export class NewReportModalComponent implements OnInit {
         });
       });
       report.specialTasks.map(specialItem => {
-        console.log(specialItem);
         specialItem.specialTasks.map(task => {
           task.name = '';
           task.hours = 0;
@@ -106,7 +117,7 @@ export class NewReportModalComponent implements OnInit {
       files.push(this.fileName);
       localStorage.setItem('files', JSON.stringify(files));
       localStorage.setItem('selectedFile', this.fileName);
-      this.clickClose();
+      this.onCloseModal();
     });
   }
 

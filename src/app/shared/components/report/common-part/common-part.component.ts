@@ -28,6 +28,10 @@ export class CommonPartComponent implements OnInit, OnChanges {
   public employeeHoursArray;
   totalHours;
   subscription: Subscription;
+  projects;
+  users;
+  searchProject = 'про';
+  searchUsers;
 
   public currentDate = moment().format('YYYY-MM-DD');
 
@@ -64,12 +68,28 @@ export class CommonPartComponent implements OnInit, OnChanges {
   ngOnInit() {
     this.form = this.formService.makeCommonForm(this.data.common);
     this.formValueChanges();
+    this.getUsersAndProjects();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.data = changes.data.currentValue;
     this.form = this.formService.makeCommonForm(this.data.common);
     this.formValueChanges();
+  }
+
+  getUsersAndProjects() {
+    const projects = JSON.parse(localStorage.getItem('projects'));
+    const users = JSON.parse(localStorage.getItem('users'));
+    if (users) { this.users = users; }
+    if (projects) { this.projects = projects; }
+  }
+
+  onProjectInputChange(text) {
+    if (text.target) {
+      this.searchProject = text.target.value;
+    } else {
+      this.searchProject = text;
+    }
   }
 
   formValueChanges() {

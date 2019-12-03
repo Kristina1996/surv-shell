@@ -1,0 +1,15 @@
+<div class="background">
+  <div class="modal">
+    <div class="header">
+      <h3>{{config.title}}</h3>
+      <app-icon-button [iconType]="'close'" [title]="'Закрыть'" (click)="clickClose()"></app-icon-button>
+    </div>
+    <div class="main">
+      <ng-content></ng-content>
+    </div>
+    <div class="footer">
+      <a *ngIf="config.cancel.visible" (click)="clickClose()" class="btn-close">{{config.cancel.title}}</a>
+      <a *ngIf="config.save.visible" (click)="clickSave()" class="btn-create">{{config.save.title}}</a>
+    </div>
+  </div>
+</div>

@@ -21,6 +21,8 @@ function createWindow() {
     y: 0,
     width: size.width,
     height: size.height,
+    minWidth: size.width / 2,
+    minHeight: size.height / 2,
     icon: appIcon,
     webPreferences: {
       nodeIntegration: true,

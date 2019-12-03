@@ -4,16 +4,19 @@
       <app-icon-button [iconType]="'folder'" [title]="'Выберите папку'" (click)="openDialog()"></app-icon-button>
     </div>
     <div *ngIf="folderPath" class="folder-chooser__text">{{ folderPath }}</div>
+    <app-icon-button class="settings-icon" (click)="openSettingsModal()" [iconType]="'settings_applications'" [title]="'Настройки'"></app-icon-button>
   </header>
   <ng-container *ngIf="showModalNewReport">
     <app-new-report-modal [folderPath]="folderPath" (closeModal)="onCloseModal($event)"></app-new-report-modal>
+  </ng-container>
+  <ng-container *ngIf="showSettingsModal">
+    <app-settings-modal (closeModal)="onCloseSettingsModal($event)"></app-settings-modal>
   </ng-container>
 
   <div class="content">
     <div class="content__sidebar">
       <app-files-menu *ngIf="showFilesMenuComponent" [selectedFile]="selectedFileName" [files]="files" (sendFileName)="onSendFileName($event)" (openModal)="onShowModalNewReport($event)"></app-files-menu>
     </div>
-
     <main class="content__report">
       <app-report *ngIf="showReportComponent; else elseBlock" [filePath]="selectedFile"></app-report>
       <ng-template #elseBlock>Выберите отчёт...</ng-template>

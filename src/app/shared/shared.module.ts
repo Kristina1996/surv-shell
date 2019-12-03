@@ -2,9 +2,10 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateModule } from '@ngx-translate/core';
+import {FilterPipe} from '../core/filter.pipe';
 
 import { PageNotFoundComponent } from './components/';
 import { WebviewDirective } from './directives/';
@@ -15,13 +16,14 @@ import { SpecialPartComponent } from './components/report/special-part/special-p
 import { NewReportModalComponent } from './components/new-report-modal/new-report-modal.component';
 import { FormInputComponent } from './components/report/form-input/form-input.component';
 import { IconButtonComponent } from './components/icon-button/icon-button.component';
-
-//import { MainService } from '../core/services/main.service';
+import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
+import { BaseModalComponent } from './components/base-modal/base-modal.component';
+import { InputAutocompleteComponent } from './components/report/input-autocomplete/input-autocomplete.component';
 
 @NgModule({
-  declarations: [PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent, FormInputComponent, IconButtonComponent],
+  declarations: [ FilterPipe, PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent, FormInputComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent, FilterPipe, InputAutocompleteComponent],
   imports: [CommonModule, TranslateModule, BrowserModule, FormsModule, ReactiveFormsModule],
-  exports: [TranslateModule, WebviewDirective, ReportComponent, FilesMenuComponent, NewReportModalComponent, IconButtonComponent],
+  exports: [ TranslateModule, WebviewDirective, ReportComponent, FilesMenuComponent, NewReportModalComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class SharedModule {}

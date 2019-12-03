@@ -4,6 +4,8 @@ import { ReportModel } from '../../core/models/report.model';
 import { ProjectModel } from '../../core/models/report.model';
 import { EmployeeModel } from '../../core/models/report.model';
 import { TaskModel } from '../../core/models/report.model';
+import { ProjectXml } from '../../core/models/report.model';
+import { UserXml } from '../../core/models/report.model';
 
 import { SpecialItemModel } from '../../core/models/specialItem.model';
 import { SpecialTaskModel } from '../../core/models/specialItem.model';
@@ -14,6 +16,22 @@ import { SpecialTaskModel } from '../../core/models/specialItem.model';
 export class AdapterService {
 
   constructor() { }
+
+  getProjectsXmlModel(projects): ProjectXml[] {
+    const projectsXml: ProjectXml[] = [];
+    projects.forEach(project => {
+      projectsXml.push(new ProjectXml(project.Id, project.Title));
+    });
+    return projectsXml;
+  }
+
+  getUsersXmlModel(users): UserXml[] {
+    const usersXml: UserXml[] = [];
+    users.forEach(user => {
+      usersXml.push(new UserXml(user.Id, user.FirstName, user.LastName));
+    });
+    return usersXml;
+  }
 
   getModel(obj): ReportModel {
     const report: ReportModel = new ReportModel();

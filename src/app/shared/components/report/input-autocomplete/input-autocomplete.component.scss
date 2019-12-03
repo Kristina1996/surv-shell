@@ -1,0 +1,71 @@
+@import "../../../../core/constants";
+
+input {
+  box-sizing: border-box;
+  width: 100%;
+  font-size: 16px;
+  border: none;
+  background-color: transparent;
+  padding: $half-gutter;
+  font-family: "Noto Sans", sans-serif !important;
+  color: #555;
+
+  &:focus {
+    outline-color: #a27171;
+    font-weight: bold;
+  }
+}
+
+::placeholder {
+  color: #bbb6b6c2;
+}
+
+.autocomplete {
+  position: absolute;
+  width: 65%;
+  max-height: 300px;
+  overflow-y: auto;
+  list-style-type: none;
+  padding: 0px;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.90);
+  border:  1px solid rgba(185, 129, 129, 0.32);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.22);
+
+  li {
+    padding: $half-gutter;
+    margin: 0 $gutter 0 $gutter;
+    border-bottom: 1px solid rgba(185, 129, 129, 0.18);
+    color: #555;
+
+    &:hover {
+      cursor: pointer;
+      color: #292929;
+    }
+  }
+}
+
+.autocomplete::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+.autocomplete::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid #ccc;
+}
+
+.autocomplete::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: rgba(228, 181, 181, 0.72);
+  border: 1px solid #aaa;
+}
+
+.autocomplete::-webkit-scrollbar-thumb:hover {
+  background: #fff;
+}
+
+.autocomplete::-webkit-scrollbar-thumb:active {
+  background: linear-gradient(left, #22ADD4, #1E98BA);
+}

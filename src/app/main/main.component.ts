@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter } from '@angular/core';
-import * as fs from 'fs';
-
-import { MainService } from '../core/services/main.service';
 import * as path from 'path';
+import { MainService } from '../core/services/main.service';
+import { TimeTrackerWebService } from '../core/services/time-tracker-web.service';
+import {PasswordEncoderService} from '../core/services/password-encoder.service';
+import { AdapterService } from '../core/services/adapter.service';
 
 const electron = require('electron')
 
@@ -17,15 +18,23 @@ export class MainComponent implements OnInit {
   public showFilesMenuComponent: Boolean = false;
   public showReportComponent: Boolean = false;
   public showModalNewReport: Boolean = false;
+  public showSettingsModal: Boolean = false;
 
   public folderPath;
   public files;
   public selectedFile;
   public selectedFileName;
 
-  constructor(private mainService: MainService) { }
+  constructor(private mainService: MainService,
+              private timeTrackerWebService: TimeTrackerWebService,
+              private passwordEncoderService: PasswordEncoderService,
+              private adapterService: AdapterService) { }
 
   ngOnInit() {
+    this.getDataFromLocalStorage();
+  }
+
+  getDataFromLocalStorage() {
     const folderPath = localStorage.getItem('folderPath');
     const files = localStorage.getItem('files');
     const selectedFile = localStorage.getItem('selectedFile');
@@ -41,6 +50,24 @@ export class MainComponent implements OnInit {
       this.selectedFile = path.join(this.folderPath, selectedFile);
       this.showReportComponent = true;
     }
+    this.checkUserInfo();
+  }
+
+  checkUserInfo() {
+    if (localStorage.getItem('userInfo')) {
+      this.updateDataFromBack();
+    }
+  }
+
+  updateDataFromBack() {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const password = this.passwordEncoderService.decryptPassword(userInfo.password);
+    userInfo.password = password;
+
+    this.timeTrackerWebService.getProjectsAndUsers({...userInfo}).subscribe(([projects, users]) => {
+      localStorage.setItem('users', JSON.stringify(this.adapterService.getUsersXmlModel(users)));
+      localStorage.setItem('projects', JSON.stringify(this.adapterService.getProjectsXmlModel(projects)));
+    });
   }
 
   openDialog() {
@@ -86,6 +113,10 @@ export class MainComponent implements OnInit {
     if (click) { this.showModalNewReport = true; }
   }
 
+  openSettingsModal() {
+    this.showSettingsModal = true;
+  }
+
   /**
    *Метод для закрытия модального окна Create New Report
   **/
@@ -95,5 +126,9 @@ export class MainComponent implements OnInit {
     this.selectedFile = path.join(this.folderPath, localStorage.getItem('selectedFile'));
     this.selectedFileName = localStorage.getItem('selectedFile');
     this.showReportComponent = true;
+  }
+
+  onCloseSettingsModal(show: Boolean) {
+    this.showSettingsModal = show;
   }
 }

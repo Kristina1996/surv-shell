@@ -25,11 +25,11 @@
     padding: 3%;
     border-bottom: 1px solid lightgrey;
     opacity: 1;
-  }
 
-  &__item:hover {
-    cursor: pointer;
-    opacity: 0.6;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.6;
+    }
   }
 
   .selected {
