@@ -34,7 +34,20 @@ export class SettingsModalComponent implements OnInit {
               private passwordEncoderService: PasswordEncoderService,
               private adapterService: AdapterService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.checkUserInfo();
+  }
+
+  checkUserInfo() {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    if (userInfo) {
+      userInfo.password = this.passwordEncoderService.decryptPassword(userInfo.password);
+      this.username = userInfo.username;
+      this.password = userInfo.password;
+      this.host = userInfo.host;
+      this.domain = userInfo.domain;
+    }
+  }
 
   chooseItem(item) {
     this.selectedItem = item;
