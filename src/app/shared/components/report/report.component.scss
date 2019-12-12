@@ -1,5 +1,6 @@
-/* Базовый контейнер табов */
+@import "../../../core/constants";
 
+/* Базовый контейнер табов */
 .tabs {
   min-width: 320px;
   padding: 0;
@@ -9,10 +10,14 @@
   .total-hours {
     padding-left: 10px;
   }
+
+  .upload-icon {
+    float: right;
+    margin-top: $half-gutter;
+  }
 }
 
 /* Стили секций с содержанием */
-
 .tabs>section {
   display: none;
   padding: 15px;
