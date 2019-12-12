@@ -5,7 +5,7 @@ import { TimeTrackerWebService } from '../core/services/time-tracker-web.service
 import {PasswordEncoderService} from '../core/services/password-encoder.service';
 import { AdapterService } from '../core/services/adapter.service';
 
-const electron = require('electron')
+const electron = require('electron');
 
 @Component({
   selector: 'app-main',
@@ -104,7 +104,7 @@ export class MainComponent implements OnInit {
    *Метод для получения имени выбранного файла от компонента FilesMenuComponent
   **/
   onSendFileName(selectedFile: string) {
-    localStorage.setItem('selectedFile', selectedFile)
+    localStorage.setItem('selectedFile', selectedFile);
     this.selectedFile = path.join(this.folderPath, selectedFile);
     this.showReportComponent = true;
   }
