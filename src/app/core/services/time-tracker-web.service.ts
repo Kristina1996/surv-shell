@@ -3,7 +3,6 @@ import { ElectronService } from './electron/electron.service';
 import {forkJoin, Observable, of, Subject} from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 import * as moment from 'moment';
-import {HolderService} from './holder-service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,7 @@ export class TimeTrackerWebService {
 
   soap;
 
-  constructor(private electronService: ElectronService,
-              private holderService: HolderService) {
+  constructor(private electronService: ElectronService) {
     this.soap = this.electronService.soap;
   }
 
@@ -58,11 +56,11 @@ export class TimeTrackerWebService {
       mergeMap(client => {
         return this.uploadManagerReport(client, report).pipe(
           mergeMap(response => {
-              return (response.UploadManagerReportResult.ResultCode === 'DataError' && response.UploadManagerReportResult.Message.startsWith('Дублируется'))
-                ? this.deleteReport(client).pipe(
-                  mergeMap(deleteResponse => this.uploadManagerReport(client, report))
-                )
-                : of(response);
+            return (response.UploadManagerReportResult.ResultCode === 'DataError' && response.UploadManagerReportResult.Message.startsWith('Дублируется'))
+              ? this.deleteReport(client).pipe(
+                mergeMap(deleteResponse => this.uploadManagerReport(client, report))
+              )
+              : of(response);
           }));
       })
     );
@@ -115,7 +113,6 @@ export class TimeTrackerWebService {
       return file;
     });
     localStorage.setItem('files', JSON.stringify(updatedFiles));
-    this.holderService.files.next(updatedFiles);
   }
 
   getReportingDate() {
