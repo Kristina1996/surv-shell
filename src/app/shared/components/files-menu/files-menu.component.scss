@@ -21,7 +21,20 @@
     margin: 1rem;
   }
 
+  &__unsaved-marker {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    background-color: #a2717178;
+    border-radius: 50% 50%;
+  }
+
   &__item {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
     padding: 3%;
     border-bottom: 1px solid lightgrey;
     opacity: 1;
