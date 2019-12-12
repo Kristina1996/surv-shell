@@ -6,6 +6,9 @@ import { ReportModel } from '../../../core/models/report.model';
 import { MainService } from '../../../core/services/main.service';
 import { AdapterService } from '../../../core/services/adapter.service';
 import { FormServiceService } from '../../../core/services/form-service.service';
+import { TimeTrackerWebService } from '../../../core/services/time-tracker-web.service';
+import {ParseToXmlService} from '../../../core/services/parse-to-xml.service';
+import {PasswordEncoderService} from '../../../core/services/password-encoder.service';
 
 @Component({
   selector: 'app-report',
@@ -24,6 +27,10 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
   totalHours = 0;
 
   constructor(private mainService: MainService,
+              private timeTrackerWebService: TimeTrackerWebService,
+              private parseToXmlService: ParseToXmlService,
+              private formService: FormServiceService,
+              private passwordEncoderService: PasswordEncoderService,
               private adapterService: AdapterService) {
     this.subscription = this.mainService.data.subscribe(val => {
       if (val === 1) { this.getReportContent(); }
@@ -54,6 +61,15 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
       } else { this.report = new ReportModel(); }
     }, error => {
       alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.\n\n' + error);
+    });
+  }
+
+  uploadReport() {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    const formValue = this.formService.getForm().getRawValue();
+    userInfo.password = this.passwordEncoderService.decryptPassword(userInfo.password);
+    this.timeTrackerWebService.uploadReport(userInfo, this.parseToXmlService.parseToXml(formValue)).subscribe(result => {
+      console.log(result);
     });
   }
 
