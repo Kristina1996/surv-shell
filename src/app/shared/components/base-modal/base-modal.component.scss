@@ -19,7 +19,7 @@
   .modal {
     display: flex;
     flex-direction: column;
-    width: 30%;
+    min-width: 400px;
     margin: 5% auto;
     background: #fff;
     border-radius: 5px;
