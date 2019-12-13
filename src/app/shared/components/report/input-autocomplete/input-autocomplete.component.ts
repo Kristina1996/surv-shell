@@ -45,7 +45,7 @@ export class InputAutocompleteComponent implements OnInit {
   }
 
   hasResult(type) {
-    const searchText = this.control.value.toLowerCase();
+    const searchText = (this.control.value || '').toLowerCase();
     let result = false;
     if (type === 'projects') {
       if (this.projects.filter(project => project.name.toLowerCase().includes(searchText)).length > 0) {

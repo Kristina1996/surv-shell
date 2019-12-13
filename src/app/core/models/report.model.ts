@@ -16,7 +16,7 @@ export class UserXml {
 
   constructor(id: number, firstName: string, lastName: string) {
     this.id = id;
-    this.fullName = firstName + ' ' + lastName;
+    this.fullName = lastName + ' ' + firstName;
   }
 }
 

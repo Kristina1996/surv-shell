@@ -42,6 +42,14 @@ export class MainService {
     });
   }
 
+  getXmlFileContent(filePath) {
+    return new Promise((resolve, reject) => {
+      this.electronService.fs.readFile(filePath, (err, content) => {
+        (!content) ? reject(err) : resolve(content.toString());
+      });
+    });
+  }
+
   isExistReport(filePath) {
     return new Promise((resolve, reject) => {
       this.electronService.fs.readFile(filePath, (err, content) => {

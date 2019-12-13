@@ -66,10 +66,14 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
 
   uploadReport() {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
-    const formValue = this.formService.getForm().getRawValue();
     userInfo.password = this.passwordEncoderService.decryptPassword(userInfo.password);
-    this.timeTrackerWebService.uploadReport(userInfo, this.parseToXmlService.parseToXml(formValue)).subscribe(result => {
-      console.log(result);
+
+    this.mainService.getXmlFileContent(this.filePath).then(content => {
+      if (content) {
+        this.timeTrackerWebService.uploadReport(userInfo, content).subscribe(result => {
+          console.log(result);
+        });
+      }
     });
   }
 
