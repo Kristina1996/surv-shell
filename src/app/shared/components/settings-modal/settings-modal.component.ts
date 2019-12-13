@@ -58,6 +58,7 @@ export class SettingsModalComponent implements OnInit {
     const userInfoCopy = Object.assign({}, userInfo);
 
     this.timeTrackerWebService.getProjectsAndUsers({...userInfoCopy}).subscribe(([projects, users]) => {
+      console.log('Интеграция произведена');
       userInfo.password = this.passwordEncoderService.encryptPassword(this.password);
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       localStorage.setItem('users', JSON.stringify(this.adapterService.getUsersXmlModel(users)));
@@ -65,6 +66,7 @@ export class SettingsModalComponent implements OnInit {
       this.close();
     }, error => {
       this.error = 'Возникла ошибка. Для получения подробной информации смотрите лог.';
+      console.error(this.error);
     });
   }
 
