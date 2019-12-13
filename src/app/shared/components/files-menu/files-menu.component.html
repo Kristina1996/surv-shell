@@ -5,9 +5,9 @@
   </div>
   <nav class="nav">
     <ul *ngIf="files" class="nav__inner">
-      <li *ngFor="let file of files" class="nav__item" (click)="onChooseFile(file.name)"  [class.selected]="file.name === selectedFile">
-        {{file.name}}
-        <ng-container *ngIf="!uploadedReports.includes(file.name)">
+      <li *ngFor="let file of files" class="nav__item" (click)="onChooseFile(file)"  [class.selected]="file === selectedFile">
+        {{file}}
+        <ng-container *ngIf="!uploadedReports.includes(file)">
           <span class="nav__unsaved-marker" title="Отчёт ещё не был загружен в СУРВ"></span>
         </ng-container>
       </li>

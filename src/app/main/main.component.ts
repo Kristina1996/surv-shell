@@ -90,7 +90,7 @@ export class MainComponent implements OnInit {
     this.mainService.getFilesFromFolder(this.folderPath).then((result: string[]) => {
       this.files = [];
       result.forEach(file => {
-        this.files.push({ name: file, isSaved: false });
+        this.files.push(file);
       });
       if (this.files.length === 0) {
          this.showFilesMenuComponent = true;
