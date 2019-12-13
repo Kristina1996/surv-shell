@@ -92,15 +92,14 @@ export class NewReportModalComponent implements OnInit {
   getDataFromLastReport(lastReportName, isOverwrite) {
     this.mainService.getFileContent(path.join(this.folderPath, lastReportName)).then(result => {
       const report = this.adapterService.getModel(result);
-      report.common.map(project => {
-        project.employee.map(empl =>  {
+      report.common.forEach(project => {
+        project.employee.forEach(empl =>  {
           empl.tasks.splice(0, empl.tasks.length);
           empl.tasks.push(new TaskModel());
         });
       });
-      report.specialTasks.map(specialItem => {
-        specialItem.specialTasks.map(task => {
-          task.name = '';
+      report.specialTasks.forEach(specialItem => {
+        specialItem.specialTasks.forEach(task => {
           task.hours = 0;
           task.comment = '';
         });
