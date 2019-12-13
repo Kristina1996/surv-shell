@@ -30,7 +30,7 @@
     list-style-type: none;
 
     &__item {
-      padding-left: $gutter;
+      padding: $half-gutter 0 $half-gutter $gutter;
 
       &:hover {
         cursor: pointer;
@@ -110,4 +110,10 @@
       cursor: pointer;
     }
   }
+}
+
+.toogle-integration-tab {
+  padding: $gutter;
+  text-align: center;
+  box-sizing: border-box;
 }
