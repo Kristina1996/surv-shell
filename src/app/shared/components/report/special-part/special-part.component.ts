@@ -8,8 +8,6 @@ import { ParseToXmlService } from '../../../../core/services/parse-to-xml.servic
 import { MainService } from '../../../../core/services/main.service';
 import * as path from 'path';
 
-import {SPECIAL_TASKS_DESCRIPTIONS} from '../../../../core/models/special-tasks-data';
-
 @Component({
   selector: 'app-special-part',
   templateUrl: './special-part.component.html',
@@ -20,13 +18,10 @@ export class SpecialPartComponent implements OnInit, OnChanges {
   @Input() data: any;
   @Output() onTotalHoursChange = new EventEmitter<number>();
   form: FormArray;
-  specialTaskDescriptions: {name: string, description: string}[];
 
   constructor(private formService: FormServiceService,
               private parseToXmlService: ParseToXmlService,
-              private mainService: MainService) {
-    this.specialTaskDescriptions = SPECIAL_TASKS_DESCRIPTIONS;
-  }
+              private mainService: MainService) {}
 
   ngOnInit() {
     this.form = this.formService.makeSpecialForm(this.data);
