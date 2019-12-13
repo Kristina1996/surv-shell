@@ -1,8 +1,11 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angular/core';
 import { TimeTrackerWebService } from '../../../core/services/time-tracker-web.service';
 import { PasswordEncoderService } from '../../../core/services/password-encoder.service';
 import { AdapterService } from '../../../core/services/adapter.service';
 import {Observable} from 'rxjs';
+import * as moment from 'moment';
+
+const CLIENT_TIME_FORMAT = 'HH:mm:ss';
 
 @Component({
   selector: 'app-settings-modal',
@@ -15,7 +18,6 @@ export class SettingsModalComponent implements OnInit {
   password = '';
   domain = '';
   host = '';
-  error: any;
   @Output() closeModal = new EventEmitter<boolean>();
   config = {
     title: 'Настройки',
@@ -29,9 +31,11 @@ export class SettingsModalComponent implements OnInit {
     }
   };
   selectedItem;
+  integrationLog: string[] = [];
 
   constructor(private timeTrackerWebService: TimeTrackerWebService,
               private passwordEncoderService: PasswordEncoderService,
+              private cdr: ChangeDetectorRef,
               private adapterService: AdapterService) {}
 
   ngOnInit() {
@@ -55,18 +59,21 @@ export class SettingsModalComponent implements OnInit {
 
   integrate() {
     const userInfo = { username: this.username, password: this.password, domain: this.domain, host: this.host };
-    const userInfoCopy = Object.assign({}, userInfo);
 
-    this.timeTrackerWebService.getProjectsAndUsers({...userInfoCopy}).subscribe(([projects, users]) => {
-      console.log('Интеграция произведена');
+    this.timeTrackerWebService.getProjectsAndUsers({...userInfo}).subscribe(([projects, users]) => {
+      const successMsg = moment().format(CLIENT_TIME_FORMAT) + ' Успешно';
+      this.integrationLog.push(successMsg);
+
+      console.log(successMsg);
       userInfo.password = this.passwordEncoderService.encryptPassword(this.password);
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       localStorage.setItem('users', JSON.stringify(this.adapterService.getUsersXmlModel(users)));
       localStorage.setItem('projects', JSON.stringify(this.adapterService.getProjectsXmlModel(projects)));
-      this.close();
+      this.cdr.detectChanges();
     }, error => {
-      this.error = 'Возникла ошибка. Для получения подробной информации смотрите лог.';
-      console.error(this.error);
+      const errMsg = moment().format(CLIENT_TIME_FORMAT) + ' Ошибка (см. лог)';
+      this.integrationLog.push(errMsg);
+      this.cdr.detectChanges();
     });
   }
 

@@ -17,7 +17,9 @@
     <input [(ngModel)]="password" placeholder="Password" type="password">
     <input [(ngModel)]="domain" placeholder="Domain" type="text">
     <a (click)="integrate()" class="btn-integrate">Интегрироваться</a>
-    <ng-container *ngIf="error">{{error}}</ng-container>
+    <div class="integration-log">
+      <div *ngFor="let logItem of integrationLog">{{logItem}}</div>
+    </div>
   </div>
   <div *ngIf="selectedItem=='toogle'" class="toogle-integration-tab">
     В разработке
