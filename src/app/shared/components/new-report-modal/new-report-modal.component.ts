@@ -114,7 +114,7 @@ export class NewReportModalComponent implements OnInit {
     this.mainService.saveFile(path.join(this.folderPath, this.fileName), reportXml).then(result => {
       const files = JSON.parse(localStorage.getItem('files'));
       if (isOverwrite) { files.splice(files.indexOf(this.fileName), 1); }
-      files.push(this.fileName);
+      files.push({name: this.fileName, isSaved: false});
       localStorage.setItem('files', JSON.stringify(files));
       localStorage.setItem('selectedFile', this.fileName);
       this.onCloseModal();
