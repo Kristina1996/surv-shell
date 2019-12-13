@@ -71,7 +71,7 @@ export class SpecialPartComponent implements OnInit, OnChanges {
   }
 
   getDescriptionForName(name: string): string {
-    return this.specialTaskDescriptions.find(specialTask => specialTask.name === name).description;
+    return (name === 'ОБСЗ') ? 'Отпуск без сохранения заработной платы' : '';
   }
 
 }
