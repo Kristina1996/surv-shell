@@ -4,11 +4,10 @@
     <app-icon-button [color]="'dark'" [iconType]="'add_circle_outline'" [title]="'Создать отчёт'" (click)="openModalNewReport()"></app-icon-button>
   </div>
   <nav class="nav">
-
     <ul *ngIf="files" class="nav__inner">
       <li *ngFor="let file of files" class="nav__item" (click)="onChooseFile(file.name)"  [class.selected]="file.name === selectedFile">
         {{file.name}}
-        <ng-container *ngIf="!file.isSaved">
+        <ng-container *ngIf="!uploadedReports.includes(file.name)">
           <span class="nav__unsaved-marker" title="Отчёт ещё не был загружен в СУРВ"></span>
         </ng-container>
       </li>

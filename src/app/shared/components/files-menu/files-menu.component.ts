@@ -1,4 +1,5 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef} from '@angular/core';
+import {HolderStorageService} from '../../../core/services/holder-storage-service';
 
 @Component({
   selector: 'app-files-menu',
@@ -7,12 +8,14 @@ import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges
 })
 export class FilesMenuComponent implements OnInit, OnChanges {
 
-  @Input() files: string[];
+  @Input() files;
   @Input() selectedFile;
   @Output() sendFileName = new EventEmitter<string>();
   @Output() openModal = new EventEmitter<boolean>();
+  uploadedReports = [];
 
-  constructor() {
+  constructor(private holderStorageService: HolderStorageService,
+              private cdr: ChangeDetectorRef) {
   }
 
   ngOnInit() {
@@ -20,6 +23,13 @@ export class FilesMenuComponent implements OnInit, OnChanges {
     if (file) {
       this.selectedFile = file;
     }
+    this.holderStorageService.updateLocalStorage.subscribe(value => {
+      const updatedReports = JSON.parse(localStorage.getItem('uploadedReports'));
+      if (updatedReports) {
+        this.uploadedReports = updatedReports;
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   ngOnChanges(changes: SimpleChanges) {

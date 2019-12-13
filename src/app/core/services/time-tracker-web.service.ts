@@ -3,6 +3,7 @@ import { ElectronService } from './electron/electron.service';
 import {forkJoin, Observable, of, Subject} from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 import * as moment from 'moment';
+import {HolderStorageService} from './holder-storage-service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class TimeTrackerWebService {
 
   soap;
 
-  constructor(private electronService: ElectronService) {
+  constructor(private electronService: ElectronService,
+              private holderStorageService: HolderStorageService) {
     this.soap = this.electronService.soap;
   }
 
@@ -105,14 +107,26 @@ export class TimeTrackerWebService {
 
   changeFileStatus(isSaved: boolean) {
     const files = JSON.parse(localStorage.getItem('files'));
+    const selectedFile = localStorage.getItem('selectedFile');
+    let uploadedReports = JSON.parse(localStorage.getItem('uploadedReports'));
+
     const updatedFiles = files.map(file => {
-      if (file.name === localStorage.getItem('selectedFile')) {
-        console.log('filename == selected', file.name);
+      if (file.name === selectedFile) {
         file.isSaved = isSaved;
       }
       return file;
     });
+
     localStorage.setItem('files', JSON.stringify(updatedFiles));
+    if (uploadedReports) {
+      if (!uploadedReports.includes(selectedFile)) {
+        uploadedReports.push(localStorage.getItem('selectedFile'));
+      }
+    } else {
+      uploadedReports = [localStorage.getItem('selectedFile')];
+    }
+    localStorage.setItem('uploadedReports', JSON.stringify(uploadedReports));
+    this.holderStorageService.updateLocalStorage.next([]);
   }
 
   getReportingDate() {
