@@ -49,6 +49,7 @@ export class SpecialPartComponent implements OnInit, OnChanges {
   formValueChanges() {
     this.getTotalHours();
     this.form.valueChanges.pipe(debounceTime(500)).subscribe(values => {
+      this.getTotalHours();
       const formValue = this.formService.getForm().getRawValue();
       const content = this.parseToXmlService.parseToXml(formValue);
       this.mainService.saveFile(path.join(localStorage.getItem('folderPath'), localStorage.getItem('selectedFile')), content);
