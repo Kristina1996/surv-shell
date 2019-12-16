@@ -19,9 +19,10 @@ import { IconButtonComponent } from './components/icon-button/icon-button.compon
 import { SettingsModalComponent } from './components/settings-modal/settings-modal.component';
 import { BaseModalComponent } from './components/base-modal/base-modal.component';
 import { InputAutocompleteComponent } from './components/report/input-autocomplete/input-autocomplete.component';
+import { ContextMenuComponent } from './components/files-menu/context-menu/context-menu.component';
 
 @NgModule({
-  declarations: [ FilterPipe, PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent, FormInputComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent, FilterPipe, InputAutocompleteComponent],
+  declarations: [ FilterPipe, PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent, FormInputComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent, FilterPipe, InputAutocompleteComponent, ContextMenuComponent],
   imports: [CommonModule, TranslateModule, BrowserModule, FormsModule, ReactiveFormsModule],
   exports: [ TranslateModule, WebviewDirective, ReportComponent, FilesMenuComponent, NewReportModalComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]

@@ -1,4 +1,14 @@
-import {Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectorRef} from '@angular/core';
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges,
+  SimpleChanges,
+  ChangeDetectorRef,
+  HostListener
+} from '@angular/core';
 import {HolderStorageService} from '../../../core/services/holder-storage-service';
 
 @Component({
@@ -13,9 +23,20 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   @Output() sendFileName = new EventEmitter<string>();
   @Output() openModal = new EventEmitter<boolean>();
   uploadedReports = [];
+  isShowContextMenu = false;
+  contextMenuPosition;
 
   constructor(private holderStorageService: HolderStorageService,
               private cdr: ChangeDetectorRef) {
+  }
+
+  /**
+   * Отслеживание события click левой кнопкой мыши, чтобы скрыть context menu
+   */
+  @HostListener('document:click', ['$event'])
+  public documentClick(event: Event): void {
+    this.isShowContextMenu = false;
+    this.contextMenuPosition = undefined;
   }
 
   ngOnInit() {
@@ -55,5 +76,9 @@ export class FilesMenuComponent implements OnInit, OnChanges {
     this.openModal.emit(true);
   }
 
+  showContextMenu(event, file) {
+    this.isShowContextMenu = true;
+    this.contextMenuPosition = { x: event.clientX, y: event.clientY };
+  }
 
 }

@@ -1,0 +1,8 @@
+<div class="wrapper">
+  <ul class="context-menu">
+    <li class="context-menu__item"
+        *ngFor="let item of items"
+        (click)="item.onClick()"
+    >{{item.title}}</li>
+  </ul>
+</div>
