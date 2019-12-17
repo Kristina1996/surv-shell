@@ -31,6 +31,7 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   isShowErrorReportModal = false;
   contextMenuPosition;
   contextMenuFile;
+  errors: any = {};
 
   constructor(private holderStorageService: HolderStorageService,
               private mainService: MainService,
@@ -100,10 +101,12 @@ export class FilesMenuComponent implements OnInit, OnChanges {
         if (content) {
           this.timeTrackerWebService.uploadReport(userInfo, content).subscribe(result => {
             if (!result.UploadManagerReportResult.ResultCode.includes('Success')) {
+              this.errors.uploadManagerReportResult = result;
               this.toogleErrorReportModal(true);
             }
             console.log(result);
           }, error => {
+            this.errors.error = error;
             this.toogleErrorReportModal(true);
           });
         }

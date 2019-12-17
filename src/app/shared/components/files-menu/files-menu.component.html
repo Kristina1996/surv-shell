@@ -25,6 +25,8 @@
     </ul>
   </nav>
   <ng-container *ngIf="isShowErrorReportModal">
-    <app-error-report-modal (closeModal)="toogleErrorReportModal($event)"></app-error-report-modal>
+    <app-error-report-modal (closeModal)="toogleErrorReportModal($event)"
+                            [errors]="errors">
+    </app-error-report-modal>
   </ng-container>
 </section>

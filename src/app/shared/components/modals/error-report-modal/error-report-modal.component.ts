@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-error-report-modal',
@@ -7,6 +7,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class ErrorReportModalComponent implements OnInit {
 
+  @Input() errors;
   @Output() closeModal = new EventEmitter<boolean>();
   config = {
     title: 'Загрузка отчёта',
@@ -22,7 +23,9 @@ export class ErrorReportModalComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() {
+
+  }
 
   onClickClose() {
     this.closeModal.emit(false);

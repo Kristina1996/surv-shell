@@ -1,5 +1,9 @@
 <app-base-modal [config]="config" (closeModal)="onClickClose()">
   <div class="content">
-    страница ошибок при загрузке отчёта
+    ResultCode: {{errors.uploadManagerReportResult.UploadManagerReportResult.ResultCode}}
+    Message: {{errors.uploadManagerReportResult.UploadManagerReportResult.Message}}
+    <div *ngFor="let error of errors.uploadManagerReportResult.UploadManagerReportResult.TasksListing.ErrorsForLine.ArrayOfString">
+      {{error.string}}
+    </div>
   </div>
 </app-base-modal>
