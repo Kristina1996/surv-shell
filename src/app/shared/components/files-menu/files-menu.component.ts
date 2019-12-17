@@ -28,6 +28,7 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   @Output() openModal = new EventEmitter<boolean>();
   uploadedReports = [];
   isShowContextMenu = false;
+  isShowErrorReportModal = false;
   contextMenuPosition;
   contextMenuFile;
 
@@ -98,7 +99,12 @@ export class FilesMenuComponent implements OnInit, OnChanges {
       this.mainService.getXmlFileContent(filePath).then(content => {
         if (content) {
           this.timeTrackerWebService.uploadReport(userInfo, content).subscribe(result => {
+            if (!result.UploadManagerReportResult.ResultCode.includes('Success')) {
+              this.toogleErrorReportModal(true);
+            }
             console.log(result);
+          }, error => {
+            this.toogleErrorReportModal(true);
           });
         }
       });
@@ -131,6 +137,11 @@ export class FilesMenuComponent implements OnInit, OnChanges {
     this.isShowContextMenu = false;
     this.contextMenuFile = undefined;
     this.contextMenuPosition = undefined;
+  }
+
+  toogleErrorReportModal(show: boolean) {
+    this.isShowErrorReportModal = show;
+    this.cdr.detectChanges();
   }
 
 }

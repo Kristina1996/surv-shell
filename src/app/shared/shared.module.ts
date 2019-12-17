@@ -20,9 +20,10 @@ import { SettingsModalComponent } from './components/settings-modal/settings-mod
 import { BaseModalComponent } from './components/base-modal/base-modal.component';
 import { InputAutocompleteComponent } from './components/report/input-autocomplete/input-autocomplete.component';
 import { ContextMenuComponent } from './components/files-menu/context-menu/context-menu.component';
+import { ErrorReportModalComponent } from './components/modals/error-report-modal/error-report-modal.component';
 
 @NgModule({
-  declarations: [ FilterPipe, PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent, FormInputComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent, FilterPipe, InputAutocompleteComponent, ContextMenuComponent],
+  declarations: [ FilterPipe, PageNotFoundComponent, WebviewDirective, ReportComponent, FilesMenuComponent, CommonPartComponent, SpecialPartComponent, NewReportModalComponent, FormInputComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent, FilterPipe, InputAutocompleteComponent, ContextMenuComponent, ErrorReportModalComponent],
   imports: [CommonModule, TranslateModule, BrowserModule, FormsModule, ReactiveFormsModule],
   exports: [ TranslateModule, WebviewDirective, ReportComponent, FilesMenuComponent, NewReportModalComponent, IconButtonComponent, SettingsModalComponent, BaseModalComponent],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
