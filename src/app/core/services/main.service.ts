@@ -74,4 +74,12 @@ export class MainService {
       });
     });
   }
+
+  deleteFile(filePath) {
+    return new Promise((resolve, reject) => {
+      this.electronService.fs.unlink(filePath, (err) => {
+        err ? reject(err) : resolve(filePath);
+      });
+    });
+  }
 }

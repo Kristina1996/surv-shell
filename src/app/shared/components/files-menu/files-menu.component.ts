@@ -10,6 +10,8 @@ import {
   HostListener
 } from '@angular/core';
 import {HolderStorageService} from '../../../core/services/holder-storage-service';
+import {MainService} from '../../../core/services/main.service';
+import * as path from 'path';
 
 @Component({
   selector: 'app-files-menu',
@@ -25,8 +27,10 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   uploadedReports = [];
   isShowContextMenu = false;
   contextMenuPosition;
+  contextMenuFile;
 
   constructor(private holderStorageService: HolderStorageService,
+              private mainService: MainService,
               private cdr: ChangeDetectorRef) {
   }
 
@@ -35,8 +39,7 @@ export class FilesMenuComponent implements OnInit, OnChanges {
    */
   @HostListener('document:click', ['$event'])
   public documentClick(event: Event): void {
-    this.isShowContextMenu = false;
-    this.contextMenuPosition = undefined;
+    this.clearContext();
   }
 
   ngOnInit() {
@@ -77,8 +80,41 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   }
 
   showContextMenu(event, file) {
+    this.contextMenuFile = file;
     this.isShowContextMenu = true;
     this.contextMenuPosition = { x: event.clientX, y: event.clientY };
+  }
+
+  onClickUploadReport() {
+
+  }
+
+  onClickMarkAsUploaded() {
+    const fileContext = this.contextMenuFile;
+    const uploadedReports = JSON.parse(localStorage.getItem('uploadedReports'));
+    if (uploadedReports) {
+      uploadedReports.push(fileContext);
+      this.uploadedReports = uploadedReports;
+    } else {
+      this.uploadedReports = [fileContext];
+    }
+    localStorage.setItem('uploadedReports', JSON.stringify(this.uploadedReports));
+  }
+
+  onClickDeleteReport(event) {
+    const fileContext = this.contextMenuFile;
+    const filePath = path.join(localStorage.getItem('folderPath'), fileContext)
+    this.mainService.deleteFile(filePath).then(result => {
+      const files = JSON.parse(localStorage.getItem('files'));
+      this.files = files.filter(file => file !== fileContext);
+      localStorage.setItem('files', JSON.stringify(this.files));
+    });
+  }
+
+  clearContext() {
+    this.isShowContextMenu = false;
+    this.contextMenuFile = undefined;
+    this.contextMenuPosition = undefined;
   }
 
 }

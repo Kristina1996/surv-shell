@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-context-menu',
@@ -8,20 +8,30 @@ import {Component, Input, OnInit} from '@angular/core';
 export class ContextMenuComponent implements OnInit {
 
   @Input() contextMenuPosition;
+  @Output() clickUploadReport = new EventEmitter<string>();
+  @Output() clickMarkAsUploaded = new EventEmitter<string>();
+  @Output() clickDeleteReport = new EventEmitter<string>();
+
   items = [
-    { title: 'Загрузить отчёт в СУРВ', onClick: this.uploadReport },
-    { title: 'Пометить отчёт как загруженный', onClick: this.markAsUploaded },
-    { title: 'Удалить отчёт с диска', onClick:  this.deleteReport }
+    { title: 'Загрузить отчёт в СУРВ', onClick: this.uploadReport.bind(this) },
+    { title: 'Пометить отчёт как загруженный', onClick: this.markAsUploaded.bind(this) },
+    { title: 'Удалить отчёт с диска', onClick:  this.deleteReport.bind(this) }
   ];
 
   constructor() { }
 
   ngOnInit() {}
 
-  uploadReport() {}
+  uploadReport() {
+    this.clickUploadReport.emit('');
+  }
 
-  markAsUploaded() {}
+  markAsUploaded() {
+    this.clickMarkAsUploaded.emit('');
+  }
 
-  deleteReport() {}
+  deleteReport() {
+    this.clickDeleteReport.emit('');
+  }
 
 }

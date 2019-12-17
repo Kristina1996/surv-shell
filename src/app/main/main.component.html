@@ -15,7 +15,11 @@
 
   <div class="content">
     <div class="content__sidebar">
-      <app-files-menu *ngIf="showFilesMenuComponent" [selectedFile]="selectedFileName" [files]="files" (sendFileName)="onSendFileName($event)" (openModal)="onShowModalNewReport($event)"></app-files-menu>
+      <app-files-menu *ngIf="showFilesMenuComponent"
+                      [selectedFile]="selectedFileName"
+                      [files]="files"
+                      (sendFileName)="onSendFileName($event)"
+                      (openModal)="onShowModalNewReport($event)"></app-files-menu>
     </div>
     <main class="content__report">
       <app-report *ngIf="showReportComponent; else elseBlock" [filePath]="selectedFile"></app-report>

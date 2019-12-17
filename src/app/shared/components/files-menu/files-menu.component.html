@@ -17,7 +17,10 @@
       <ng-container *ngIf="isShowContextMenu">
         <app-context-menu [ngStyle]="{'left.px': contextMenuPosition.x, 'top.px': contextMenuPosition.y}"
                           [contextMenuPosition]="contextMenuPosition"
-        ></app-context-menu>
+                          (clickUploadReport)="onClickUploadReport()"
+                          (clickMarkAsUploaded)="onClickMarkAsUploaded()"
+                          (clickDeleteReport)="onClickDeleteReport($event)">
+        </app-context-menu>
       </ng-container>
     </ul>
   </nav>
