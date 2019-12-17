@@ -80,6 +80,10 @@ export class NewReportModalComponent implements OnInit {
 
   isExistLastReport(isOverwrite) {
     const currentIndex = this.filesList.findIndex(element => element.fileName === this.fileName);
+    if (currentIndex === 0) {
+      const emptyReportModel = getFirstReport();
+      return this.saveReport(emptyReportModel, isOverwrite);
+    }
     const lastReportName = this.filesList[currentIndex - 1].fileName;
     this.mainService.isExistReport(path.join(this.folderPath, lastReportName)).then(result => {
       this.getDataFromLastReport(lastReportName, isOverwrite);
