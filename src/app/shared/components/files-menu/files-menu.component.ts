@@ -12,6 +12,8 @@ import {
 import {HolderStorageService} from '../../../core/services/holder-storage-service';
 import {MainService} from '../../../core/services/main.service';
 import * as path from 'path';
+import {PasswordEncoderService} from '../../../core/services/password-encoder.service';
+import {TimeTrackerWebService} from '../../../core/services/time-tracker-web.service';
 
 @Component({
   selector: 'app-files-menu',
@@ -31,6 +33,8 @@ export class FilesMenuComponent implements OnInit, OnChanges {
 
   constructor(private holderStorageService: HolderStorageService,
               private mainService: MainService,
+              private passwordEncoderService: PasswordEncoderService,
+              private timeTrackerWebService: TimeTrackerWebService,
               private cdr: ChangeDetectorRef) {
   }
 
@@ -86,7 +90,19 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   }
 
   onClickUploadReport() {
+    const userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    userInfo.password = this.passwordEncoderService.decryptPassword(userInfo.password);
 
+    const fileContext = this.contextMenuFile;
+    const filePath = path.join(localStorage.getItem('folderPath'), fileContext)
+
+    this.mainService.getXmlFileContent(filePath).then(content => {
+      if (content) {
+        this.timeTrackerWebService.uploadReport(userInfo, content).subscribe(result => {
+          console.log(result);
+        });
+      }
+    });
   }
 
   onClickMarkAsUploaded() {
@@ -103,7 +119,7 @@ export class FilesMenuComponent implements OnInit, OnChanges {
 
   onClickDeleteReport(event) {
     const fileContext = this.contextMenuFile;
-    const filePath = path.join(localStorage.getItem('folderPath'), fileContext)
+    const filePath = path.join(localStorage.getItem('folderPath'), fileContext);
     this.mainService.deleteFile(filePath).then(result => {
       const files = JSON.parse(localStorage.getItem('files'));
       this.files = files.filter(file => file !== fileContext);
