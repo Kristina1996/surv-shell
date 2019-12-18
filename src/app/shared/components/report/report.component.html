@@ -14,3 +14,8 @@
     </section>
   </ng-container>
 </div>
+<ng-container *ngIf="isShowErrorReportModal">
+  <app-error-report-modal (closeModal)="toogleErrorReportModal($event)"
+                          [integrationResult]="integrationResult">
+  </app-error-report-modal>
+</ng-container>

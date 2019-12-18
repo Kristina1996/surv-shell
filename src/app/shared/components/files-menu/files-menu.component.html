@@ -26,7 +26,7 @@
   </nav>
   <ng-container *ngIf="isShowErrorReportModal">
     <app-error-report-modal (closeModal)="toogleErrorReportModal($event)"
-                            [errors]="errors">
+                            [integrationResult]="integrationResult">
     </app-error-report-modal>
   </ng-container>
 </section>

@@ -2,8 +2,8 @@ import {ChangeDetectorRef, Component, EventEmitter, OnInit, Output} from '@angul
 import { TimeTrackerWebService } from '../../../core/services/time-tracker-web.service';
 import { PasswordEncoderService } from '../../../core/services/password-encoder.service';
 import { AdapterService } from '../../../core/services/adapter.service';
-import {Observable} from 'rxjs';
 import * as moment from 'moment';
+import { IntegrationResultModel } from '../../../core/models/report.model';
 
 const CLIENT_TIME_FORMAT = 'HH:mm:ss';
 
@@ -32,6 +32,8 @@ export class SettingsModalComponent implements OnInit {
   };
   selectedItem;
   integrationLog: string[] = [];
+  integrationResult: IntegrationResultModel|boolean;
+  isShowErrorReportModal = false;
 
   constructor(private timeTrackerWebService: TimeTrackerWebService,
               private passwordEncoderService: PasswordEncoderService,
@@ -63,8 +65,6 @@ export class SettingsModalComponent implements OnInit {
     this.timeTrackerWebService.getProjectsAndUsers({...userInfo}).subscribe(([projects, users]) => {
       const successMsg = moment().format(CLIENT_TIME_FORMAT) + ' Успешно';
       this.integrationLog.push(successMsg);
-
-      console.log(successMsg);
       userInfo.password = this.passwordEncoderService.encryptPassword(this.password);
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
       localStorage.setItem('users', JSON.stringify(this.adapterService.getUsersXmlModel(users)));
@@ -73,8 +73,15 @@ export class SettingsModalComponent implements OnInit {
     }, error => {
       const errMsg = moment().format(CLIENT_TIME_FORMAT) + ' Ошибка (см. лог)';
       this.integrationLog.push(errMsg);
+      this.integrationResult = this.adapterService.getIntegrationResultModel(error);
+      this.toogleErrorReportModal(true);
       this.cdr.detectChanges();
     });
+  }
+
+  toogleErrorReportModal(show: boolean) {
+    this.isShowErrorReportModal = show;
+    this.cdr.detectChanges();
   }
 
   clickClose() {

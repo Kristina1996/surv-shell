@@ -1,9 +1,19 @@
 <app-base-modal [config]="config" (closeModal)="onClickClose()">
-  <div class="content">
-    ResultCode: {{errors.uploadManagerReportResult.UploadManagerReportResult.ResultCode}}
-    Message: {{errors.uploadManagerReportResult.UploadManagerReportResult.Message}}
-    <div *ngFor="let error of errors.uploadManagerReportResult.UploadManagerReportResult.TasksListing.ErrorsForLine.ArrayOfString">
-      {{error.string}}
+  <div *ngIf="integrationResult.successUpload; else errors">Отчёт успешно загрёжен в СУРВ</div>
+  <ng-template #errors>
+    <div *ngIf="integrationResult.uploadManagerReportResult">
+      Не удалось загрузить отчёт:
+      <span *ngIf="integrationResult.uploadManagerReportResult.message !== '<NULL>'">
+        {{integrationResult.uploadManagerReportResult.message}}
+      </span>
+      <ul *ngFor="let error of integrationResult.uploadManagerReportResult.errors">
+        <li>{{error}}</li>
+      </ul>
     </div>
-  </div>
+    <div *ngIf="integrationResult.serverError">
+      {{integrationResult.serverError}}
+    </div>
+  </ng-template>
+
+
 </app-base-modal>

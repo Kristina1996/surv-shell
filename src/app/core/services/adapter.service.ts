@@ -6,6 +6,7 @@ import { EmployeeModel } from '../../core/models/report.model';
 import { TaskModel } from '../../core/models/report.model';
 import { ProjectXml } from '../../core/models/report.model';
 import { UserXml } from '../../core/models/report.model';
+import { IntegrationResultModel } from '../../core/models/report.model';
 
 import { SpecialItemModel } from '../../core/models/specialItem.model';
 import { SpecialTaskModel } from '../../core/models/specialItem.model';
@@ -16,6 +17,35 @@ import { SpecialTaskModel } from '../../core/models/specialItem.model';
 export class AdapterService {
 
   constructor() { }
+
+  getIntegrationResultModel(result): IntegrationResultModel|boolean {
+    console.log('AdapterService. result arg: ', result);
+    if (result) {
+      const integrationResult = new IntegrationResultModel();
+      if (result.UploadManagerReportResult) {
+        integrationResult.uploadManagerReportResult = {
+          message: result.UploadManagerReportResult.Message,
+          resultCode: result.UploadManagerReportResult.ResultCode,
+          errors: []
+        };
+        (integrationResult.uploadManagerReportResult.resultCode === 'Success')
+          ? integrationResult.successUpload = true
+          : integrationResult.successUpload = false
+        result.UploadManagerReportResult.TimeSheetsListing.ErrorsForLine.ArrayOfString.forEach(error => {
+          error.string.forEach(string => {
+            integrationResult.uploadManagerReportResult.errors.push(string);
+          });
+        });
+        console.log(integrationResult);
+        return integrationResult;
+      } else if (result.response) {
+        integrationResult.serverError = result.body;
+      }
+      return integrationResult;
+    } else {
+      return false;
+    }
+  }
 
   getProjectsXmlModel(projects): ProjectXml[] {
     const projectsXml: ProjectXml[] = [];

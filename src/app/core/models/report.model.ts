@@ -1,5 +1,16 @@
 import { SpecialItemModel } from './specialItem.model';
 
+export class IntegrationResultModel {
+  successUpload: boolean;
+  uploadManagerReportResult: {
+    message: string;
+    resultCode: string;
+    errors: string[];
+  };
+  serverError: any;
+  wasRemoved: boolean;
+}
+
 export class ProjectXml {
   id: number;
   name: string;

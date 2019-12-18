@@ -9,11 +9,13 @@ import {
   ChangeDetectorRef,
   HostListener
 } from '@angular/core';
-import {HolderStorageService} from '../../../core/services/holder-storage-service';
-import {MainService} from '../../../core/services/main.service';
+import { HolderStorageService } from '../../../core/services/holder-storage-service';
+import { MainService } from '../../../core/services/main.service';
 import * as path from 'path';
-import {PasswordEncoderService} from '../../../core/services/password-encoder.service';
-import {TimeTrackerWebService} from '../../../core/services/time-tracker-web.service';
+import { PasswordEncoderService } from '../../../core/services/password-encoder.service';
+import { TimeTrackerWebService } from '../../../core/services/time-tracker-web.service';
+import { IntegrationResultModel } from '../../../core/models/report.model';
+import {AdapterService} from '../../../core/services/adapter.service';
 
 @Component({
   selector: 'app-files-menu',
@@ -31,10 +33,11 @@ export class FilesMenuComponent implements OnInit, OnChanges {
   isShowErrorReportModal = false;
   contextMenuPosition;
   contextMenuFile;
-  errors: any = {};
+  integrationResult: IntegrationResultModel|boolean;
 
   constructor(private holderStorageService: HolderStorageService,
               private mainService: MainService,
+              private adapterService: AdapterService,
               private passwordEncoderService: PasswordEncoderService,
               private timeTrackerWebService: TimeTrackerWebService,
               private cdr: ChangeDetectorRef) {
@@ -100,13 +103,10 @@ export class FilesMenuComponent implements OnInit, OnChanges {
       this.mainService.getXmlFileContent(filePath).then(content => {
         if (content) {
           this.timeTrackerWebService.uploadReport(userInfo, content).subscribe(result => {
-            if (!result.UploadManagerReportResult.ResultCode.includes('Success')) {
-              this.errors.uploadManagerReportResult = result;
-              this.toogleErrorReportModal(true);
-            }
-            console.log(result);
+            this.integrationResult = this.adapterService.getIntegrationResultModel(result);
+            this.toogleErrorReportModal(true);
           }, error => {
-            this.errors.error = error;
+            this.integrationResult = this.adapterService.getIntegrationResultModel(error);
             this.toogleErrorReportModal(true);
           });
         }

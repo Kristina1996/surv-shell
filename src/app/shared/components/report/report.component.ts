@@ -1,14 +1,14 @@
-import {Component, OnInit, OnChanges, SimpleChanges, Input, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnChanges, SimpleChanges, Input, OnDestroy, ChangeDetectorRef} from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ReportModel } from '../../../core/models/report.model';
+import { IntegrationResultModel, ReportModel } from '../../../core/models/report.model';
 
 import { MainService } from '../../../core/services/main.service';
 import { AdapterService } from '../../../core/services/adapter.service';
 import { FormServiceService } from '../../../core/services/form-service.service';
 import { TimeTrackerWebService } from '../../../core/services/time-tracker-web.service';
-import {ParseToXmlService} from '../../../core/services/parse-to-xml.service';
-import {PasswordEncoderService} from '../../../core/services/password-encoder.service';
+import { ParseToXmlService } from '../../../core/services/parse-to-xml.service';
+import { PasswordEncoderService } from '../../../core/services/password-encoder.service';
 
 @Component({
   selector: 'app-report',
@@ -21,17 +21,19 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
   @Input() filePath: string;
   report: ReportModel;
   subscription: Subscription;
-  projectsFromService;
   commonTotalHours = 0;
   specialTotalHours = 0;
   totalHours = 0;
+  integrationResult: IntegrationResultModel|boolean;
+  isShowErrorReportModal = false;
 
   constructor(private mainService: MainService,
               private timeTrackerWebService: TimeTrackerWebService,
               private parseToXmlService: ParseToXmlService,
               private formService: FormServiceService,
               private passwordEncoderService: PasswordEncoderService,
-              private adapterService: AdapterService) {
+              private adapterService: AdapterService,
+              private cdr: ChangeDetectorRef) {
     this.subscription = this.mainService.data.subscribe(val => {
       if (val === 1) { this.getReportContent(); }
     });
@@ -71,11 +73,21 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
       this.mainService.getXmlFileContent(this.filePath).then(content => {
         if (content) {
           this.timeTrackerWebService.uploadReport(userInfo, content).subscribe(result => {
+            this.integrationResult = this.adapterService.getIntegrationResultModel(result);
+            this.toogleErrorReportModal(true);
             console.log(result);
+          }, error => {
+            this.integrationResult = this.adapterService.getIntegrationResultModel(error);
+            this.toogleErrorReportModal(true);
           });
         }
       });
     }
+  }
+
+  toogleErrorReportModal(show: boolean) {
+    this.isShowErrorReportModal = show;
+    this.cdr.detectChanges();
   }
 
   ngOnDestroy() {
