@@ -72,6 +72,11 @@ export class InputAutocompleteComponent implements OnInit {
 
   getUsers() {
     const users = JSON.parse(localStorage.getItem('users'));
-    if (users) { this.users = users; }
+    if (users) {
+      this.users = [];
+      users.forEach(user => {
+        if (!user.fullName.includes('увол')) { this.users.push(user); }
+      });
+    }
   }
 }
