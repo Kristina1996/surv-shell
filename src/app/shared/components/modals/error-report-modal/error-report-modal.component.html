@@ -1,19 +1,22 @@
 <app-base-modal [config]="config" (closeModal)="onClickClose()">
-  <div *ngIf="integrationResult.successUpload; else errors">Отчёт успешно загрёжен в СУРВ</div>
-  <ng-template #errors>
-    <div *ngIf="integrationResult.uploadManagerReportResult">
-      Не удалось загрузить отчёт:
-      <span *ngIf="integrationResult.uploadManagerReportResult.message !== '<NULL>'">
-        {{integrationResult.uploadManagerReportResult.message}}
-      </span>
-      <ul *ngFor="let error of integrationResult.uploadManagerReportResult.errors">
-        <li>{{error}}</li>
-      </ul>
+  <div class="content">
+    <div *ngIf="integrationResult.wasRemoved">
+      Отчёт был удалён и повторно загружен в СУРВ
     </div>
-    <div *ngIf="integrationResult.serverError">
-      {{integrationResult.serverError}}
-    </div>
-  </ng-template>
-
-
+    <div *ngIf="integrationResult.successUpload; else errors">Отчёт успешно загружен в СУРВ</div>
+    <ng-template #errors>
+      <div *ngIf="integrationResult.uploadManagerReportResult">
+        Не удалось загрузить отчёт:
+        <span *ngIf="integrationResult.uploadManagerReportResult.message !== '<NULL>'">
+          {{integrationResult.uploadManagerReportResult.message}}
+        </span>
+        <ul *ngFor="let error of integrationResult.uploadManagerReportResult.errors">
+          <li>{{error}}</li>
+        </ul>
+      </div>
+      <div *ngIf="integrationResult.serverError">
+        {{integrationResult.serverError}}
+      </div>
+    </ng-template>
+  </div>
 </app-base-modal>

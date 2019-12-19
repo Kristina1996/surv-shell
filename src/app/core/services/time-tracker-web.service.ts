@@ -100,6 +100,7 @@ export class TimeTrackerWebService {
           this.changeFileStatus(false);
           observer.next(response);
           observer.complete();
+          localStorage.setItem('reportWasRemoved', 'true');
         }
       });
     });

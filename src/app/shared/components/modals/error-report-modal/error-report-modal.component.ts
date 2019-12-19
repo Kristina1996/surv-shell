@@ -25,7 +25,9 @@ export class ErrorReportModalComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.integrationResult);
+    if (this.integrationResult.wasRemoved) {
+      setTimeout(() => { localStorage.removeItem('reportWasRemoved'); }, 1000);
+    }
   }
 
   onClickClose() {

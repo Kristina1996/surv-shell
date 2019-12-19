@@ -19,7 +19,6 @@ export class AdapterService {
   constructor() { }
 
   getIntegrationResultModel(result): IntegrationResultModel|boolean {
-    console.log('AdapterService. result arg: ', result);
     if (result) {
       const integrationResult = new IntegrationResultModel();
       if (result.UploadManagerReportResult) {
@@ -28,15 +27,17 @@ export class AdapterService {
           resultCode: result.UploadManagerReportResult.ResultCode,
           errors: []
         };
-        (integrationResult.uploadManagerReportResult.resultCode === 'Success')
-          ? integrationResult.successUpload = true
-          : integrationResult.successUpload = false
-        result.UploadManagerReportResult.TimeSheetsListing.ErrorsForLine.ArrayOfString.forEach(error => {
-          error.string.forEach(string => {
-            integrationResult.uploadManagerReportResult.errors.push(string);
+        if (integrationResult.uploadManagerReportResult.resultCode === 'Success') {
+          integrationResult.successUpload = true;
+          if (localStorage.getItem('reportWasRemoved') === 'true') { integrationResult.wasRemoved = true; }
+        } else {
+          integrationResult.successUpload = false;
+          result.UploadManagerReportResult.TimeSheetsListing.ErrorsForLine.ArrayOfString.forEach(error => {
+            error.string.forEach(string => {
+              integrationResult.uploadManagerReportResult.errors.push(string);
+            });
           });
-        });
-        console.log(integrationResult);
+        }
         return integrationResult;
       } else if (result.response) {
         integrationResult.serverError = result.body;
