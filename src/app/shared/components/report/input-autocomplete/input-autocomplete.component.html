@@ -1,17 +1,14 @@
 <ng-container *ngIf="!isInputAutocomplete">
   <input placeholder="{{placeHolder}}"
          type="{{type}}"
-         [formControl]="control"
-         (input)="changeInput(control.value)">
+         [formControl]="control">
 </ng-container>
 <ng-container *ngIf="isInputAutocomplete">
   <input placeholder="{{placeHolder}}"
          type="{{type}}"
          [formControl]="control"
          (blur)="toogleSearchBox(false)"
-         (focus)="toogleSearchBox(true)"
-         (input)="changeInput(control.value)">
-
+         (focus)="toogleSearchBox(true)">
   <ng-container *ngIf="autoCompleteType === 'projects'">
     <ul class="autocomplete" *ngIf="isShowSearchBox && projects">
       <li *ngFor="let project of projects | filter : control.value" (click)="chooseItem(project.name)">

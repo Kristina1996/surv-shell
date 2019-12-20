@@ -1,5 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {DataStorageService} from '../../../../core/services/data-storage.service';
 
 @Component({
   selector: 'app-input-autocomplete',
@@ -13,13 +14,13 @@ export class InputAutocompleteComponent implements OnInit {
   @Input() type = 'text';
   @Input() isInputAutocomplete = false;
   @Input() autoCompleteType: string;
-  @Output() change = new EventEmitter<string>();
 
   users;
   projects;
   isShowSearchBox = false;
 
-  constructor() { }
+  constructor(private dataStorageService: DataStorageService,
+              private cdr: ChangeDetectorRef) { }
 
   ngOnInit() {
     if (this.autoCompleteType === 'projects') {
@@ -27,10 +28,6 @@ export class InputAutocompleteComponent implements OnInit {
     } else if (this.autoCompleteType === 'users') {
       this.getUsers();
     }
-  }
-
-  changeInput(value) {
-    this.change.emit(value);
   }
 
   toogleSearchBox(show) {
@@ -65,18 +62,16 @@ export class InputAutocompleteComponent implements OnInit {
   }
 
   getProjects() {
-    // FIXME Вынести в сервис получение данных
-    const projects = JSON.parse(localStorage.getItem('projects'));
-    if (projects) { this.projects = projects; }
+    this.dataStorageService.getProjects().subscribe(projects => this.projects = projects);
   }
 
   getUsers() {
-    const users = JSON.parse(localStorage.getItem('users'));
-    if (users) {
+    this.dataStorageService.getUsers().subscribe(users => {
       this.users = [];
       users.forEach(user => {
         if (!user.fullName.includes('увол')) { this.users.push(user); }
       });
-    }
+      this.cdr.detectChanges();
+    });
   }
 }

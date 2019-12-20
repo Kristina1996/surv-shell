@@ -1,9 +1,10 @@
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import * as path from 'path';
 import { MainService } from '../core/services/main.service';
 import { TimeTrackerWebService } from '../core/services/time-tracker-web.service';
 import {PasswordEncoderService} from '../core/services/password-encoder.service';
 import { AdapterService } from '../core/services/adapter.service';
+import {DataStorageService} from '../core/services/data-storage.service';
 
 const electron = require('electron');
 
@@ -28,6 +29,7 @@ export class MainComponent implements OnInit {
   constructor(private mainService: MainService,
               private timeTrackerWebService: TimeTrackerWebService,
               private passwordEncoderService: PasswordEncoderService,
+              private dataStorageService: DataStorageService,
               private adapterService: AdapterService) { }
 
   ngOnInit() {
@@ -63,11 +65,9 @@ export class MainComponent implements OnInit {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     const password = this.passwordEncoderService.decryptPassword(userInfo.password);
     userInfo.password = password;
-
-    this.timeTrackerWebService.getProjectsAndUsers({...userInfo}).subscribe(([projects, users]) => {
-      localStorage.setItem('users', JSON.stringify(this.adapterService.getUsersXmlModel(users)));
-      localStorage.setItem('projects', JSON.stringify(this.adapterService.getProjectsXmlModel(projects)));
-    });
+    (localStorage.getItem('users') && localStorage.getItem('projects'))
+    ? this.dataStorageService.updateDataFromLocalStorage()
+    : this.dataStorageService.getDataFromService({...userInfo});
   }
 
   openDialog() {

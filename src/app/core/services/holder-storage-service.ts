@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,6 +7,5 @@ import { BehaviorSubject } from 'rxjs';
 export class HolderStorageService {
 
   public updateLocalStorage = new BehaviorSubject([]);
-
-  constructor() { }
+  constructor() {}
 }

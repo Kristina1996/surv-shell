@@ -58,9 +58,7 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
 
   getReportContent() {
     this.mainService.getFileContent(this.filePath).then(result => {
-      if (result) {
-        this.report = this.adapterService.getModel(result);
-      } else { this.report = new ReportModel(); }
+      (result) ? this.report = this.adapterService.getModel(result) : this.report = new ReportModel();
     }, error => {
       alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.\n\n' + error);
     });
@@ -75,7 +73,6 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
           this.timeTrackerWebService.uploadReport(userInfo, content).subscribe(result => {
             this.integrationResult = this.adapterService.getIntegrationResultModel(result);
             this.toogleErrorReportModal(true);
-            console.log(result);
           }, error => {
             this.integrationResult = this.adapterService.getIntegrationResultModel(error);
             this.toogleErrorReportModal(true);

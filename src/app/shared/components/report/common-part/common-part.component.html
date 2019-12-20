@@ -4,8 +4,7 @@
       [placeHolder]="'Название проекта'"
       [control]="project.get('name')"
       [isInputAutocomplete]="true"
-      [autoCompleteType]="'projects'"
-      (change)="onProjectInputChange($event)">
+      [autoCompleteType]="'projects'">
     </app-input-autocomplete>
     <app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'person_add'" [title]="'Добавить сотрудника'" (click)="addEmployee(project)" class="btn-icon"></app-icon-button>
     <app-icon-button [color]="'dark'" [size]="'size-small'" [iconType]="'delete'" [title]="'Удалить проект'" (click)="deleteProject(i)" class="btn-icon"></app-icon-button>

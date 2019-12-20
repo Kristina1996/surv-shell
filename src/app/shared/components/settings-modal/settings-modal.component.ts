@@ -4,6 +4,7 @@ import { PasswordEncoderService } from '../../../core/services/password-encoder.
 import { AdapterService } from '../../../core/services/adapter.service';
 import * as moment from 'moment';
 import { IntegrationResultModel } from '../../../core/models/report.model';
+import {DataStorageService} from '../../../core/services/data-storage.service';
 
 const CLIENT_TIME_FORMAT = 'HH:mm:ss';
 
@@ -37,6 +38,7 @@ export class SettingsModalComponent implements OnInit {
 
   constructor(private timeTrackerWebService: TimeTrackerWebService,
               private passwordEncoderService: PasswordEncoderService,
+              private dataStorageService: DataStorageService,
               private cdr: ChangeDetectorRef,
               private adapterService: AdapterService) {}
 
@@ -61,14 +63,11 @@ export class SettingsModalComponent implements OnInit {
 
   integrate() {
     const userInfo = { username: this.username, password: this.password, domain: this.domain, host: this.host };
-
-    this.timeTrackerWebService.getProjectsAndUsers({...userInfo}).subscribe(([projects, users]) => {
+    this.dataStorageService.getDataFromService({...userInfo}).subscribe(result => {
       const successMsg = moment().format(CLIENT_TIME_FORMAT) + ' Успешно';
       this.integrationLog.push(successMsg);
       userInfo.password = this.passwordEncoderService.encryptPassword(this.password);
       localStorage.setItem('userInfo', JSON.stringify(userInfo));
-      localStorage.setItem('users', JSON.stringify(this.adapterService.getUsersXmlModel(users)));
-      localStorage.setItem('projects', JSON.stringify(this.adapterService.getProjectsXmlModel(projects)));
       this.cdr.detectChanges();
     }, error => {
       const errMsg = moment().format(CLIENT_TIME_FORMAT) + ' Ошибка (см. лог)';
