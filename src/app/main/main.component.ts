@@ -3,7 +3,6 @@ import * as path from 'path';
 import { MainService } from '../core/services/main.service';
 import { TimeTrackerWebService } from '../core/services/time-tracker-web.service';
 import {PasswordEncoderService} from '../core/services/password-encoder.service';
-import { AdapterService } from '../core/services/adapter.service';
 import {DataStorageService} from '../core/services/data-storage.service';
 
 const electron = require('electron');
@@ -29,8 +28,7 @@ export class MainComponent implements OnInit {
   constructor(private mainService: MainService,
               private timeTrackerWebService: TimeTrackerWebService,
               private passwordEncoderService: PasswordEncoderService,
-              private dataStorageService: DataStorageService,
-              private adapterService: AdapterService) { }
+              private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
     this.getDataFromLocalStorage();

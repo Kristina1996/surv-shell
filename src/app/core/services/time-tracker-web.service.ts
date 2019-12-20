@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ElectronService } from './electron/electron.service';
-import {forkJoin, Observable, of, Subject} from 'rxjs';
+import {forkJoin, Observable, of} from 'rxjs';
 import {mergeMap} from 'rxjs/operators';
 import * as moment from 'moment';
 import {HolderStorageService} from './holder-storage-service';
