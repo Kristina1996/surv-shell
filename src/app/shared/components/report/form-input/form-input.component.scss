@@ -9,6 +9,10 @@ input {
   padding: $half-gutter;
   font-family: "Noto Sans", sans-serif !important;
   color: #555;
+
+  &:hover {
+    box-shadow: 0 0 10px #cccaca;
+  }
 }
 
 input:focus {

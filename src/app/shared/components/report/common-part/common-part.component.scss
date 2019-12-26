@@ -35,7 +35,11 @@ app-icon-button {
     display: grid;
     grid-template-columns: 1fr 30px 60px;
 
-    .btn-icon{
+    app-input-autocomplete:hover {
+      z-index: 1;
+    }
+
+    .btn-icon {
       align-self: center;
       justify-self: center;
     }
