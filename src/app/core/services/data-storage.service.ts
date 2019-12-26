@@ -31,8 +31,8 @@ export class DataStorageService {
   updateDataFromLocalStorage() {
     const users = JSON.parse(localStorage.getItem('users'));
     const projects = JSON.parse(localStorage.getItem('projects'));
-    this.projects.next(this.adapterService.getProjectsXmlModel(projects));
-    this.users.next(this.adapterService.getUsersXmlModel(users));
+    this.projects.next(projects);
+    this.users.next(users);
   }
 
   getProjects(): ReplaySubject<ProjectXml[]> {
