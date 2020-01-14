@@ -14,9 +14,9 @@ describe('surv-shell App', function () {
     browser = client as any;
   });
 
-  it('should display message saying App works !', async function () {
-    const text = await browser.getText('app-main h1');
-    expect(text).to.equal('App works !');
+  it('should display message saying Выберите папку', async function () {
+    const text = await browser.getText('app-main header');
+    expect(text).to.equal('Выберите папку');
   });
 
 
