@@ -32,6 +32,7 @@ export class MainService {
       this.electronService.fs.readFile(filePath, (err, content) => {
         // Проверка на существование файла
         if (!content) {
+          this.deleteFileFromLocalStorage();
           reject(err);
         } else {
           xml2js.parseString(content.toString(), (error, result) => {
@@ -81,5 +82,12 @@ export class MainService {
         err ? reject(err) : resolve(filePath);
       });
     });
+  }
+
+  deleteFileFromLocalStorage() {
+    const selectedFile = localStorage.getItem('selectedFile');
+    const files = JSON.parse(localStorage.getItem('files'));
+    const filesWithoutDeleted = files.map(file => file !== selectedFile);
+    localStorage.setItem('files', JSON.stringify(filesWithoutDeleted));
   }
 }
