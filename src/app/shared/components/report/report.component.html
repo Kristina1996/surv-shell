@@ -1,9 +1,10 @@
 <div class="tabs">
   <input id="tab1" type="radio" name="tabs" checked>
-  <label for="tab1">Основные задачи {{commonTotalHours}}</label>
+  <label for="tab1">Основные задачи {{commonTotalHours.toFixed(2)}}</label>
   <input id="tab2" type="radio" name="tabs">
-  <label for="tab2">Специальные задачи {{specialTotalHours}}</label>
-  <span class="total-hours">Всего часов за неделю: {{totalHours}}</span>
+  <label for="tab2">Специальные задачи {{specialTotalHours.toFixed(2)}}</label>
+  <span class="total-hours">Всего часов за неделю: {{totalHours.toFixed(2)}}</span>
+  <app-icon-button class="sync-toggl" [color]="'dark'" [iconType]="'sync_toggl'" [title]="'Синхронизироваться с toggl.com'" (click)="syncToggl()"></app-icon-button>
   <app-icon-button class="upload-icon" [color]="'dark'" [iconType]="'upload'" [title]="'Отправить отчёт'" (click)="uploadReport()"></app-icon-button>
   <ng-container *ngIf="report">
     <section id="content-tab1">
