@@ -15,3 +15,12 @@ export function getFirstReport() {
   report.common[0].employee[0].tasks.push(new TaskModel());
   return report;
 }
+
+export function getSpecialTasks() {
+  const specialTasks = [{
+    employeeName: '',
+    rate: 0,
+    specialTasks: SPECIAL_TASKS
+  }]
+  return specialTasks;
+}

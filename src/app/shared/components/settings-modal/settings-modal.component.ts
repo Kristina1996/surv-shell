@@ -5,6 +5,7 @@ import { AdapterService } from '../../../core/services/adapter.service';
 import * as moment from 'moment';
 import { IntegrationResultModel } from '../../../core/models/report.model';
 import {DataStorageService} from '../../../core/services/data-storage.service';
+import {TogglIntegrationService} from '../../../core/services/toggl-integration.service';
 
 const CLIENT_TIME_FORMAT = 'HH:mm:ss';
 
@@ -19,6 +20,8 @@ export class SettingsModalComponent implements OnInit {
   password = '';
   domain = '';
   host = '';
+  togglUsername = '';
+  togglPassword = '';
   @Output() closeModal = new EventEmitter<boolean>();
   config = {
     title: 'Настройки',
@@ -40,6 +43,7 @@ export class SettingsModalComponent implements OnInit {
               private passwordEncoderService: PasswordEncoderService,
               private dataStorageService: DataStorageService,
               private cdr: ChangeDetectorRef,
+              private togglIntegrationService: TogglIntegrationService,
               private adapterService: AdapterService) {}
 
   ngOnInit() {
@@ -76,6 +80,15 @@ export class SettingsModalComponent implements OnInit {
       this.toogleErrorReportModal(true);
       this.cdr.detectChanges();
     });
+  }
+
+  togglIntegrate() {
+    if (this.togglUsername !== '' && this.togglPassword !== '') {
+      this.togglIntegrationService.getUserData(this.togglUsername, this.togglPassword);
+      this.close();
+    } else {
+      this.integrationLog.push('Поля не заполнены');
+    }
   }
 
   toogleErrorReportModal(show: boolean) {

@@ -5,25 +5,31 @@
       </li>
       <ul class="nested-nav">
         <li class="nested-nav__item" (click)="chooseItem('СУРВ')"  [class.selected]="'СУРВ' === selectedItem">СУРВ</li>
-        <li class="nested-nav__item" (click)="chooseItem('toogle')" [class.selected]="'toogle' === selectedItem">toogle</li>
+        <li class="nested-nav__item" (click)="chooseItem('toggl')" [class.selected]="'toggl' === selectedItem">Toggl</li>
       </ul>
     </ul>
   </nav>
   <div class="content">
-  <div *ngIf="selectedItem=='СУРВ'" class="surv-integration-tab">
-    <h3>Интеграция с СУРВ</h3>
-    <input [(ngModel)]="host" placeholder="Host (example.com:8080)" type="text">
-    <input [(ngModel)]="username" placeholder="Username" type="text">
-    <input [(ngModel)]="password" placeholder="Password" type="password">
-    <input [(ngModel)]="domain" placeholder="Domain" type="text">
-    <a (click)="integrate()" class="btn-integrate">Интегрироваться</a>
-    <div class="integration-log">
-      <div *ngFor="let logItem of integrationLog">{{logItem}}</div>
+    <div *ngIf="selectedItem=='СУРВ'" class="integration-tab">
+      <h3>Интеграция с СУРВ</h3>
+      <input [(ngModel)]="host" placeholder="Host (example.com:8080)" type="text">
+      <input [(ngModel)]="username" placeholder="Username" type="text">
+      <input [(ngModel)]="password" placeholder="Password" type="password">
+      <input [(ngModel)]="domain" placeholder="Domain" type="text">
+      <a (click)="integrate()" class="btn-integrate">Интегрироваться</a>
+      <div class="integration-log">
+        <div *ngFor="let logItem of integrationLog">{{logItem}}</div>
+      </div>
     </div>
-  </div>
-  <div *ngIf="selectedItem=='toogle'" class="toogle-integration-tab">
-    В разработке
-  </div>
+    <div *ngIf="selectedItem=='toggl'" class="integration-tab">
+      <h3>Интеграция с Toggl</h3>
+      <input [(ngModel)]="togglUsername" placeholder="Username or email" type="text">
+      <input [(ngModel)]="togglPassword" placeholder="Password" type="password">
+      <a (click)="togglIntegrate()" class="btn-integrate">Интегрироваться</a>
+      <div class="integration-log">
+        <div *ngFor="let logItem of integrationLog">{{logItem}}</div>
+      </div>
+    </div>
   </div>
 </app-base-modal>
 <ng-container *ngIf="isShowErrorReportModal">

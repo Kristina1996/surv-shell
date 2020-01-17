@@ -43,7 +43,7 @@
   min-width: 300px;
 }
 
-.surv-integration-tab {
+.integration-tab {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -110,12 +110,6 @@
       cursor: pointer;
     }
   }
-}
-
-.toogle-integration-tab {
-  padding: $gutter;
-  text-align: center;
-  box-sizing: border-box;
 }
 
 .integration-log {

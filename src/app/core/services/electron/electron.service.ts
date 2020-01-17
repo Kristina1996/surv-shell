@@ -9,6 +9,8 @@ import * as soap from 'soap';
 import * as crypto from 'crypto';
 import * as os from 'os';
 import * as httpntlm from 'httpntlm';
+import * as https from 'https';
+import * as request from 'request';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +25,8 @@ export class ElectronService {
   crypto: typeof crypto;
   os: typeof os;
   httpntlm: typeof httpntlm;
+  https: typeof https;
+  request: typeof request;
 
   get isElectron() {
     return window && window.process && window.process.type;
@@ -40,6 +44,8 @@ export class ElectronService {
       this.crypto = window.require('crypto');
       this.os = window.require('os');
       this.httpntlm = window.require('httpntlm');
+      this.https = window.require('https');
+      this.request = window.require('request');
     }
   }
 }

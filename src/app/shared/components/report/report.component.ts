@@ -9,6 +9,7 @@ import { FormServiceService } from '../../../core/services/form-service.service'
 import { TimeTrackerWebService } from '../../../core/services/time-tracker-web.service';
 import { ParseToXmlService } from '../../../core/services/parse-to-xml.service';
 import { PasswordEncoderService } from '../../../core/services/password-encoder.service';
+import {TogglIntegrationService} from '../../../core/services/toggl-integration.service';
 
 @Component({
   selector: 'app-report',
@@ -31,6 +32,7 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
               private timeTrackerWebService: TimeTrackerWebService,
               private parseToXmlService: ParseToXmlService,
               private formService: FormServiceService,
+              private togglIntegrationService: TogglIntegrationService,
               private passwordEncoderService: PasswordEncoderService,
               private adapterService: AdapterService,
               private cdr: ChangeDetectorRef) {
@@ -39,7 +41,14 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.togglIntegrationService.updateTogglReport.subscribe(value => {
+      // Пришел отчет с toggl.com
+      if (value === 1) {
+        this.getReportContent();
+      }
+    });
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.filePath = changes.filePath.currentValue;
@@ -59,8 +68,13 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
   getReportContent() {
     this.mainService.getFileContent(this.filePath).then(result => {
       (result) ? this.report = this.adapterService.getModel(result) : this.report = new ReportModel();
+      this.cdr.detectChanges();
     }, error => {
-      alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.\n\n' + error);
+      if (error.message.includes('no such file or directory')) {
+        alert('Отчёт был удалён с компьютера');
+      } else {
+        alert('Отчёт содержит некорректную структуру. Попробуйте открыть другой отчёт.\n\n' + error);
+      }
     });
   }
 
@@ -79,6 +93,14 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
           });
         }
       });
+    }
+  }
+
+  syncToggl() {
+    const selectedFile = localStorage.getItem('selectedFile');
+    const userInfo = JSON.parse(localStorage.getItem('toggl'));
+    if (userInfo && selectedFile) {
+      this.togglIntegrationService.getWeekReport(selectedFile);
     }
   }
 
