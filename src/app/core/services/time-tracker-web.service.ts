@@ -139,7 +139,7 @@ export class TimeTrackerWebService {
   private createClient(userInfo): Observable<any> {
     return new Observable( observer => {
       const security = new this.soap.NTLMSecurity(userInfo);
-      this.soap.createClient('http://' + userInfo.host + '/timetrackertest/TimeTrackerWebService.asmx?WSDL', {wsdl_options: {...userInfo}},  (err, client) => {
+      this.soap.createClient('http://' + userInfo.host + '/timetracker/TimeTrackerWebService.asmx?WSDL', {wsdl_options: {...userInfo}},  (err, client) => {
         if (err) {
           observer.error(err);
           console.error(err);
