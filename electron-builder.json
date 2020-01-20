@@ -32,8 +32,9 @@
     ]
   },
   "linux": {
+    "icon": "resources",
     "target": [
-      "AppImage"
+      "deb"
     ]
   }
 }
