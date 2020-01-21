@@ -66,7 +66,7 @@ export class SettingsModalComponent implements OnInit {
     this.togglUsername = (togglUserInfo.username) ? togglUserInfo.username : '';
     this.togglApiToken = (togglUserInfo.api_token) ? togglUserInfo.api_token : '';
   }
-  
+
   checkUserInfo() {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (userInfo) {
