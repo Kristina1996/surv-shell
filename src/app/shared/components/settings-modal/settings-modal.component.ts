@@ -49,8 +49,24 @@ export class SettingsModalComponent implements OnInit {
 
   ngOnInit() {
     this.checkUserInfo();
+    this.updateTogglUserInfo();
+    this.checkUserInfoToggl();
   }
 
+  checkUserInfoToggl() {
+    this.togglIntegrationService.updateTogglReport.subscribe(value => {
+      if (value === 2) {
+        this.updateTogglUserInfo();
+      }
+    });
+  }
+
+  updateTogglUserInfo() {
+    const togglUserInfo = JSON.parse(localStorage.getItem('toggl'));
+    this.togglUsername = (togglUserInfo.username) ? togglUserInfo.username : '';
+    this.togglApiToken = (togglUserInfo.api_token) ? togglUserInfo.api_token : '';
+  }
+  
   checkUserInfo() {
     const userInfo = JSON.parse(localStorage.getItem('userInfo'));
     if (userInfo) {
