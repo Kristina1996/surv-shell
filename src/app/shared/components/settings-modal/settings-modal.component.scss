@@ -43,7 +43,7 @@
   min-width: 300px;
 }
 
-.integration-tab {
+.integration-tab-surv {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -108,6 +108,156 @@
       box-shadow: 0 4px 17px rgba(0,0,0,0.2);
       transform: translate3d(0, -2px, 0);
       cursor: pointer;
+    }
+  }
+}
+
+.integration-tab-toggl {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: $gutter;
+  min-width: 400px;
+
+  h4 {
+    text-align: center;
+  }
+
+  input {
+    margin: $half-gutter;
+  }
+
+  input {
+    display: block;
+    position: relative;
+    height: 40px;
+    width: 90%;
+    margin: $half-gutter;
+    padding-left: 20px;
+    border: none;
+    border-bottom: 1px solid rgba(0,0,0,.1);
+    z-index: 1;
+    font-size: 15px;
+    color: #b98181;
+    transition: .5s;
+
+    &::placeholder {
+      transform: translateY(0px);
+      transition: .5s;
+    }
+
+    &:hover, &:focus, &:active:focus {
+      color: #b98181;
+      outline: none;
+      border-bottom: 1px solid #b98181;
+
+      &::placeholder {
+        color: #b98181;
+        position: relative;
+        transform:translateY(-15px);
+      }
+    }
+  }
+
+  .btn-integrate {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: $gutter;
+    background: #b98181;
+    box-shadow: 0 3px 2px 0 rgba(0,0,0,0.1);
+    border-radius: 5px;
+    height: 40px;
+    width: 170px;
+    color: #fff;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: #a27171;
+      box-shadow: 0 4px 17px rgba(0,0,0,0.2);
+      transform: translate3d(0, -2px, 0);
+      cursor: pointer;
+    }
+  }
+
+  // стили для табов
+  /* Базовый контейнер табов */
+  .tabs-settings {
+    min-width: 320px;
+    padding: 0;
+    //margin: 0 auto;
+    margin-right: 1%;
+  }
+
+  /* Стили секций с содержанием */
+  .tabs-settings>section {
+    display: none;
+    padding: 15px;
+    background: #fff;
+    border-top: 1px solid #ddd;
+  }
+
+  /* Прячем чекбоксы */
+  .tabs-settings>input {
+    display: none;
+    position: absolute;
+  }
+
+  /* Стили переключателей вкладок (табов) */
+  .tabs-settings>label {
+    display: inline-block;
+    margin: 0 0 -1px;
+    padding: 15px 25px;
+    font-weight: 600;
+    text-align: center;
+    color: #aaa;
+    border: 1px solid #ddd;
+    background: #f1f1f1;
+    border-radius: 3px 3px 0 0;
+  }
+
+  /* Шрифт-иконки от Font Awesome в формате Unicode */
+  .tabs-settings>label:before {
+    font-family: fontawesome;
+    font-weight: normal;
+    margin-right: 10px;
+  }
+
+  /* Изменения стиля переключателей вкладок при наведении */
+  .tabs-settings>label:hover {
+    color: #888;
+    cursor: pointer;
+  }
+
+  /* Стили для активной вкладки */
+  .tabs-settings>input:checked+label {
+    color: #555;
+    border-top: 1px solid #b98181;
+    border-bottom: 1px solid #fff;
+    background: #fff;
+  }
+
+  /* Активация секций с помощью псевдокласса :checked */
+  #tab-username-password:checked~#content-tab-username-password, #tab-token:checked~#content-tab-token {
+    display: block;
+  }
+
+  /* Убираем текст с переключателей и оставляем иконки на малых экранах */
+  @media screen and (max-width: 680px) {
+    .tabs-settings>label {
+      font-size: 0;
+    }
+
+    .tabs-settings>label:before {
+      margin: 0;
+      font-size: 18px;
+    }
+  }
+
+  /* Изменяем внутренние отступы переключателей для малых экранов */
+  @media screen and (max-width: 400px) {
+    .tabs-settings>label {
+      padding: 15px;
     }
   }
 }

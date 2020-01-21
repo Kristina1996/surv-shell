@@ -1,13 +1,12 @@
 import {ChangeDetectorRef, Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-// import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {ElectronService} from './electron/electron.service';
 import * as moment from 'moment';
 import {getFirstReport, getSpecialTasks} from '../../shared/components/new-report-modal/report-adapter';
 import {EmployeeModel, ProjectModel, ReportModel, TaskModel} from '../models/report.model';
 import {ParseToXmlService} from './parse-to-xml.service';
-import * as path from "path";
+import * as path from 'path';
 import {MainService} from './main.service';
 import {FormServiceService} from './form-service.service';
 
@@ -31,16 +30,29 @@ export class TogglIntegrationService {
               private mainService: MainService,
               private electronService: ElectronService) { }
 
-  getUserData(username, password) {
-    const options = {
-      hostname: 'www.toggl.com',
-      path: '/api/v8/me',
-      method: 'GET',
-      auth: username + ':' + password,
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    };
+  getUserData(username, password, token) {
+    let options;
+    if (token === '') {
+      options = {
+        hostname: 'www.toggl.com',
+        path: '/api/v8/me',
+        method: 'GET',
+        auth: username + ':' + password,
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      };
+    } else {
+      options = {
+        hostname: 'www.toggl.com',
+        path: '/api/v8/me',
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Authorization': `Basic ${btoa(token + ':api_token')}`
+        }
+      };
+    }
 
     this.electronService.https.get(options, (res, ) => {
       let rawData = '';
@@ -50,8 +62,10 @@ export class TogglIntegrationService {
         if (res.statusCode === 200) {
           if (jsResponse.data.api_token) {
             this.workspaces = jsResponse.data.workspaces;
+            username = jsResponse.data.email;
             // tslint:disable-next-line:max-line-length
             localStorage.setItem('toggl', JSON.stringify({username: username, api_token: jsResponse.data.api_token, workspaces: jsResponse.data.workspaces}));
+            this.updateTogglReport.next(2);
           }
         }
       });

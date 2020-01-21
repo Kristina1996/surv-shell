@@ -27,6 +27,7 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
   totalHours = 0;
   integrationResult: IntegrationResultModel|boolean;
   isShowErrorReportModal = false;
+  isShowTogglIcon = false;
 
   constructor(private mainService: MainService,
               private timeTrackerWebService: TimeTrackerWebService,
@@ -46,6 +47,9 @@ export class ReportComponent implements OnInit, OnChanges, OnDestroy {
       // Пришел отчет с toggl.com
       if (value === 1) {
         this.getReportContent();
+      } else if (value === 2) {
+        this.isShowTogglIcon = true;
+        this.cdr.detectChanges();
       }
     });
   }

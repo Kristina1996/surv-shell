@@ -10,7 +10,7 @@
     </ul>
   </nav>
   <div class="content">
-    <div *ngIf="selectedItem=='СУРВ'" class="integration-tab">
+    <div *ngIf="selectedItem=='СУРВ'" class="integration-tab-surv">
       <h3>Интеграция с СУРВ</h3>
       <input [(ngModel)]="host" placeholder="Host (example.com:8080)" type="text">
       <input [(ngModel)]="username" placeholder="Username" type="text">
@@ -21,13 +21,21 @@
         <div *ngFor="let logItem of integrationLog">{{logItem}}</div>
       </div>
     </div>
-    <div *ngIf="selectedItem=='toggl'" class="integration-tab">
-      <h3>Интеграция с Toggl</h3>
-      <input [(ngModel)]="togglUsername" placeholder="Username or email" type="text">
-      <input [(ngModel)]="togglPassword" placeholder="Password" type="password">
-      <a (click)="togglIntegrate()" class="btn-integrate">Интегрироваться</a>
-      <div class="integration-log">
-        <div *ngFor="let logItem of integrationLog">{{logItem}}</div>
+    <div *ngIf="selectedItem=='toggl'" class="integration-tab-toggl">
+      <div class="tabs-settings">
+        <input id="tab-username-password" type="radio" name="tabs-settings" checked>
+        <label for="tab-username-password">Логин/Пароль</label>
+        <input id="tab-token" type="radio" name="tabs-settings">
+        <label for="tab-token">API Token</label>
+        <section id="content-tab-username-password">
+          <input [(ngModel)]="togglUsername" placeholder="Username or email" type="text">
+          <input [(ngModel)]="togglPassword" placeholder="Password" type="password">
+          <a (click)="togglIntegrate()" class="btn-integrate">Интегрироваться</a>
+        </section>
+        <section id="content-tab-token">
+          <input [(ngModel)]="togglApiToken" placeholder="API Token" type="text">
+          <a (click)="togglIntegrate()" class="btn-integrate">Интегрироваться</a>
+        </section>
       </div>
     </div>
   </div>

@@ -22,6 +22,7 @@ export class SettingsModalComponent implements OnInit {
   host = '';
   togglUsername = '';
   togglPassword = '';
+  togglApiToken = '';
   @Output() closeModal = new EventEmitter<boolean>();
   config = {
     title: 'Настройки',
@@ -83,8 +84,8 @@ export class SettingsModalComponent implements OnInit {
   }
 
   togglIntegrate() {
-    if (this.togglUsername !== '' && this.togglPassword !== '') {
-      this.togglIntegrationService.getUserData(this.togglUsername, this.togglPassword);
+    if (this.togglUsername !== '' && this.togglPassword !== '' || this.togglApiToken !== '') {
+      this.togglIntegrationService.getUserData(this.togglUsername, this.togglPassword, this.togglApiToken);
       this.close();
     } else {
       this.integrationLog.push('Поля не заполнены');
