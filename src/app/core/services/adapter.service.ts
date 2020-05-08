@@ -32,11 +32,17 @@ export class AdapterService {
           if (localStorage.getItem('reportWasRemoved') === 'true') { integrationResult.wasRemoved = true; }
         } else {
           integrationResult.successUpload = false;
-          result.UploadManagerReportResult.TimeSheetsListing.ErrorsForLine.ArrayOfString.forEach(error => {
-            error.string.forEach(string => {
-              integrationResult.uploadManagerReportResult.errors.push(string);
+          const timeSheetsListing = result.UploadManagerReportResult.TimeSheetsListing;
+
+          if (timeSheetsListing) {
+            timeSheetsListing.ErrorsForLine.ArrayOfString.forEach(error => {
+              error.string.forEach(string => {
+                integrationResult.uploadManagerReportResult.errors.push(string);
+              });
             });
-          });
+          } else {
+            integrationResult.uploadManagerReportResult.errors.push('Unknown error.');
+          }
         }
         return integrationResult;
       } else if (result.response) {
